@@ -1,0 +1,228 @@
+VxLAN：没有控制平面，都是静态配置的  
+对于多设备的场景，vxlan隧道建立的数量多，配置量大繁琐  
+对于BUM流量访问都是泛洪处理
+ 
+bgp-evpn：作为vxlan控制平面使用  
+优化配置量，可以部署反射器设备  
+对于BUM流量，可以通过evpn信息交互将报文转换为单播转发  
+（通过BGP通告MAC地址取代转发平面基于数据流量来学习MAC地址）  
+具备以太网段标识、ESI标签、DF机制等
+ 
+集中式网关的优势：  
+1.结构清晰，配置点集中  
+2.便于维护，不同租户隔离点集中
+ 
+缺点：  
+1.网关的表项资源容易称为网络瓶颈  
+2.无法通过增加冗余设备来优化网络瓶颈问题
+ 
+配置步骤：  
+1.底层igp打通  
+2.构建evpn邻居关系  
+3.通过evpn实现vxlan隧道的建立  
+4.传递type2路由实现ARP信息的学习
+   
+
+租户：  
+需要通过VPN实例进行隔离的用户  
+租户的隔离点是三层网关
+ 
+可以实现通信的情况：  
+1.同租户下 同子网的通信  
+2.同租户下 不同子网的通信  
+3.不同租户下 不同子网的通信
+
+![Exported image](Exported%20image%2020251206152001-0.png)
+
+```
+CE4：  
+#  
+bridge-domain 10  
+ vxlan vni 10  
+ evpn  
+  route-distinguisher 10:10  
+  vpn-target 1:1 export-extcommunity  
+  vpn-target 1:1 import-extcommunity  
+#  
+bridge-domain 20  
+ vxlan vni 20  
+ evpn  
+  route-distinguisher 2:2  
+  vpn-target 2:2 export-extcommunity  
+  vpn-target 2:2 import-extcommunity  
+#  
+interface Nve1  
+ source 4.4.4.4  
+ vni 10 head-end peer-list protocol bgp  
+ vni 20 head-end peer-list protocol bgp  
+#  
+interface Vbdif10  
+ ip address 192.168.1.254 255.255.255.0  
+#  
+interface Vbdif20  
+ ip address 192.168.2.254 255.255.255.0  
+#
+```
+
+```
+CE1：  
+#  
+evpn-overlay enable  全局使能evpn  
+#  
+bgp 100  
+ peer 4.4.4.4 as-number 100  
+ peer 4.4.4.4 connect-interface LoopBack0  
+ #  
+ ipv4-family unicast  
+  undo peer 4.4.4.4 enable  
+ #  
+ l2vpn-family evpn  
+  policy vpn-target  
+  peer 4.4.4.4 enable  
+#  
+interface Nve1  
+ source 1.1.1.1  
+ vni 10 head-end peer-list protocol bgp  
+#  
+bridge-domain 100  
+ vxlan vni 10  
+ evpn  
+  route-distinguisher 100:100  
+  vpn-target 1:1 export-extcommunity  
+  vpn-target 1:1 import-extcommunity  
+#  
+interface GE1/0/0.1 mode l2  
+ encapsulation dot1q vid 10  
+ bridge-domain 100  
+#
+```
+
+```
+CE3：  
+#  
+evpn-overlay enable   
+#  
+bgp 100  
+ peer 4.4.4.4 as-number 100  
+ peer 4.4.4.4 connect-interface LoopBack0  
+ #  
+ ipv4-family unicast  
+  undo peer 4.4.4.4 enable  
+ #  
+ l2vpn-family evpn  
+  policy vpn-target  
+  peer 4.4.4.4 enable  
+#  
+interface Nve1  
+ source 3.3.3.3  
+ vni 10 head-end peer-list protocol bgp  
+#  
+bridge-domain 100  
+ vxlan vni 10  
+ evpn  
+  route-distinguisher 300:300  
+  vpn-target 1:1 export-extcommunity  
+  vpn-target 1:1 import-extcommunity  
+#  
+interface GE1/0/0.1 mode l2  
+ encapsulation dot1q vid 30  
+ bridge-domain 100  
+#
+```
+
+bgp 对于不同VPN实例（不同租户）的路由要求相互访问通信  
+通过VPNv4路由的交互实现VPN实例路由的通信  
+#  
+ipv4-family vpn-instance B  
+network 192.168.2.0 255.255.255.0  
+#  
+ipv4-family vpn-instance C  
+network 100.4.4.4 255.255.255.255  
+advertise l2vpn evpn 将VPNv4路由转换为evpn实例的路由（type5）  
+#
+ 
+#  
+ip vpn-instance C  
+ipv4-family  
+route-distinguisher 700:700  
+vpn-target 123:123 export-extcommunity evpn 设备evpn的ERT值  
+vxlan vni 5000 设置三层VNI
+
+**type3路由：集成组播路由 Route Type: 3 (Inclusive Multicast Route)**  
+1.组成部分  
+1.前缀  
+route-distinguisher evpn实例下RD值  
+Ethernet Tag ID: 0, 该场景下没有意义  
+IP address length VTEP地址的长度  
+Originator IP:3.3.3.3/32 VETP地址  
+2.PMSI属性  
+Flags 0, 每一意义  
+Ingress Replication, 隧道类型，vxlan场景下类型只有“6” 标识进行头端复制  
+Label 0:0:0(10), 隧道建立的vni值（该值表示为二层VNI）  
+Tunnel Identifier:3.3.3.3 本端vtep地址
+ 
+2.作用：该路由用在VxLAN控制平面中VTEP地址的自动发现和VxLAN隧道的动态建立
+ 
+3.收发过程：  
+1.type3路由携带BD域中evpn实例的ERT值  
+2.接收到type3路由后，判断携带的ERT值和本端evpn实例下的IRT值是否匹配，匹配则接收该路由  
+3.根据该type3路由中的vtep地址判断是否可达，如果路由可达则可以vxlan隧道  
+4.根据type3路由中的vni值，如果和本端域中的vni值相同，则vtep地址加入本端vni的头端复制列表中
+
+**type2路由：MAC/IP路由**  
+1.组成 Route Type: MAC Advertisement Route (2)  
+Route Distinguisher: 0000000200000002 (2:2) evpn实例下的RD值  
+ESI: 00:00:00:00:00:00:00:00:00:00 连接定义的唯一标识  
+Ethernet Tag ID: 0 忽略  
+MAC Address Length: 48  
+MAC Address: HuaweiTe_03:36:b1 (70:7b:e8:03:36:b1) mac地址  
+IP Address Length: 0  
+IP Address: NOT INCLUDED ip地址  
+0000 0000 0000 0000 0001 .... = MPLS Label 二层VNI  
+0000 0000 0000 0000 0001 .... = MPLS Label 三层VNI
+ 
+2.类型  
+1.ARP路由：主机MAC地址+主机IP地址+二层VNI  
+2.IRB路由：主机MAC地址+主机IP地址+二层VNI+三层VNI'
+ 
+3.作用：  
+1.主机MAC地址通告  
+实现同子网主机的二层互访，两端VTEP需要相互学习主机的MAC地址  
+2.主机ARP通告  
+1.ARP广播抑制  
+因为type2提前通告给二层网关终端的ARP信息，  
+所以主机访问对端时如果要进行广播的ARP解析，  
+二层网关可以根据已经获得的ARP消息将广播转换为单播执行转发  
+2.虚拟机迁移（分布式网关场景）  
+在虚拟机迁移后，新的网关会将虚拟机做type2路由通告，告知其他设备虚拟机发生了迁移  
+3.主机IRB通告（分布式网关场景）  
+跨子网三层通信，需要携带三层VNI
+ 
+4.收发过程：  
+发送type2路由时，打上本端EVPN实例下的ERT值  
+通过本端EVPN实例下的IRT，匹配type2路由携带的ERT值接收
+
+**type 5路由：前缀路由**
+ 
+EVPN-Instance __RD_1_700_700__:   Number of Ip Prefix Routes: 1  
+Network(EthTagId/IpPrefix/IpPrefixLen) NextHop  
+*\> 0:100.4.4.4:32 0.0.0.0
+   
+
+Network layer reachability information (36 bytes)  
+EVPN NLRI: IP Prefix route  
+Route Type: IP Prefix route (5)  
+Length: 34
+ 
+Route Distinguisher: 000002bc000002bc (700:700) VPN实例中的RD值  
+ESI: 00:00:00:00:00:00:00:00:00:00  
+Ethernet Tag ID: 0  
+IP prefix length: 32  
+IPv4 address: 100.4.4.4  
+IPv4 Gateway address: 0.0.0.0  
+MPLS Label Stack: 312, (BOGUS: Bottom of Stack NOT set!) 三层VNI的值  
+MPLS Label: 5000312,
+ 
+作用：  
+1.产生的所有type5都是IRB路由，即在分布式网关场景下通告的不同租户的跨网段路由  
+2.对于外部访问时可以通过type5路由描述外部路由条目

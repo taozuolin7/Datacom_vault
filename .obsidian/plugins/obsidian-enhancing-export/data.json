@@ -54,6 +54,14 @@
   ],
   "defaultExportDirectoryMode": "Auto",
   "openExportedFile": true,
-  "env": {},
-  "showExportProgressBar": true
+  "env": {
+    "win32": {
+      "PATH": "F:\\pandoc;${PATH}"
+    }
+  },
+  "showExportProgressBar": true,
+  "lastExportDirectory": {
+    "win32": "F:\\tets"
+  },
+  "lastExportType": "Word (.docx)"
 }

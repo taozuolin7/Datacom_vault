@@ -1,23 +1,15 @@
-![Exported image](Exported%20image%2020251206164959-0.png)
-
-```
-二层无线组网 AP和AC在同一个网段内  
-  AP和AC的capwap隧道构建？  
+# WLAN三层组网
+**二层无线组网 AP和AC在同一个网段内 AP和AC的capwap隧道构建？** 
    AP发送广播报文找AC  
    AC发送单播报文找AP
-```
- 
-```
-三层无线组网 AP和AC不在同一个网段  
-  AP和AC的capwap隧道构建？  
-   AC发送单播报文找AP  
-  AP如何找AC？  
-   AP也通过单播找AC
-```
 
-```
-LSW1作为AP的网关，通过vlan 50通信￼LSW1连接AC通过VLAN 100三层通信
-```
+**三层无线组网 AP和AC不在同一个网段 AP和AC的capwap隧道构建？**
+   AC发送单播报文找AP  
+**AP如何找AC？**
+   AP也通过单播找AC
+
+LSW1作为AP的网关，通过vlan 50通信LSW1连接AC通过VLAN 100三层通信
+
 
 ```
 [AC]vlan 100  

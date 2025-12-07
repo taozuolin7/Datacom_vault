@@ -9,9 +9,9 @@
    AP也通过单播找AC
 
 LSW1作为AP的网关，通过vlan 50通信LSW1连接AC通过VLAN 100三层通信
+![400](assets/WLAN三层组网/file-20251207195401479.png)
 
-
-```
+```R
 [AC]vlan 100  
 [AC]vlan 10   
 [AC]int gi 0/0/1  
@@ -22,7 +22,7 @@ LSW1作为AP的网关，通过vlan 50通信LSW1连接AC通过VLAN 100三层通�
 [AC-Vlanif100]ip ad 10.1.1.1 24 
 ```
 
-```
+```R
 [S1]vlan 50   
 [S1]int vlanif 50    
 [S1-Vlanif50]ip ad 10.1.50.254 24   
@@ -43,21 +43,17 @@ LSW1作为AP的网关，通过vlan 50通信LSW1连接AC通过VLAN 100三层通�
 [S3-GigabitEthernet0/0/2]p t p v 50  
 [S3-GigabitEthernet0/0/2]p t a v 50 ￼￼
 ```
-   
 
+**AC和AP之间构建capwap隧道**
 ```
-AC和AP之间构建capwap隧道  
 [AC]ip route-static 10.1.50.0 24 10.1.1.254 
-```
- 
-```
 [AC]capwap source interface Vlanif 100   
 [AC]wlan  
 [AC-wlan-view]ap-group name 1  
 [AC-wlan-view]ap-id 1 ap-mac 00e0-fcc5-36e0   
 [AC-wlan-ap-1]ap-name AP1  
 [AC-wlan-ap-1]ap-group 1￼￼
-```
+
 
 ```
 LSW1作为终端的网关，并为终端分配IP地址  

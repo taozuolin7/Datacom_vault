@@ -25,11 +25,9 @@ WLAN配合SDN控制器使用，由SDN控制器统一管理和配置，能够实�
 | 顺序分配   | 各个VLAN用户数目划分均匀        | 重新上线VLAN容易变更、IP变化 |
 | HASH分配 | 用户多次上线可分配相同的VLAN、IP不变 | 各个VLAN用户数划分不均衡    |
 
-
 **AC作为DHCP Relay，在AC上配置dhcp server group**
 dhcp server group AP   
 dhcp-server 172.21.1.2 0
-
 **在接口使能dhcp服务**
 interface Vlanif10  
  ip address 10.1.1.2 255.255.255.0  

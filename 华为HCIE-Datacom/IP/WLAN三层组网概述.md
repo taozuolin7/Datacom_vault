@@ -33,11 +33,10 @@ interface Vlanif10
  ip address 10.1.1.2 255.255.255.0  
  dhcp select relay  
  dhcp relay server-select AP
-
 ==前提是AP所在的网络能够到达dhcp服务器所在的网络（二层组网）==
 
 #  三层组网ap发现ac
-当AC和AP间是三层组网时，AP通过发送广播请求报文的方式无法发现AC，这时需要通过DHCP服务器回应给AP的报文中携带的
+当AC和AP间是==三层组网==时，AP通过发送广播请求报文的方式无法发现AC，这时需要通过DHCP服务器回应给AP的报文中携带的
 Option43字段（IPv4）
 Option52（IPv6）
 来通告AC的IP地址。

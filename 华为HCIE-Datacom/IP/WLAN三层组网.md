@@ -41,30 +41,28 @@ LSW1作为AP的网关，通过vlan 50通信LSW1连接AC通过VLAN 100三层通�
 [S3]int gi 0/0/2   
 [S3-GigabitEthernet0/0/2]p l t  
 [S3-GigabitEthernet0/0/2]p t p v 50  
-[S3-GigabitEthernet0/0/2]p t a v 50 ￼￼
+[S3-GigabitEthernet0/0/2]p t a v 50
 ```
 
 **AC和AP之间构建capwap隧道**
-```
+```R
 [AC]ip route-static 10.1.50.0 24 10.1.1.254 
 [AC]capwap source interface Vlanif 100   
 [AC]wlan  
 [AC-wlan-view]ap-group name 1  
 [AC-wlan-view]ap-id 1 ap-mac 00e0-fcc5-36e0   
 [AC-wlan-ap-1]ap-name AP1  
-[AC-wlan-ap-1]ap-group 1￼￼
+[AC-wlan-ap-1]ap-group 1
 
 
 ```
 LSW1作为终端的网关，并为终端分配IP地址  
+```R
 [S1]vlan 10   
 [S1-vlan10]q  
 [S1]int vlanif 10   
 [S1-Vlanif10]ip ad 192.168.10.254 24   
 [S1-Vlanif10]dhcp select interface 
-```
-
-```
 [S1]vlan 100  
 [S1]int gi 0/0/1   
 [AC-GigabitEthernet0/0/1]p l t  
@@ -72,9 +70,6 @@ LSW1作为终端的网关，并为终端分配IP地址
 [S1-GigabitEthernet0/0/1]q  
 [S1]int vlanif 100   
 [S1-Vlanif100]ip ad 10.1.1.254 24 
-```
-
-```
 [S2]vlan 50   
 [S2-vlan50]q  
 [S2]int gi 0/0/1   
@@ -86,8 +81,9 @@ LSW1作为终端的网关，并为终端分配IP地址
 [S2-GigabitEthernet0/0/2]p t a v 50 
 ```
 
+LSW1作为DHCP的服务器为AP分配地址 
 ```
-LSW1作为DHCP的服务器为AP分配地址  
+ 
 [S1]dhcp enable   
 [S1]ip pool AP  
 [S1-ip-pool-ap]gateway-list 10.1.50.254   

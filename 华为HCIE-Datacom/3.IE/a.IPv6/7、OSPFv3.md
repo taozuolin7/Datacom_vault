@@ -90,40 +90,35 @@ ospfv3的RID必须手工配置,RID值依然是32位无符号的整数
 **==7.7类LSA：作用类似，功能相同和5类LSA内容完全相同==**
 
 ### **OSPFv3新增的LSA：**  
-**1.8类LSA：名称Link-LSA（链路LSA）**
-泛洪范围是链路泛洪  
-ospfv3设备在所有使能的接口上都会产生8类LSA  
-8类LSA用于描述接口的链路本地地址（该地址作为路由计算的下一跳使用）  
-8类LSA会携带自身接口的所有网络前缀  
+**8类LSA：名称Link-LSA（链路LSA）**
+==泛洪范围是链路泛洪==
+	ospfv3设备在所有使能的接口上都会产生8类LSA  
+	8类LSA用于描述接口的链路本地地址（该地址作为路由计算的下一跳使用）  
+	8类LSA会携带自身接口的所有网络前缀  
 8类LSA携带接口网络前缀的目的？  
-为了本端接口配置的网络前缀可以被网段的DR得知
+	为了本端接口配置的网络前缀可以被网段的DR得知
  
-2.9类LSA：名称Intra-Area-Prefix-LSA（区域内前缀LSA）  
-用于描述区域内的路由信息  
+**9类LSA：名称Intra-Area-Prefix-LSA（区域内前缀LSA）**
+==用于描述区域内的路由信息==  
 1.末节路由（环回口路由） （v2通过1类LSA的stubnet描述）  
-对于末节路由，9类LSA每一台设备都会产生  
-会使用借鉴字段，对应到拓扑节点（设备的1类LSA）
+	对于末节路由，9类LSA每一台设备都会产生  
+	会使用借鉴字段，对应到拓扑节点（设备的1类LSA）
  
 2.连接路由（接口网段路由）（v2通过2类LSA的netmask描述）  
-对于连接路由，9类LSA由DR设备产生  
-会使用借鉴字段，对应到拓扑节点（设备的2类LSA）
+	对于连接路由，==9类LSA由DR设备产生==  
+	会使用借鉴字段，对应到拓扑节点（设备的2类LSA）
  
 如果直连网段下的多台设备，网络前缀配置不同  
-DR设备要先获取到非DR设备的8类LSA，根据8类LSA携带的路由信息  
-才能生成对应的9类LSA
+DR设备要先获取到非DR设备的8类LSA，根据8类LSA携带的路由信息才能生成对应的9类LSA
  
-对于9类LSA，如果要在不同区域转发  
+**对于9类LSA，如果要在不同区域转发？**
 ABR设备收到本区域内的9类LSA，会转换为3类LSA在区域泛洪
 
-![Exported image](Exported%20image%2020251206150158-9.png)
-
-```
-\<AR5\>dis ospfv3 lsdb 
-
+**</AR5/>dis ospfv3 lsdb**
+```D
 * indicates STALE LSA
-
            OSPFv3 Router with ID (10.5.5.5) (Process 1)
-               Link-LSA (Interface GigabitEthernet0/0/0)
+               Link-LSA (Interface GigabitEthernet0/0/0) #8类LSA
 
 Link State ID   Origin Router    Age   Seq#       CkSum  Prefix
 0.0.0.3         10.5.5.5         1550  0x80000001 0x6233      0
@@ -149,10 +144,10 @@ Link State ID   Origin Router    Age   Seq#       CkSum
 
 Link State ID   Origin Router    Age   Seq#       CkSum
 10.7.7.7        10.6.6.6         0623  0x80000001 0x5b70
-```
+
    
 
-```
+
                AS-External-LSA
 
 Link State ID   Origin Router    Age   Seq#       CkSum  Type

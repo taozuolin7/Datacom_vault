@@ -1,10 +1,11 @@
-OSPFv3的认证：  
+# OSPFv3的认证
 1.OSPFv3的区域认证、接口认证，报文内直接携带认证的信息  
 2.利用IPsec的esp协议通过IPv6扩展报头对整个OSPF报文进行加密和认证  
 3.利用IPsec的ah协议通过ipv6扩展报头添加认证协议，ospfv3的明文传递的
+## AH认证
+![](assets/8、OSPFv3的认证/file-20251208200002162.png)
 
-`NE1`： `ah`认证  
-
+**NE1：**
 ```
 #
 ipsec proposal test
@@ -23,10 +24,7 @@ ospfv3 1
  ipsec sa test
 ```
 
-![Exported image](Exported%20image%2020251206150202-0.png)
-
-`NE2`：  
-
+**NE2：** 
 ```
 #
 ipsec proposal test
@@ -45,8 +43,9 @@ ospfv3 1
  ipsec sa test
 ```
 
-`NE1`： `esp`认证  
-
+**ESP认证**
+![](assets/8、OSPFv3的认证/file-20251208200155931.png)
+**NE1：**
 ```
 #
 ipsec proposal test
@@ -65,8 +64,7 @@ ospfv3 1
  ipsec sa test
 ```
 
-`NE2`：  
-
+**NE2：**
 ```
 #
 ipsec proposal test

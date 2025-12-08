@@ -22,7 +22,7 @@ interface GigabitEthernet0/0/0
 #
 dhcp enable 
 #
-dhcpv6 pool test
+dhcpv6 pool testa
  address prefix 2012::/64
  excluded-address 2012::1
  dns-server 2088::8

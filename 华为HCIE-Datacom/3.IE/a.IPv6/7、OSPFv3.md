@@ -1,5 +1,7 @@
+# OSPFv3
 OSPFv2 IPv4 ospfv2无法支持ipv6的扩展  
-OSPFv3 IPv6￼  
+OSPFv3 IPv6
+
 OSPFv3基于链路运行以及拓扑计算，而不再是网段  
 因为存在链路本地地址，所以不存在其他网络前缀，ospfv3可以正常进行拓扑计算
  

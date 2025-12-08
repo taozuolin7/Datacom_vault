@@ -10,7 +10,7 @@
 
 ## **DHCPv6有状态自动配置**
 ![](assets/6、DHCPv6（relay，PD）/file-20251208170617436.png)
-**AR1：  **
+**AR1：**
 ```
 #
 ipv6
@@ -45,7 +45,7 @@ interface GigabitEthernet0/0/0
  ipv6 address auto dhcp
 #
 ```
-**[AR2]display dhcpv6 client interface GigabitEthernet 0/0/0 **
+**[AR2]display dhcpv6 client interface GigabitEthernet 0/0/0**
 ```
 GigabitEthernet0/0/0 is in stateful DHCPv6 client mode.
 State is BOUND.
@@ -258,4 +258,4 @@ interface GigabitEthernet0/0/0
     - **大型企业园区**：核心层部署 DHCPv6 服务器，通过 Relay 为各楼层接入层提供服务，同时利用 PD 为分支机构动态分配地址空间。
     - **云数据中心**：租户网络通过 Relay 访问集中式 DHCPv6 服务器，同时通过 PD 获取独立的 IPv6 前缀，满足多租户隔离需求。
 
-![900](assets/6、DHCPv6（relay，PD）/file-20251208171032170.png) 
+![500](assets/6、DHCPv6（relay，PD）/file-20251208171032170.png) 

@@ -73,10 +73,10 @@ isis默认是按照ipv4计算的最优路径
 **ISIS多拓扑：**  
 设置ISIS对于ipv6支持的模式：  
 [AR1-isis-1]ipv6 enable topology  
-compatible 兼容模式  
-ipv6 ipv6模式  
-standard 标准模式（默认的）
+	compatible 兼容模式  
+	ipv6 ipv6模式  
+	standard 标准模式（默认的）
  
-标准模式：isis只会根据ipv4计算一条最短路径树，ipv4和ipv6都使用该最短路径转发  
+**标准模式：isis只会根据ipv4计算一条最短路径树，ipv4和ipv6都使用该最短路径转发  
 兼容模式：isis会将ipv4的最短路径树，也会计算ipv6的最短路径树，ipv4和ipv6都使用ipv4的最短路径转发  
-ipv6模式：isis会将ipv4的最短路径树，也会计算ipv6的最短路径树，ipv4和ipv6各自使用对应的最短路径转发
+ipv6模式：isis会将ipv4的最短路径树，也会计算ipv6的最短路径树，ipv4和ipv6各自使用对应的最短路径转发**

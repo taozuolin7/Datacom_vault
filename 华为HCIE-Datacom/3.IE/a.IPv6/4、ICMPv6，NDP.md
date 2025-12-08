@@ -1,4 +1,4 @@
-# NDP
+# ICMPv6，NDP
 **IPv6——ICMPv6——NDP（包含具体的功能）**  
 NDP：邻居发现协议  
 	1.路由器发现  
@@ -15,82 +15,83 @@ RA 134、
 NS 135、
 NA 136
 
-**路由器发现：**  
+## **路由器发现：**  
 终端探测路径上的路由器设备  
-通过RS报文来实现  
+通过RS(router solicitation)报文来实现  
 设备接口开启地址前缀获取功能：  
-[AR2-GigabitEthernet0/0/0]ipv6 address auto global  
+==[AR2-GigabitEthernet0/0/0]ipv6 address auto global  ==
 在链路上探测路由器设备获取网络前缀  
 执行配置后，设备的接口会自动生成链路本地地址  
 然后会发送RS报文  
 RS报文的SIP为设备的链路本地地址  
-RS报文的DIP为FF02::2  
+**==RS报文的DIP为FF02::2==**
 RS报文内携带ICMPv6地址（type 133 code 0）
+![](assets/4、ICMPv6，NDP/file-20251208162219903.png)
 
-![Exported image](Exported%20image%2020251206150046-0.png)
-
-**无状态自动配置： SLAAC（**IPv6 Stateless Address Auto-configuration）  
-路由器回复路径上RS报文  
-通过RA报文来实现  
+## **无状态自动配置： SLAAC（**IPv6 Stateless Address Auto-configuration）**  
+路由器回复路径上RS报文  通过RA报文来实现  
 为路径上的设备通告路由前缀信息：  
+```
 interface GigabitEthernet0/0/0  
 ipv6 enable  
 ipv6 address 2012::1/64  
 ipv6 address FE80::1 link-local  
-undo ipv6 nd ra halt 开启IPv6 RA报文的通告  
-该命令配置完成后，会周期的在链路上通告RA报文  
-会在\<200,600\>之间任意取值作为以此通告的周期  
+undo ipv6 nd ra halt 开启IPv6 RA报文的通告
+```
+该命令配置完成后，会周期的在链路上通告RA报文  **会在\<200,600\>之间任意取值作为以此通告的周期**  
 可以通过配置命令调整周期的最小时间 和 最大时间：  
+```D
 [AR1-GigabitEthernet0/0/0]ipv6 nd ra min-interval \<3-1350\> 设置最小值  
 [AR1-GigabitEthernet0/0/0]ipv6 nd ra max-interval \<4-1800\> 设置最大值  
+```
 RA报文的SIP是设备接口的链路本地地址  
-RA报文的DIP是FF02::1  
+**==RA报文的DIP是FF02::1  ==**
 RA报文的携带内容（type 134 code 0）
-
-![Exported image](Exported%20image%2020251206150047-1.png)  
+![900](assets/4、ICMPv6，NDP/file-20251208162644016.png)
+  
 
 设备通过接收RA报文得到网络前缀，在根据eui-64计算的接口标识，两者组合成为接口的ipv6全球单播地址  
 对于RA报文具体功能值的设置：  
+```D
 [AR1-GigabitEthernet0/0/0]ipv6 nd autoconfig managed-address-flag 设置M bit置位  
 [AR1-GigabitEthernet0/0/0]ipv6 nd autoconfig other-flag 设置O bit置位
+```
 
-**地址冲突检测：**  
+## **地址冲突检测：**  
 ipv6不存在ARP协议，需要通过icmpv6来完成地址冲突检测  
-**ipv6的所有单播地址都要进行地址冲突检测  
-通过NS报文来实现  
-SIP ::  
-DIP FF02::1:FF00:1 被请求节点组播地址  
+**ipv6的所有单播地址都要进行地址冲突检测**
+==通过NS报文来实现  ==
+SIP ::  (检测冲突地址的IPv6地址)
+**==DIP FF02::1:FF00:1 被请求节点组播地址  ==**
 目标地址是使用自身接口地址对应的被请求节点组播地址  
 报文内携带（type 135 code 0）  
 携带的需要检测的单播地址
-
-![Exported image](Exported%20image%2020251206150049-2.png)  
-
-如果地址发生了冲突如何处理？  
-1.先配置地址的设备，收到了冲突设备发送的NS报文  
-判断发生冲突，回复一个NA报文  
+![900](assets/4、ICMPv6，NDP/file-20251208163017920.png)
+  
+**如果地址发生了冲突如何处理？**
+### 1.先配置地址的设备，收到了冲突设备发送的NS报文  
+**判断发生冲突，回复一个NA报文**
 NA报文的SIP是发生冲突的地址  
-NA报文的DIP是FF02::1  
+**NA报文的DIP是FF02::1** 
 NA报文内携带的内容（type 136 code 0）  
 携带冲突的目标地址 和 设备接口的MAC地址
-
-![Exported image](Exported%20image%2020251206150054-3.png)
- 2.后配置地址的设备，收到NA报文的处理  
-会将地址添加重复标记，即不使用该地址  
+![900](assets/4、ICMPv6，NDP/file-20251208163225406.png)
+###  2.后配置地址的设备，收到NA报文的处理  
+**会将地址添加重复标记，即不使用该地址**  
 因为地址未使用，所以也不会产生直连路由
 
-**地址解析：**  
+## **地址解析：**  
 访问的DIP需要封装DMAC  
 DMAC需要先进行获取  
 使用NS、NA两个报文来实现  
 在设备进行地址解析时，发送NS报文  
 SMAC 接口的MAC地址  
-DMAC 被请求节点组播地址对应的MAC地址  
+**DMAC 被请求节点组播地址对应的MAC地址**
 SIP 接口的全球单播地址  
 DIP 对端全球单播地址对应的被请求节点组播地址  
 报文内携带的信息（type 135 code 0 ）
-
-![Exported image](Exported%20image%2020251206150056-4.png)  
+![900](assets/4、ICMPv6，NDP/file-20251208163532062.png)
+  
 
 1.如果设备的地址在NS报文的被请求节点组播范围内，会接收该NS报文  
 1.如果自身的地址不是NS报文要解析的地址，则丢弃该报文  

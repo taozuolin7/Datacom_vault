@@ -1,16 +1,16 @@
-ipv6地址前缀的获取方式：  
+# DHCPv6（relay，PD）
+**ipv6地址前缀的获取方式：**
 1.无状态自动配置（SLAAC）
  
 2.有状态自动配置（DHCPv6）  
-1.DHCPv6有状态  
-ipv6地址 和 其他参数（DNS）  
-2.DHCPv6无状态  
-其他参数（DNS）
+	1.DHCPv6有状态  
+		ipv6地址 和 其他参数（DNS）  
+	2.DHCPv6无状态  
+		其他参数（DNS）
 
-DHCPv6有状态自动配置
-
-`AR1`：  
-
+## **DHCPv6有状态自动配置**
+![](assets/6、DHCPv6（relay，PD）/file-20251208170617436.png)
+**AR1：  **
 ```
 #
 ipv6
@@ -31,10 +31,8 @@ interface GigabitEthernet0/0/0
  dhcpv6 server test
 ```
 
-![Exported image](Exported%20image%2020251206150105-0.png)
 
-`AR2`：  
-
+**AR2：**
 ```
 #
 ipv6
@@ -47,9 +45,8 @@ interface GigabitEthernet0/0/0
  ipv6 address auto dhcp
 #
 ```
-
+**[AR2]display dhcpv6 client interface GigabitEthernet 0/0/0 **
 ```
-[AR2]display dhcpv6 client interface GigabitEthernet 0/0/0 
 GigabitEthernet0/0/0 is in stateful DHCPv6 client mode.
 State is BOUND.
 Preferred server DUID   : 0003000100E0FC9E4A1D
@@ -64,12 +61,10 @@ IA NA IA ID 0x00000031 T1 43200 T2 69120
 DNS server     : 2088::8
 ```
 
-SLAAC+DHCPv6无状态自动配置
-
-![Exported image](Exported%20image%2020251206150107-1.png)  
-
-```
-AR1：  
+## SLAAC+DHCPv6无状态自动配置
+![](assets/6、DHCPv6（relay，PD）/file-20251208170621413.png)
+**AR1： **
+``` 
 #  
 ipv6  
 #  
@@ -93,9 +88,8 @@ interface GigabitEthernet0/0/0
 通过dhcpv6得到其他参数  
 所以将dhcpv6分配的地址前缀 和 接口的网络前缀配置为相同网段
 ```
-
+**AR2：**
 ```
-AR2：  
 #  
 ipv6  
 #  
@@ -108,7 +102,6 @@ interface GigabitEthernet0/0/0
  ipv6 address auto dhcp  
 #
 ```
-
 ```
 [AR2]display ipv6 interface GigabitEthernet 0/0/0   
 GigabitEthernet0/0/0 current state : UP   
@@ -132,12 +125,10 @@ IA NA IA ID 0x00000031 T1 43200 T2 69120
 DNS server     : 2088::8
 ```
 
-**DHCPv6****——****pd****（前缀委托）**
-
-![Exported image](Exported%20image%2020251206150112-2.png)
-
-```
-AR3：  
+## **DHCPv6--pd前缀委托
+![](assets/6、DHCPv6（relay，PD）/file-20251208170751267.png)
+**AR3：**
+```  
 #  
 ipv6  
 #  
@@ -151,9 +142,8 @@ interface GigabitEthernet0/0/0
  ipv6 address 2034::3/64   
  dhcpv6 server test
 ```
-
-```
-AR4：  
+**AR4：**
+```  
 #  
 ipv6   
 #  
@@ -170,31 +160,29 @@ interface GigabitEthernet0/0/1
  ipv6 address test ::4/64  
  ipv6 address FE80::4 link-local  
  undo ipv6 nd ra halt  
-#￼  
+#
 GigabitEthernet0/0/1    up   up           
 [IPv6 Address] 2075::4
 ```
-
-```
-AR5：  
+**AR5：**
+```  
 #  
 ipv6  
 #  
 interface GigabitEthernet0/0/0  
  ipv6 enable   
  ipv6 address auto global  
-#￼  
+#
 GigabitEthernet0/0/0         up          up           
 [IPv6 Address] 2075::2E0:FCFF:FED2:263B
 ```
 
-**DHCPv6****——****relay**
+## **DHCPv6-relay**
 
-![Exported image](Exported%20image%2020251206150113-3.png)
+![](assets/6、DHCPv6（relay，PD）/file-20251208170920166.png)
 
+**AR6：**
 ```
-AR6：  
-#  
 ipv6  
 #  
 dhcp enable  
@@ -210,9 +198,8 @@ interface GigabitEthernet0/0/0
 #  
 ipv6 route-static 2078:: 64 2067::7 
 ```
-
+**AR7：**
 ```
-AR7：  
 #  
 ipv6  
 #  
@@ -228,9 +215,8 @@ interface GigabitEthernet0/0/1
  dhcpv6 relay destination 2067::6  
 #
 ```
-
-```
-AR8：  
+**AR8：**
+```  
 #  
 ipv6  
 #  
@@ -272,4 +258,4 @@ interface GigabitEthernet0/0/0
     - **大型企业园区**：核心层部署 DHCPv6 服务器，通过 Relay 为各楼层接入层提供服务，同时利用 PD 为分支机构动态分配地址空间。
     - **云数据中心**：租户网络通过 Relay 访问集中式 DHCPv6 服务器，同时通过 PD 获取独立的 IPv6 前缀，满足多租户隔离需求。
 
-![Exported image](Exported%20image%2020251206150115-4.png)
+![900](assets/6、DHCPv6（relay，PD）/file-20251208171032170.png) 

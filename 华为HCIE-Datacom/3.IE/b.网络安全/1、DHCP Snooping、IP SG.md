@@ -1,3 +1,5 @@
+# DHCP Snooping、IP SG
+
 情景：当网络中存在攻击者，冒冲DHCP服务器下发地址（DHCP仿冒者攻击）  
 如果终端使用攻击者提供的地址，则不能正常上网
  
@@ -11,6 +13,7 @@
 默认使能了dhcp snooping的接口都是非信任接口  
 1.信任接口：收到终端的DHCP报文可以向信任接口转发  
 2.非信任接口：丢弃非信任接口收到的DHCP报文  
+
 [S1-GigabitEthernet0/0/3]dhcp snooping trusted 将接口设置为信任接口￼  
 **DHCP服务是一种静默服务，容易遭受攻击**  
 1.DHCP server饿死攻击  

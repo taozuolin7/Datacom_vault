@@ -1,14 +1,20 @@
-**端口隔离：**  
+## **端口隔离：**  
 实现交换机连接终端的数据信息隔离  
-通过端口绑定隔离组，隔离组内的接口不能相互通信  
+**通过端口绑定隔离组，隔离组内的接口不能相互通信**
+```D
 [S1]interface GigabitEthernet 0/0/2  
 [S1-GigabitEthernet0/0/2]port-isolate enable group 1
+```
  
 **端口隔离的模式：**  
 1.二层隔离  
+```D
 [S1]port-isolate mode l2  
+```
 2.二层、三层隔离  
+```D
 [S1]port-isolate mode all
+```
  
 **端口隔离的分类：**  
 1.双向隔离  

@@ -32,7 +32,7 @@ print count:           1          total count:       �
 	[S1-GigabitEthernet0/0/1]dhcp snooping max-user-number \<1-1024\>  
 	设置接口的最大地址分配数量  
 	2.网络中存在一个攻击者，不断改变dhcp报文中的chaddr字段，模拟大量终端申请IP地址  
-	[S1-GigabitEthernet0/0/1]dhcp snooping check dhcp-chaddr enable  
+	[S1-GigabitEthernet0/0/1]dhcp snoopin g check dhcp-chaddr enable  
 	检查DHCP报文中的chaddr字段和报文中的SMAC地址是否相同（不相同则丢弃报文）  
 **2.DHCP 报文攻击**
 	1.攻击者不断发送大量的DHCP报文，消耗服务器的资源  

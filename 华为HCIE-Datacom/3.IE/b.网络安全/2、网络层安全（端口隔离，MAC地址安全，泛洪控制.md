@@ -92,7 +92,7 @@
 [S3]mac-address flapping quit-vlan recover-time \<0,1-1440\> 配置接口发生MAC地址漂移后，退出VLAN的自动恢复时间，默认10分钟  
 [S3]error-down auto-recovery cause mac-address-flapping interval \<30-86400\> 设置漂移检测端口shutdown后的恢复时间
 ```
-### **交换机流量抑制：**  
+### **交换机流量：**  
 1.交换机对于广播、组播、未知单播（BUM流量）执行的是泛洪动作  
 2.如果存在大量泛洪报文时，则会降低设备的性能  
 解决办法：  
@@ -129,4 +129,4 @@
 [S3-GigabitEthernet0/0/1]storm-control action  
 						block 阻塞接口  
 						shutdown 关闭接口
-```a
+```

@@ -1,3 +1,4 @@
+# 网络层安全（端口隔离，MAC地址安全，泛洪控制
 ## **端口隔离：**  
 实现交换机连接终端的数据信息隔离  
 **通过端口绑定隔离组，隔离组内的接口不能相互通信**
@@ -6,50 +7,63 @@
 [S1-GigabitEthernet0/0/2]port-isolate enable group 1
 ```
  
-**端口隔离的模式：**  
-1.二层隔离  
+### **端口隔离的模式：**  
+**1.二层隔离**
 ```D
 [S1]port-isolate mode l2  
 ```
-2.二层、三层隔离  
+**2.二层、三层隔离**
 ```D
 [S1]port-isolate mode all
 ```
  
-**端口隔离的分类：**  
-1.双向隔离  
+### **端口隔离的分类：**  
+**1.双向隔离**
 在同一个隔离组内的接口，不能相互转发数据信息  
-2.单向隔离  
+**2.单向隔离**
+```D
 [S1]interface GigabitEthernet 0/0/1  
 [S1-GigabitEthernet0/0/1]am isolate GigabitEthernet 0/0/3  
+```
 单向隔离，指定0/1 接口的数据不能向 0/3接口转发
  
-**MAC地址表安全：**  
+## **MAC地址表安全：**
+**动态MAC地址表项是交换机收到了流量后，将流量的SMAC和接口的端口进行关联生成的表项**
+```D
 [S2]mac-address static 5489-9833-3333 GigabitEthernet 0/0/3 vlan 1  
 [S2]mac-address blackhole 5489-9833-3334 vlan 1  
-动态MAC地址表项是交换机收到了流量后，将流量的SMAC和接口的端口进行关联生成的表项  
+```
+```D
 [S2]mac-address aging-time \<0,10-1000000\> 设置动态MAC地址表项的老化时间  
 [S2-GigabitEthernet0/0/1]mac-limit maximum 2 设置接口动态MAC地址的学习数量（不包含静态MAC地址）  
-如果超出了设置的值，交换机就按照未知单播帧进行泛洪处理  
+```
+**如果超出了设置的值，交换机就按照未知单播帧进行泛洪处理**
+
+```D
 [S2-GigabitEthernet0/0/2]mac-address learning disable 设置接口不学习动态MAC地址  
 [S2-GigabitEthernet0/0/2]mac-address learning disable action discard 对于端口没有保存的MAC地址，执行丢弃操作  
-[S2-GigabitEthernet0/0/2]mac-address learning disable action forward 对于端口没有保存的MAC地址，执行泛洪操作（默认）  
+[S2-GigabitEthernet0/0/2]mac-address learning disable action forward 对于端口没有保存的MAC地址，执行泛洪操作（默认）
+```  
 **如果按照MAC地址表安全记录MAC地址，同时接口不学习动态MAC地址，如果动态MAC地址表老化，则无法实现数据访问
  
-**端口安全：**  
+### **端口安全：**  
 将接口学习到 会 记录的MAC地址 转换为安全MAC  
 1.安全动态MAC  
 2.安全静态MAC  
 3.stick MAC  
+```D
 [S2]interface GigabitEthernet 0/0/2  
 [S2-GigabitEthernet0/0/2]port-security enable 将端口转变为安全端口，同时将接口的动态MAC地址转换为安全动态MAC地址  
 [S2-GigabitEthernet0/0/2]port-security mac-address sticky 设置为安全stick MAC  
 [S2-GigabitEthernet0/0/5]port-security mac-address sticky 5489-9856-5656 vlan 1 设置安全静态MAC地址
+```
  
 对于安全动态MAC地址的处理：  
+```D
 [S2-GigabitEthernet0/0/2]port-security aging-time \<1-1440\> 设置安全动态MAC地址表项的老化时间（默认不老化）  
 [S2-GigabitEthernet0/0/2]port-security max-mac-num \<1-4096\> 设置安全MAC地址的学习数量（默认数量为1）  
 [S2-GigabitEthernet0/0/2]port-security protect-action 如果收到没有保存的MAC地址，则执行一下操作  
+```
 protect 丢弃报文  
 restrict 丢弃报文，提示日志（默认）  
 shutdown 接口error-down￼  

@@ -113,18 +113,6 @@ PQ队列不适用拥塞避免机制
 将访问PC1的流量  
 AR4标记为802.1p优先级值4  
 AR5标记为802.1p优先级值6
-
-
-
-AR1信任802.1p优先级值并可以进行修改 
-![](assets/为什么要有qos？/file-20251209233955909.png)
-AR1通过qos的映射表将  
-802.1p优先级值4 送入队列2做转发  
-802.1p优先级值6 送入队列3做转发  
-AR1通过qos的映射表将  
-802.1p优先级值4 发出时替换为dscp优先级值af11  
-802.1p优先级值6 发出时替换为dscp优先级值af33
-
 ```
 AR4：  
 #  
@@ -143,7 +131,6 @@ traffic policy test
 interface GigabitEthernet0/0/0  
  traffic-policy test outbound
 ```
-
 ```
 AR5：  
 #  
@@ -162,78 +149,30 @@ traffic policy test
 interface GigabitEthernet0/0/0  
  traffic-policy test outbound
 ```
-
-
-
-![Exported image](Exported%20image%2020251206151901-1.png)
-
+#### AR1信任802.1p优先级值并可以进行修改 
+![](assets/为什么要有qos？/file-20251209233955909.png)
+AR1通过qos的映射表将  
+802.1p优先级值4 送入队列2做转发  
+802.1p优先级值6 送入队列3做转发  
+AR1通过qos的映射表将  
+802.1p优先级值4 发出时替换为dscp优先级值af11  
+802.1p优先级值6 发出时替换为dscp优先级值af33
 ```
-#  
-interface GigabitEthernet0/0/0  
- trust 8021p override  
-#  
-qos map-table dot1p-lp  
-  input 4 output 2  
-  input 6 output 3  
-#  
-qos map-table dot1p-dscp  
-  input 4 output 10  
-  input 6 output 30  
 #
-```
-
-AR2信任DSCP优先级值并可以进行修改  
-通过MQC将  
-DSCP值af11送入pq队列7  
-DSCP值af33送入wfq队列5  
-为WFQ队列设置拥塞避免  
-通过MQC将  
-DSCP值af11 发出时替换为dscp优先级值af21  
-DSCP值af33 发出时替换为dscp优先级值ef
-
-![Exported image](Exported%20image%2020251206151903-2.png)
-
-```
-#  
-interface GigabitEthernet0/0/0  
- trust dscp override  
-#  
-traffic classifier test operator or  
- if-match dscp af11   
-traffic classifier abc operator or  
- if-match dscp af33   
-#  
-traffic behavior test  
- remark local-precedence cs7  
- remark dscp af21  
-traffic behavior abc  
- remark local-precedence ef  
- remark dscp ef  
-#  
-traffic policy test  
- classifier test behavior test  
- classifier abc behavior abc  
-#  
-interface GigabitEthernet0/0/1  
- traffic-policy test outbound  
-#  
-qos queue-profile test  
-  schedule wfq 5 to 6 pq 7  
-  queue 5 weight 50  
-  queue 6 weight 100  
-  queue 5 drop-profile A  
-#  
-interface GigabitEthernet0/0/1  
- qos queue-profile test   
-#  
-drop-profile A  
-wred dscp  
-  dscp af33 low-limit 30 high-limit 80 discard-percentage 20  
+interface GigabitEthernet0/0/0
+ trust 8021p override
 #
+qos map-table dot1p-lp
+  input 4 output 2
+  input 6 output 3
+#
+qos map-table dot1p-dscp
+  input 4 output 10
+  input 6 o
 ```
 
-虽然基于DifServ模型的QoS为用户提供了服务质量保证，但是该模型也存在以下问题：  
-① 队列少，无法针对特定用户做SLA保障，无法提供确定性的时延保障。  
-② 无法为用户提供独立的物理资源。  
-③ 只是单跳行为，没有改变网络拓扑架构。  
+虽然基于DifServ模型的QoS为用户提供了服务质量保证，但是该模型也存在以下问题：
+① 队列少，无法针对特定用户做SLA保障，无法提供确定性的时延保障。
+② 无法为用户提供独立的物理资源。
+③ 只是单跳行为，没有改变网络拓扑架构。
 ④ 不改变业务行为，单条流如果突发流量过大，依然会存在拥塞。

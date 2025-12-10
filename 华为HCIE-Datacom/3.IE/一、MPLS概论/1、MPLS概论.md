@@ -48,73 +48,52 @@ MPLS：将数据封装为带标签的数据，设备直接根据标签执行转�
 MPLS对于某些特征相同的报文 并 执行相同的处理动作，称为FEC  
 FEC可以通过SIP、DIP、Sport、Dport、VPN等要素来  
 判断是否为相同特征的报文  
-***对于认为相同的流量，有统一的处理动作
+**对于认为相同的流量，有统一的处理动作**
 
-**MPLS的标签：**  
+## **MPLS的标签：**  
 1.报文格式（封装在IP和数据链路层之间）  
-*MPLS报文头部一共是32bit长度  
+**MPLS报文头部一共是32bit长度**  
 报文格式：
-
-![Exported image](Exported%20image%2020251206150257-1.png)
-
-报文格式的内容：  
-1.标签值域（0-20bit）：标签的取值范围是多少  
-1.特殊标签值：取值范围是0-15  
-0号标签：显示空标签，在倒数第二跳设备发送数据时，会保留标签给到最后一跳设备  
-该功能主要用于保证qos数据优先转发的操作  
-3号标签：隐式空标签，在倒数第二跳设备发送数据时，会直接执行数据的标签弹出（默认的功能）
+![600](assets/1、MPLS概论/file-20251210104157584.png)
+### 报文格式的内容：  
+**1.标签值域（0-20bit）：标签的取值范围是多少  1048576**
+	1.特殊标签值：取值范围是0-15  
+		0号标签：显示空标签，在倒数第二跳设备发送数据时，会保留标签给到最后一跳设备，该功能主要用于保证qos数据优先转发的操作  
+		3号标签：隐式空标签，在倒数第二跳设备发送数据时，会直接执行数据的标签弹出==（默认的功能）==
+		1号标签：在最外层，表示收到1号标签按照下一层标签的处理进行转发，转发时还要封装1号标签
+		2号标签：显示空标签，和0号标签的作用类型，==用于IPv6网络==
+		14号标签：通过发送OAM报文检测和通告LSP故障，告知LSP路径上的所有设备
+	2.静态标签值：取值范围是16--1023
+	3.动态标签值：取值范围是1024--2^20
  
-1号标签：在最外层，表示收到1号标签按照下一层标签的处理进行转发，转发时还要封装1号标签
- 
-2号标签：显示空标签，和0号标签的作用类型，用于IPv6网络
- 
-14号标签：通过发送OAM报文检测和通告LSP故障，告知LSP路径上的所有设备
- 
-2.静态标签值：取值范围是16-1023  
-3.动态标签值：取值范围是1024-2^20
- 
-2.exp（21-23bit）（Experimental Use）：优先级的取值  
+**2.exp（21-23bit）（Experimental Use）：优先级的取值**
 3bit 值是0-7 给QoS调度服务时使用 000-111  
-该值的使用，只能在MPLS域中
+==该值的使用，只能在MPLS域中==
  
-3.S （Bottom of Stack）（24bit）：栈低标签位  
-MPLS是可以支持多层嵌套的  
+**3.S （Bottom of Stack）（24bit）：栈低标签位**
+==MPLS是可以支持多层嵌套的==  
 S bit 置 0：表示MPLS头部不是靠近IP报文头  
 S bit 置 1：表示MPLS头部紧挨着IP报文头
  
 4.TTL（25-32bit）：和IP的TTL值作用相同
- 
+
 标签栈：多个MPLS标签头部的集合，称之为标签栈  
 标签栈的第一个头部（靠近数据链路层头部的MPLS头部），称为栈顶标签  
 标签栈的最后一个头部（靠近IP层的MPLS头部），称为栈低标签
 
-MPLS 1 S bit = 0 exp=7  
-MPLS 1088 S bit = 0  
-MPLS 1024 S bit = 1  
-SIP 1.1.1.1 DIP 2.2.2.2
-
-配置思路：  
+## 静态MPLS LSP配置思路：  
 1.设备接口地址配置完成（AR1、AR5存在环回口地址）  
 2.构建AR1-AR5的MPLS静态隧道完成环回口通信
-
-MPLS是直接通过标签执行数据转发的  
-设备如果存在标签值，但是不存在路由  
-设备可以直接通过标签值转发数据
-
+==MPLS是直接通过标签执行数据转发的，设备如果存在标签值，但是不存在路由，设备可以直接通过标签值转发数据。==
 ingress只存在出标签，没有入标签  
 egress只存在入标签，没有出标签
-
-```
+```d
 [AR1]mpls lsr 1.1.1.1    在LDP环境下使用  
 [AR1]mpls                全局开启MPLS  
 [AR1-GigabitEthernet0/0/0]mpls   接口开启MPLS功能（即让接口具备转发标签报文的能力）
 ```
- 
-```
-以上命令所有mpls domain内的设备都需执行
-```
- 
-```
+**以上命令所有mpls domain内的设备都需执行**
+```d
 AR1：  
 [AR1]static-lsp ingress AR1_AR5 destination 5.5.5.5 32 outgoing-interface GigabitEthernet 0/0/0 nexthop 10.1.12.2 out-label 102  
 [AR1]static-lsp egress AR5_AR1 incoming-interface GigabitEthernet 0/0/0 in-label 201  
@@ -133,18 +112,14 @@ AR5：
 [AR5]static-lsp ingress AR5_AR1 destination 1.1.1.1 32 outgoing-interface GigabitEthernet 0/0/0 nexthop 10.1.45.4 out-label 504  
 [AR5]ip route-static 1.1.1.1 32 10.1.45.4    对于ingress要存在到达目标网络的路由信息（激活FEC）
 ```
+![900](assets/1、MPLS概论/file-20251210105451839.png)
 
-![Exported image](Exported%20image%2020251206150259-2.png)
  
-1.值得注意的是：ping 的时候需要指定ip地址，不然它缺省使用接口地址去ping￼
+1.值得注意的是：ping 的时候需要指定ip地址，不然它缺省使用接口地址去ping
+![](assets/1、MPLS概论/file-20251210105507216.png)  
 
-![Exported image](Exported%20image%2020251206150304-3.png)  
+2.查看fib表：tunnel 值不为0
+  ![](assets/1、MPLS概论/file-20251210105514183.png)
 
-2.查看fib表：tunnel 值不为0￼
-
-![Exported image](Exported%20image%2020251206150306-4.png)  
-
-3.查看静态mpls-lsp￼
-
-![Exported image](Exported%20image%2020251206150308-5.png)  
-![Exported image](Exported%20image%2020251206150309-6.png)
+3.查看静态mpls-lsp
+![](assets/1、MPLS概论/file-20251210105521293.png) ![](assets/1、MPLS概论/file-20251210105524688.png)

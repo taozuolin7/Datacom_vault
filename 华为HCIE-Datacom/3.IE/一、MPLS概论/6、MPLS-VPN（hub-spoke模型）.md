@@ -180,7 +180,7 @@ RT值和私网标签都是通过VPNv4路由携带的
 **简言之：RT 是 “路由带着标识找接收方”，标签是 “接收方给标识让发送方用”，二者方向相反。**
 
 ### 对于MPLS VPN的tracert 抓包：
-	![900 z](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210163503767.png)
+	![900 za](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210163503767.png)
 ![700](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210163321978.png)  
 ![700](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210163326454.png)     
 ![](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210163336837.png)

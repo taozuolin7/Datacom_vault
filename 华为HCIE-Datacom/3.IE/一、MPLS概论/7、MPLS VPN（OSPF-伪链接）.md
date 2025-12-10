@@ -6,47 +6,49 @@
 在执行将BGP的路由引入到站点VPN实例OSPF协议后，会通过3类LSA来描述外部路由  
 该方式只是特殊的执行方式  
 对于OSPF站点而言，将路由在BGP实例中通告或引入，会通过一部分扩展团体属性来描述站点OSPF路由的特点
-![500](assets/7、MPLS%20VPN（OSPF-伪链接）/file-20251210203530308.png)  
 
+![500](assets/7、MPLS%20VPN（OSPF-伪链接）/file-20251210203530308.png)  
 **OSPF DOMAIN ID ：两端PE设备会根据该值进行对比：**  
 **如果两端的domain id值相同：**  
 	1.站点内的1、2、3类LSA换转换为对端站点内的3类LSA  
 	2.站点内的5类LAS转换为对端站点内的5类LSA  
 **如果两端的domain id值不同：**  
 	1.站点内的1、2、3、5类LSA转换为对端站点内的5类LSA
- 
-*对于2类LSA，没有添加扩展团体属性的，当作普通的BGP路由看待，所以引入到OSPF站点时会以5类形式引入
- 
-domain id值默认站点都是为0的 ，可以通过配置命令修改domain id值[AR2-ospf-1]domain-id 12.12.12.12
- 
-对于domain id值相同的站点，会将连接的公网当作 超级骨干区域（backbone） 看待￼  
+==对于2类LSA，没有添加扩展团体属性的，当作普通的BGP路由看待，所以引入到OSPF站点时会以5类形式引入==
+
+**domain id值默认站点都是为0的 ，可以通过配置命令修改domain id值**
+```D
+[AR2-ospf-1]domain-id 12.12.12.12
+```
+对于domain id值相同的站点，会将连接的公网当作 ==超级骨干区域（backbone）== 看待
 **OSPF RT \<0.0.0.1 : 1 : 0\> ：**  
 ：0.0.0.1 代指LSA产生所在的区域  
 ：1 在区域中是几类LSA  
-：0 如果5类LSA以type2类型引入，则该值为1；其他情况都为0￼￼Ext-Community:OSPF DOMAIN ID \<0.0.0.0 : 0\>, OSPF RT \<0.0.0.0 : 1 : 0\>, OSPF ROUTER ID \<10.2.2.2 : 0\>   Ext-Community:OSPF DOMAIN ID \<0.0.0.0 : 0\>, OSPF RT \<0.0.0.0 : 3 : 0\>, OSPF ROUTER ID \<10.2.2.2 : 0\>
- 
-Ext-Community:OSPF DOMAIN ID \<0.0.0.0 : 0\>, OSPF RT \<0.0.0.0 : 5 : 1\>, OSPF ROUTER ID \<10.2.2.2 : 0\>
+：0 如果5类LSA以type2类型引入，则该值为1；其他情况都为0
 
-**为了防止MPLS VPN网络故障，导致业务访问中断，所以在两端站点之间添加一条备份链路（后门链路）**
- 
-部署后门链路的要求：  
+```D
+Ext-Community:OSPF DOMAIN ID \<0.0.0.0 : 0\>, OSPF RT \<0.0.0.0 : 1 : 0\>, OSPF ROUTER ID \<10.2.2.2 : 0\>   
+Ext-Community:OSPF DOMAIN ID \<0.0.0.0 : 0\>, OSPF RT \<0.0.0.0 : 3 : 0\>, OSPF ROUTER ID \<10.2.2.2 : 0\>
+Ext-Community:OSPF DOMAIN ID \<0.0.0.0 : 0\>, OSPF RT \<0.0.0.0 : 5 : 1\>, OSPF ROUTER ID \<10.2.2.2 : 0\>
+```
+
+## **为了防止MPLS VPN网络故障，导致业务访问中断，所以在两端站点之间添加一条备份链路（后门链路）**
+**部署后门链路的要求：**  
 1.两端站点和后门链路在同一个区域中
  
-部署后门链路的问题：  
+**部署后门链路的问题**：  
 因为站点和后门链路在同一个区域中，所以会直接交互1类LSA进行相互的学习  
 而站点之间通过MPLS VPN网络，就算存在backbone区域，也只能学习到3类LSA  
 因为1类LSA优先于3类LSA，所以站点内设备会优选1类LSA通过后门链路进行访问  
-该优选规则无法通过设置cost的值影响
- 
-问题解决：  
+==该优选规则无法通过设置cost的值影响==
+**问题解决：**
 如果通过MPLS VPN网络让站点之间也学习1类LSA，就可以在通过设置cost值影响路径的选择  
-在PE设备之间构建sham-link（伪链接），通过伪链接建立区域0的邻接关系  
+==在PE设备之间构建sham-link（伪链接），通过伪链接建立区域0的邻接关系== 
 以此完成两个站点区域的直接相连（即可以直接传递1类LSA）
- 
-sham-link的配置：  
-1.两端站点的PE存在一个站点（绑定VPN实例）地址用于建立sham-link  
-2.建立sham-link的地址相互通信  
-该地址不能在ospf站点内宣告，而是要通过VPNv4路由通告  
+**sham-link的配置：**  
+	1.两端站点的PE存在一个站点（绑定VPN实例）地址用于建立sham-link  
+	2.建立sham-link的地址相互通信  
+		该地址不能在ospf站点内宣告，而是要通过VPNv4路由通告  
 3.两端PE学习路由后，进行sham-link的建立  
 [AR2-ospf-1-area-0.0.0.0]sham-link 100.1.24.2 100.1.24.4  
 [AR4-ospf-1-area-0.0.0.0]sham-link 100.1.24.4 100.1.24.2

@@ -3,6 +3,7 @@
 AR1存在环回口路由100.1.1.1/32，在OSPF中通告  
 **AR2将OSPF路由引入到BGP中**，产生MED=1的BGP路由100.1.1.1/32，通告给EBGP邻居AR4 和 IBGP邻居AR1  
 AR1将学习到的路由传递给EBGP邻居时 会清空MED值（变为0）
+![500](assets/9、MPLS%20VPN（BGP站点双归）/file-20251210212533325.png)
 ==med属性值只能传递到邻居的AS==，不能跨越AS传递，所以说，AR1因为是AR2的IBGP邻居，收到带有med=1的值，会清空med值，
 导致AR1通告给AR3的路由，med=0  
 AR3收到100.1.1.1/32路由的MED=0  
@@ -11,24 +12,37 @@ AR3和AR4通过MP-IBGP邻居交互100.1.1.1/32的路由信息
 AR4就会优选AR3传递的路由条目（med越小越优先）  
 AR4就通过次优访问100.1.1.1/32  
 （路由通过更少的组网环境（路由协议）更优先）
- 
-**如何解决该问题：** 
+### **如何解决该问题：** 
 ==在AR2引入OSPF路由时，通过配置将MED值设置为0==
-  ![700](assets/9、MPLS%20VPN（BGP站点双归）/file-20251210211355293.png)
-
 值得注意的是：AR与AR3之间：  
 AR3是在VPN实例下与AR1建立EBGP邻居，所以AR3需要在ipv4-family vpn-instance 下建立邻居
-
-![Exported image](Exported%20image%2020251206151434-1.png)
-
-特殊场景下BGP的防环：  
+![700](assets/9、MPLS%20VPN（BGP站点双归）/file-20251210211355293.png)
+```D
+bgp 100
+ peer 1.1.1.1 as-number 10
+ peer 4.4.4.4 as-number 100
+ peer 4.4.4.4 connect-interface LoopBack0
+ #
+ ipv4-family unicast
+  undo synchronization
+  undo peer 1.1.1.1 enable
+  undo peer 4.4.4.4 enable
+ #
+ ipv4-family vpnv4
+  policy vpn-target
+  peer 4.4.4.4 enable
+ #
+ ipv4-family vpn-instance A
+  peer 10.0.13.1 as-number 10
+```
+### 特殊场景下BGP的防环：  
 1.当站点AR1存在一条路由信息，引入进BGP，通过EBGP邻居传递给AR3、通过IBGP邻居传递给AR2  
 2.AR3收到路由后通过MP-IBGP邻居传递给AR4，AR2收到路由后通过EBGP邻居传递给AR4  
 3.AR4收到一条路由信息，但是存在两个下一跳，通过EBGP优于IBGP的选路规则，优选了AR2的路由信息
- 
 4.将AR2传递给AR4的路由med值该大，变为100
+![](assets/9、MPLS%20VPN（BGP站点双归）/file-20251210213013210.png)
+![](assets/9、MPLS%20VPN（BGP站点双归）/file-20251210213017968.png)
 
-![Exported image](Exported%20image%2020251206151438-2.png) ![Exported image](Exported%20image%2020251206151440-3.png)
 
 5.AR4会优选AR3的路由信息，且会将优选的路由继续传递给AR2设备  
 6.AR2不会接收AR4传递的路由信息，因为AS-path防环

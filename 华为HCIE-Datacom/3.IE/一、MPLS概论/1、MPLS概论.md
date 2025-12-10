@@ -1,46 +1,48 @@
 # MPLS概论
-**路由器转发的三个阶段：**  
+## **路由器转发的三个阶段：**  
 1.基于CPU的转发：所有的数据都要通过CPU进行处理（查找路由表），转发性能低下，限制网络发展   
 	为了提高设备的转发性能，设备在处理转发时，如果不需要查路由表 就可以提升  
 
 MPLS：将数据封装为带标签的数据，设备直接根据标签执行转发，不会在查找上层的IP信息  
-因为MPLS封装是在IP报头之前 和 以太网数据帧之后，所以称MPLS为2.5层协议
+==因为MPLS封装是在IP报头之前 和 以太网数据帧之后，所以称MPLS为2.5层协议==
  
 2.基于缓存的转发：一次路由，多次交换（同类数据的第一个报文进行CPU查表，后续的报文根据缓存表快速转发）
  
-3.基于拓扑的转发：设备根据转发表，直接转发数据，不需要查路由表￼￼  
+3.基于拓扑的转发：设备根据转发表，直接转发数据，不需要查路由表
+
 由于硬件设备的不断升级，软件性能的不断提高  
 如今的设备就算是按照CPU的转发，也不会消耗大量的性能资源  
 如今的设备是分布式系统架构，所以对于报文的转发处理只会更快  
 如此MPLS在设备转发方面已经成为了鸡肋
  
-**对于MPLS设备转发不在适用，但是对应数据信息的访问是的封装有很好的适应性**  
-（VPN隧道的本质是？ 数据的再封装）  
-现有网络中存在私网和公网地址  
-私网地址需要通过NAT实现网络通信  
-如果私网地址之间需要通信，就需要在公网网络中搭建私有网络的隧道  
-私有网络的隧道就可以通过MPLS进行搭建
+==**对于MPLS设备转发不在适用，但是对应数据信息的访问是的封装有很好的适应性**  ==
+（VPN隧道的本质是？ 数据的再封装）
+现有网络中存在私网和公网地址
+私网地址需要通过NAT实现网络通信
+如果私网地址之间需要通信，就需要在公网网络中搭建私有网络的隧道
+==私有网络的隧道就可以通过MPLS进行搭建==
 
-**MPLS：多协议标签交换**  
-MPLS的术语：  
+## **MPLS：多协议标签交换**  
+**MPLS的术语：**
 1.MPLS domain：运行了MPLS协议的设备组成的区域  
 2.设备类型：  
 1.LER（Label Edge Router）：边界设备  
-1.ingress：入节点，设备对应的标签处理动作为push（压入标签）  
-2.egress：出节点，设备对应的标签处理动作为pop（弹出标签）  
+		1.ingress：入节点，设备对应的标签处理动作为push（压入标签）  
+		2.egress：出节点，设备对应的标签处理动作为pop（弹出标签）  
 2.LSR（Label Switching Router）：内部设备  
-transit：中间节点，设备对应的标签处理动作为swap（替换标签）￼  
+	transit：中间节点，设备对应的标签处理动作为swap（替换标签）
 3.LSP：（Label Switched Path，标签交换路径）  
-由一个入节点 到 一个出节点 组成一条转发路径  
-该路径上可以存在 0个 或 多个 中间节点  
-*判断LSP的方向 可以根据上下游设备来判断  
-ingress 是 egress 的 上游节点  
-egress 是 ingress 的 下游节点  
-ingress 是 transit的 上游节点  
-transit 是 egress 的 上游节点  
+	由一个入节点 到 一个出节点 组成一条转发路径  
+	该路径上可以存在 0个 或 多个 中间节点  
+**判断LSP的方向 可以根据上下游设备来判断**
+	ingress 是 egress 的 上游节点  
+	egress 是 ingress 的 下游节点  
+	ingress 是 transit的 上游节点  
+	transit 是 egress 的 上游节点  
 4.MPLS体系结构：
+![](assets/1、MPLS概论/file-20251210103631417.png)
 
-![Exported image](Exported%20image%2020251206150256-0.png)  
+![](data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAATCAIAAABtIdhUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFaSURBVEhLY/z//z/DQAAmdAF6gVGLqQhuPXv/9x/OBEQri/dffqSeNde5dtWVR2/Q5RgYaGixo65cvJP2wauPLcuWrj9xG12agYHhPy1B+5oTDP7dDP7dXetOoUkx0jofrz1+K7Z/2/dffxKddSYkO/FxsUHEUSy++OC1a91qBgaGfzBBOAMZ/ENKMv8ZYCpRBGGM/wwMDAz//jP8+v3n3///gjwc75bkQKTQ4/jf//8Qy5gYGZkYGVmYmFiZEYiNhYmNhYmDjZmDjZmTnYWTnYWLnZWLnZWHg42Pix2C+LnZBWBIiIdDiIeDj4ONmYmRgYEBQkIBWtBTHSw+cBUSzbmz9v799w8uTluLa5cegdg6ecs5NCkaJq7Qrk1rjt2SEuKZl+vhbqiALo3mEGqBM3deMPh3ezauufviA7rc//+09fHrT99E+bjQRWGAhhbjB+jZiW5gwCwGAAvUJxTNTUKZAAAAAElFTkSuQmCC)  
 
 5.FEC：（Forwarding Equivalence Class，转发等价类）  
 MPLS对于某些特征相同的报文 并 执行相同的处理动作，称为FEC  

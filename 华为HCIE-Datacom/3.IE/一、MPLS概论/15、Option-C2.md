@@ -1,23 +1,20 @@
 前置配置：  
 AS内底层配置IGP互通（ospf ，isis），￼全局使能MPLS LDP￼接口使能mpls， mpls ldp  
-￼关键配置：  
+
+关键配置：  
 ASBR间建立EBGP对等体关系  
 将域内PE的路由发布给远端PE  
 使能标签IPv4路由交换能力  
 为带标签的公网BGP路由建立LDP LSP  
 PE间建立MP-EBGP对等体关系
- ![Exported image](Exported%20image%2020251206151751-0.png)
-
+![](assets/15、Option-C2/file-20251211002016828%202.png)
+**PE1  **
 ```
-PE1  
 ip vpn-instance A  
  ipv4-family  
   route-distinguisher 100:1  
   vpn-target 1:1 export-extcommunity  
   vpn-target 1:1 import-extcommunity
-```
- 
-```
 ospf 2 router-id 2.2.2.2 vpn-instance A  
  import-route bgp  
  area 0.0.0.0   
@@ -37,9 +34,8 @@ bgp 10
  ipv4-family vpn-instance A   
   network 192.168.1.0 
 ```
-
+ ASBR1：  
 ```
-ASBR1：  
 #  
 bgp 10  
  peer 10.0.45.5 as-number 100   
@@ -66,9 +62,8 @@ mpls
 Route-policy 2 permit node 10   
   apply mpls-label 
 ```
-
-```
 PE2  
+```
 #  
 ip vpn-instance C  
  ipv4-family  
@@ -95,9 +90,8 @@ bgp 100
  ipv4-family vpn-instance C   
   network 192.168.2.0 
 ```
-
+ASBR2：
 ```
-ASBR2：  
 #  
 bgp 100  
  peer 10.0.45.4 as-number 10   
@@ -125,36 +119,41 @@ Route-policy 2 permit node 10
   apply mpls-label 
 ```
 
-与Option-C1方案的区别：￼1.不再需要PE与ASBR之间建立IBGP邻居￼2.不再需要中间件标签，通过 lsp-trigger bgp-label-route ，代替该功能￼3.PE1之间路由的学习不再需要通路的BGP学习到，通过在ASBR中的IGP中引入BGP实习
+### 与Option-C1方案的区别：
+1.不再需要PE与ASBR之间建立IBGP邻居
+2.不再需要中间件标签，通过 lsp-trigger bgp-label-route ，代替该功能
+3.PE1之间路由的学习不再需要通路的BGP学习到，通过在ASBR中的IGP中引入BGP实习
 
-控制平面：￼1.PE之间，之间建立LDP LSP，而不是BGP LSP￼2.P1到ASBR之间的标签不会只剩下私网标签，而是存在公网标签，但是公网标签与私网标签一样，￼因为，PE1与PE2之间是通过LDP LSP分发的标签，所以PE1到ASBR1不算做倒数第二天，￼而是，到PE2才算做是倒数第二跳，才会把公网标签pop出。
+### 控制平面：
+1.PE之间，之间建立LDP LSP，而不是BGP LSP
+2.P1到ASBR之间的标签不会只剩下私网标签，而是存在公网标签，但是公网标签与私网标签一样，
+因为，PE1与PE2之间是通过LDP LSP分发的标签，所以PE1到ASBR1不算做倒数第二天，
+而是，到PE2才算做是倒数第二跳，才会把公网标签pop出。
+![](assets/15、Option-C2/file-20251211002016828%201.png)  
+![](assets/15、Option-C2/file-20251211002016828.png)
+### 数据平面：
+1.PE1查表：
+[PE1]display bgp vpnv4 all routing-table 192.168.2.0，发现去往192.168.2.0/24需要进行私网标签1027封装，下一跳是7.7.7.7需要递归到IGP
+![](assets/15、Option-C2/file-20251211002016827%202.png)  
+![](assets/15、Option-C2/file-20251211002016827%201.png)  
 
-![Exported image](Exported%20image%2020251206151756-1.png)  
-![Exported image](Exported%20image%2020251206151759-2.png)
+2.去往7.7.7.7的TunnelID非0，需要mpls‘封装 1025标签
+[PE1]display fib 7.7.7.7
 
-数据平面：￼1.PE1查表：￼[PE1]display bgp vpnv4 all routing-table 192.168.2.0，发现去往192.168.2.0/24需要进行私网标签1027封装，下一跳是7.7.7.7需要递归到IGP
+![](assets/15、Option-C2/file-20251211002016827.png)  
+![](assets/15、Option-C2/file-20251211002016826%201.png)  
+![](assets/15、Option-C2/file-20251211002016826.png)  
 
-![Exported image](Exported%20image%2020251206151802-3.png)  
-![Exported image](Exported%20image%2020251206151805-4.png)  
+3.通过中间结点：公网标签替换为1027，与私网标签一致
+[P1]dis mpls lsp
 
-2.去往7.7.7.7的TunnelID非0，需要mpls‘封装 1025标签￼[PE1]display fib 7.7.7.7
+![](assets/15、Option-C2/file-20251211002016825%201.png)
 
-![Exported image](Exported%20image%2020251206151807-5.png)  
-![Exported image](Exported%20image%2020251206151809-6.png)  
-![Exported image](Exported%20image%2020251206151811-7.png)  
-
-3.通过中间结点：公网标签替换为1027，与私网标签一致￼[P1]dis mpls lsp
-
-![Exported image](Exported%20image%2020251206151818-8.png)
-
-￼公网标签
-
-![Exported image](Exported%20image%2020251206151825-9.png)  
+公网标签
+![](assets/15、Option-C2/file-20251211002016825.png)  
 
 4.数据到达ASBR1后，因为存在route-policy，会更新mpls标签，该标签会一直沿用到倒数第二跳弹出
+![](assets/15、Option-C2/file-20251211002016821%201.png)  
 
-![Exported image](Exported%20image%2020251206151826-10.png)  
-
-6.数据包到达PE2，后公网标签弹出，PE2更具私网标签，将数包送到对应的接口￼
-
-![Exported image](Exported%20image%2020251206151828-11.png)
+6.数据包到达PE2，后公网标签弹出，PE2更具私网标签，将数包送到对应的接口
+![](assets/15、Option-C2/file-20251211002016821.png)

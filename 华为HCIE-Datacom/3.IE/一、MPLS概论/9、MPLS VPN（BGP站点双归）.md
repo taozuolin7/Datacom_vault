@@ -46,20 +46,16 @@ bgp 100
 6.AR2不会接收AR4传递的路由信息，因为AS-path防环
 7.AR4对AR2执行[AR4-bgp-A]peer 10.1.24.2 substitute-as 该命令将路由信息的as号全部变为自身所在的AS编号  
 8.AR2可以正常接收AR4传递的路由信息
-
+![700](assets/9、MPLS%20VPN（BGP站点双归）/file-20251210213751089.png)
+ ![700](assets/9、MPLS%20VPN（BGP站点双归）/file-20251210213801202.png)
 综上所述，站点的内部的路由通过MPLS VPN网络有传回站点内，造成了路由的环路
- 
-通过BGP的Soo属性来防止该问题的产生  
+## 通过BGP的Soo属性来防止该问题的产生  
 [AR3-bgp-A]peer 10.1.13.1 soo 123:123 表示对于站点打上扩展团体属性的值 123:123
-
-![Exported image](Exported%20image%2020251206151445-6.png)
-
+![700](assets/9、MPLS%20VPN（BGP站点双归）/file-20251210213812666.png)
 [AR4-bgp-A]peer 10.1.24.2 soo 123:123 表示对于站点打上扩展团体属性的值 123:123  
 如果收到的路由携带soo属性，且属性值和自身指定站点的soo属性值相同，则认为该路由信息就是站点内的  
 不会在将路由信息传递给站点内
-
-![Exported image](Exported%20image%2020251206151446-7.png)
-
+![700](assets/9、MPLS%20VPN（BGP站点双归）/file-20251210213840871.png)
 ```
 bgp 100  
  peer 1.1.1.1 as-number 10   
@@ -79,7 +75,7 @@ bgp 100
   peer 10.0.13.1 as-number 10 
 ```
 
-BGP 的**Soo 属性**（Site of Origin，起源站点属性）是 BGP 协议的一种扩展属性，  
+### **BGP 的**Soo 属性**（Site of Origin，起源站点属性）是 BGP 协议的一种扩展属性**，  
 主要用于 MPLS VPN（多协议标签交换虚拟专用网）场景，核心作用是**防止 VPN 路由在不同站点间传递时形成环路**。  
 **一、基本定义**  
 Soo 是 BGP 的**可选非过渡（Optional Non-Transitive）属性**，属性类型码为 130。它通过标记路由的 “起源站点” 信息，使路由在返回原站点时被识别并丢弃，从而避免环路。  

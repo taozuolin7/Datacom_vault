@@ -145,54 +145,43 @@ interface GigabitEthernet0/0/1
 **policy vpn-target 默认是过滤所有的VPNv4路由**
 ==IRT值匹配ERT值的操作 优选于 policy vpn-target功能==
 ### **RT值与私网标签：**  
-对于RT值是在控制平面用于站点对路由接收使用的  
-对于私网标签是在转发平面用于站点对流量接收使用  
-RT值和私网标签的使用方向是相反的  
-简言之：RT 是 “路由带着标识找接收方”，标签是 “接收方给标识让发送方用”，二者方向相反。 
+**对于RT值是在控制平面用于站点对路由接收使用的**  
+**对于私网标签是在转发平面用于站点对流量接收使用**
+==RT值和私网标签的使用方向是相反的==  
+==简言之：RT 是 “路由带着标识找接收方”，标签是 “接收方给标识让发送方用”，二者方向相反。 ==
 RT值和私网标签都是通过VPNv4路由携带的
 
-AR5-访问-AR7￼1.在AR5查看路由表：
+## AR5-访问-AR7
+1.在AR5查看路由表：得知：100.7.7.7是本地OSPF的外部路由，下一跳位10.1.45.4
+![700](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210162532024.png)
 
-![Exported image](Exported%20image%2020251206151345-1.png)
+2.在AR4上查看vpn-instance B 的路由表：得知：100.7.7.7 是IBGP路由学来的，存在标记Flags RD 需要递归查询？
+![700](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210162538040.png)
 
-得知：100.7.7.7是本地OSPF的外部路由，下一跳位10.1.45.4￼  
-2.在AR4上查看vpn-instance B 的路由表：
-
-![Exported image](Exported%20image%2020251206151350-2.png)
-
-得知：100.7.7.7 是IBGP路由学来的，存在标记Flags RD 需要递归查询？￼￼3.查看FIB表 查看下一跳2.2.2.2 如何走
-
-![Exported image](Exported%20image%2020251206151352-3.png)
-
-得知：走2.2.2.2 需要进行标签的封装
+3.查看FIB表 查看下一跳2.2.2.2 如何走：得知：走2.2.2.2 需要进行标签的封装
+![700](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210162650710.png)
  
-4.查看VPNv4 路由表查看封装私有标签情况：
+4.查看VPNv4 路由表查看封装私有标签情况：得知：需要封装私网标签：1029
+![700](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210162843138.png)
+5.查看公网标签如何封装：得知：需要封装公网标签：1024
+![700](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210162901172.png)
 
-![Exported image](Exported%20image%2020251206151354-4.png)
+6.在AR3上查看，到AR2的标签封装：得知是：3号标签，pop栈，剩下私网标签
+![](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210162925046.png)
 
-得知：需要封装私网标签：1029
- 
-5.查看公网标签如何封装：
+7.在AR2上查看标签分配情况：
+![700](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210162953888.png)
+**得知：该数据路由是从A_OUT表进入AR2**
+**为什么呢？**
+因为：100.7.7.7的路由是从AR2从AR7学习到的，然后再从AR2发出，因此会携带AR2的ERT值，所以 RT值与标签有何区别联系？：
+1.RT值是控制平面的，主要是接收匹配路由  
+2.标签是转发（数据）平面的，主要是接收匹配流量
 
-![Exported image](Exported%20image%2020251206151355-5.png)
+**简言之：RT 是 “路由带着标识找接收方”，标签是 “接收方给标识让发送方用”，二者方向相反。**
 
-得知：需要封装公网标签：1024
- 
-6.在AR3上查看，到AR2的标签封装
-
-![Exported image](Exported%20image%2020251206151357-6.png)
-
-得知是：3号标签，pop栈，剩下私网标签￼  
-7.在AR2上查看标签分配情况
-
-![Exported image](Exported%20image%2020251206151358-7.png)
-
-得知：该数据路由是从A_OUT表进入AR2  
-为什么呢？￼因为：100.7.7.7的路由是从AR2从AR7学习到的，然后再从AR2发出，因此会携带AR2的ERT值，￼所以 RT值与标签有何区别联系？：￼ 1.RT值是控制平面的，主要是接收匹配路由  
-2.标签是转发（数据）平面的，主要是接收匹配流量￼**简言之：RT 是 “路由带着标识找接收方”，标签是 “接收方给标识让发送方用”，二者方向相反。**
-
-对于MPLS VPN的tracert 抓包：
-
-![Exported image](Exported%20image%2020251206151400-8.png)  
-![Exported image](Exported%20image%2020251206151404-9.png)   ![Exported image](Exported%20image%2020251206151406-10.png)  
-![Exported image](Exported%20image%2020251206151408-11.png)
+### 对于MPLS VPN的tracert 抓包：
+![900](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210163503767.png)
+![700](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210163321978.png)  
+![700](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210163326454.png)     
+![](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210163336837.png)
+![](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210163342962.png)

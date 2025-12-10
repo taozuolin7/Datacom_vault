@@ -78,12 +78,11 @@ PE之间需要传送的路由条目可能较大，BGP只发送更新的路由，
  
 为了正确处理VPN路由，MPLS VPN使用RFC2858（Multiprotocol Extensions for BGP-4）中规定的MP-BGP，即BGP-4的多协议扩展。  
 MP-BGP采用地址族来区分不同的网络层协议，既可以支持传统的IPv4地址族，又可以支持其它地址族（比如VPN-IPv4地址族、IPv6地址等）。  
-MP-BGP新增了两种路径属性：  
+**MP-BGP新增了两种路径属性：**
 NLRI：Network Layer Reachability Information 网络层可达信息  
 MP_REACH_NLRI：Multiprotocol Reachable NLRI，多协议可达NLRI。用于发布可达路由及下一跳信息。  
 MP_UNREACH_NLRI：Multiprotocol Unreachable NLRI，多协议不可达NLRI。用于撤销不可达路由。
-
-![Exported image](Exported%20image%2020251206151224-0.png)  
+![](assets/5、MPLS-VPN/file-20251210154223560.png)
 
 dis bgp vpnv4 all peer 查看VPNv4邻居信息  
 dis bgp vpnv4 all routing-table 查看VPNv4路由信息

@@ -48,12 +48,12 @@ FEC In/Out Label In/Out IF
 作为egress节点，为自身的FEC产生入标签，并将标签发布给上游设备，作为上游设备的出标签  
 2.其他的FEC  
 只存在出标签，不存在入标签，不存在入接口存在出接口（此类信息设备作为ingress节点）  
-***对应出标签的值是下游设备分配的值
+**对应出标签的值是下游设备分配的值
  
 存在入标签，也存在出标签，不存在入接口存在出接口（此类信息设备作为transit节点）  
 ***对应入标签是设备自身产生的，并发布给上游；出标签是下游设备分配得到的
 
-**LDP默认只为32位主机路由分配标签信息**  
+==**LDP默认只为32位主机路由分配标签信息**==  
 \<AR1\>dis mpls ldp lsp 查看所有FEC生成的标签值  
 DestAddress/Mask In/OutLabel UpstreamPeer NextHop OutInterface  
 上游邻居

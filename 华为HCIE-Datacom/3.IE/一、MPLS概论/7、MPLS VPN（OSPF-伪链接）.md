@@ -1,20 +1,19 @@
+# 伪链接
 在MPLS VPN网络中PE设备连接站点如果使用OSPF协议，则会自动成为ABR和ASBR设备
-
-![Exported image](Exported%20image%2020251206151411-0.png)  
-![Exported image](Exported%20image%2020251206151413-1.png)  
+![700](assets/7、MPLS%20VPN（OSPF-伪链接）/file-20251210203402749.png)  
+![500](assets/7、MPLS%20VPN（OSPF-伪链接）/file-20251210203507106.png)  
 
 在执行将BGP的路由引入到站点VPN实例OSPF协议后，会通过3类LSA来描述外部路由  
 该方式只是特殊的执行方式  
 对于OSPF站点而言，将路由在BGP实例中通告或引入，会通过一部分扩展团体属性来描述站点OSPF路由的特点
-
-![Exported image](Exported%20image%2020251206151414-2.png)  
+![500](assets/7、MPLS%20VPN（OSPF-伪链接）/file-20251210203530308.png)  
 
 **OSPF DOMAIN ID ：两端PE设备会根据该值进行对比：**  
-如果两端的domain id值相同：  
-1.站点内的1、2、3类LSA换转换为对端站点内的3类LSA  
-2.站点内的5类LAS转换为对端站点内的5类LSA  
-如果两端的domain id值不同：  
-1.站点内的1、2、3、5类LSA转换为对端站点内的5类LSA
+**如果两端的domain id值相同：**  
+	1.站点内的1、2、3类LSA换转换为对端站点内的3类LSA  
+	2.站点内的5类LAS转换为对端站点内的5类LSA  
+**如果两端的domain id值不同：**  
+	1.站点内的1、2、3、5类LSA转换为对端站点内的5类LSA
  
 *对于2类LSA，没有添加扩展团体属性的，当作普通的BGP路由看待，所以引入到OSPF站点时会以5类形式引入
  

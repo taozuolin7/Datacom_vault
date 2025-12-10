@@ -1,4 +1,4 @@
-# LDP的标签方式和MPLS汇总
+# LDP的标签和MPLS汇总
 **LDP ID 和 LSP ID**  
 LDP ID由 LSP ID 和 标签空间标识符 组成  
 LSP ID长度为32bit  
@@ -42,7 +42,7 @@ LSP ID长度为32bit
 **[AR1]dis mpls lsp 查看MPLS的LSP信息**  
 FEC In/Out Label In/Out IF
  
-### 该LSP的信息分类：  
+### LSP的信息分类：  
 1.自身的FEC：  
 只存在入标签（3），不存在出标签 ，也不存在出入接口 （此类信息设备作为egress节点）  
 作为egress节点，为自身的FEC产生入标签，并将标签发布给上游设备，作为上游设备的出标签  

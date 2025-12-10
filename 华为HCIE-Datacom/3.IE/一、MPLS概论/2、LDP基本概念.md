@@ -19,12 +19,11 @@ LDP的作用：就是在LSR之间建立LDP会话，然后向邻居通告标签�
 收到对方的会话消息、标签消息、地址消息等认为自己和对方建立了对等体
 
 **LDP的4大消息类型：**  
-1.discover  
-2.session  
-3.advertise  
-4.notification
-
-![Exported image](Exported%20image%2020251206150313-0.png)
+	1.discover  
+	2.session  
+	3.advertise  
+	4.notification
+![](assets/2、LDP基本概念/file-20251210110317642.png)
 
 [AR1]mpls lsr-id 1.1.1.1 即充当LDP设备的标识，默认也会作为传输地址使用  
 [AR1]mpls  

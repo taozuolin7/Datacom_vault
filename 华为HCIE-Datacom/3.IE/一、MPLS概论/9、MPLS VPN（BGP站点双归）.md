@@ -36,21 +36,16 @@ bgp 100
   peer 10.0.13.1 as-number 10
 ```
 ### 特殊场景下BGP的防环：  
-1.当站点AR1存在一条路由信息，引入进BGP，通过EBGP邻居传递给AR3、通过IBGP邻居传递给AR2  
-2.AR3收到路由后通过MP-IBGP邻居传递给AR4，AR2收到路由后通过EBGP邻居传递给AR4  
-3.AR4收到一条路由信息，但是存在两个下一跳，通过EBGP优于IBGP的选路规则，优选了AR2的路由信息
-4.将AR2传递给AR4的路由med值该大，变为100
+1.当站点AR1存在一条路由信息，引入进BGP，通过EBGP邻居传递给AR3、通过IBGP邻居传递给AR2。
+2.AR3收到路由后通过MP-IBGP邻居传递给AR4，AR2收到路由后通过EBGP邻居传递给AR4。
+3.AR4收到一条路由信息，但是存在两个下一跳，通过EBGP优于IBGP的选路规则，优选了AR2的路由信息。
+4.将AR2传递给AR4的路由med值该大，变为100。
 ![](assets/9、MPLS%20VPN（BGP站点双归）/file-20251210213013210.png)
 ![](assets/9、MPLS%20VPN（BGP站点双归）/file-20251210213017968.png)
-
-
 5.AR4会优选AR3的路由信息，且会将优选的路由继续传递给AR2设备  
 6.AR2不会接收AR4传递的路由信息，因为AS-path防环
- 
 7.AR4对AR2执行[AR4-bgp-A]peer 10.1.24.2 substitute-as 该命令将路由信息的as号全部变为自身所在的AS编号  
 8.AR2可以正常接收AR4传递的路由信息
-
-![Exported image](Exported%20image%2020251206151442-4.png) ![Exported image](Exported%20image%2020251206151444-5.png)
 
 综上所述，站点的内部的路由通过MPLS VPN网络有传回站点内，造成了路由的环路
  

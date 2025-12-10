@@ -23,7 +23,7 @@ LDP的作用：就是在LSR之间建立LDP会话，然后向邻居通告标签�
 	2.session  
 	3.advertise  
 	4.notification
-![](assets/2、LDP基本概念/file-20251210110317642.png)
+![](assets/2、LDP基本概念(消息，状态机)/file-20251210113111765.png)
 
 ```D
 [AR1]mpls lsr-id 1.1.1.1 即充当LDP设备的标识，默认也会作为传输地址使用  
@@ -73,46 +73,46 @@ hello消息内会携带传输地址（LSR-id地址）
 ## 2.session：会话消息，用来建立、维护、终止邻居之间的会话  
 **1.initialization：TCP建立完成后，由传输地址大的一方发送初始化消息，协商LDP的参数**
 报文信息
-![900](assets/2、LDP基本概念/file-20251210111425109.png)
+![900](assets/2、LDP基本概念(消息，状态机)/file-20251210113111762%201.png)
 
 **2.keepalive：维护邻居之间的会话**
 收到邻居的init消息后，如果参数协商没有问题，则回复keepalive报文并发送init报文与对方协商  
 报文信息  
 对于keepalive消息周期15s发送，45s超时
-![900](assets/2、LDP基本概念/file-20251210111728009.png)
+![900](assets/2、LDP基本概念(消息，状态机)/file-20251210113111762.png)
 ## **3.advertis message：通告消息**
 **1.address 消息**
 ==由传输地址大的一方 回复 地址小的一方一个keepalive报文 同时发送一个address消息  ==
 address消息内容：  
 1.通告地址
-![900](assets/2、LDP基本概念/file-20251210111855684.png)  
+![900](assets/2、LDP基本概念(消息，状态机)/file-20251210113111761%201.png)  
 
 2.撤销地址
-![](assets/2、LDP基本概念/file-20251210111921808.png)  
+![](assets/2、LDP基本概念(消息，状态机)/file-20251210113111761.png)  
 
 **2.Label 消息**
 LSR之间将自身所有的映射消息同步给邻居  
 1.lable mapping：宣告FEC/标签映射信息
-![900](assets/2、LDP基本概念/file-20251210112047506.png)
+![900](assets/2、LDP基本概念(消息，状态机)/file-20251210113111760%201.png)
 
 2.lable withdrawal：撤销FEC/标签映射信息
-![900](assets/2、LDP基本概念/file-20251210112207065.png)
+![900](assets/2、LDP基本概念(消息，状态机)/file-20251210113111760.png)
 
 3.lable release：释放FEC/标签映射信息
-![900](assets/2、LDP基本概念/file-20251210112317288.png)
+![900](assets/2、LDP基本概念(消息，状态机)/file-20251210113111759%201.png)
 
 
 4.lable request：请求FEC/标签映射信息
-![900](assets/2、LDP基本概念/file-20251210112339360.png)
+![900](assets/2、LDP基本概念(消息，状态机)/file-20251210113111759.png)
 
 5.lable abrot request：终止未完成的标签请求
-![](assets/2、LDP基本概念/file-20251210112531836.png)
+![](assets/2、LDP基本概念(消息，状态机)/file-20251210113111758.png)
 
 ## 4.notification message：通知消息  
 用于提供差错消息的
-![900](assets/2、LDP基本概念/file-20251210112620753.png)
+![900](assets/2、LDP基本概念(消息，状态机)/file-20251210113111755.png)
 
 ## LDP的状态机：
-![900](assets/2、LDP基本概念/file-20251210112633837.png)
+![900](assets/2、LDP基本概念(消息，状态机)/file-20251210113111754.png)
 
 ==在任何状态下收到通知消息或该状态的定时器超时，都会进入non-existent（重新建立TCP的连接）==

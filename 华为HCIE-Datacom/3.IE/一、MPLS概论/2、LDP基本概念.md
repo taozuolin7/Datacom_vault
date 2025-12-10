@@ -34,7 +34,7 @@ LDP的作用：就是在LSR之间建立LDP会话，然后向邻居通告标签�
 [AR1-GigabitEthernet0/0/0]mpls ldp
 ```
  
-## LDP的发现机制：（LDP邻接体的建立）  
+## 1.LDP的发现机制：（LDP邻接体的建立）  
 ### **就是通过LDP的discovery消息来完成LSR之间的发现，使用的报文为hello报文**
 1.基本的发现机制  
 	LSR周期（5s）发送LDP链路的hello消息用于建立本地LDP会话  
@@ -71,58 +71,48 @@ hello消息内会携带传输地址（LSR-id地址）
 所以当判断自身的传输地址为小的一方，就只能被动等待对方发起TCP连接
 
 ## 2.session：会话消息，用来建立、维护、终止邻居之间的会话  
-1.initialization：TCP建立完成后，由传输地址大的一方发送初始化消息，协商LDP的参数  
+**1.initialization：TCP建立完成后，由传输地址大的一方发送初始化消息，协商LDP的参数**
 报文信息
 ![900](assets/2、LDP基本概念/file-20251210111425109.png)
 
-2.keepalive：维护邻居之间的会话  
+**2.keepalive：维护邻居之间的会话**
 收到邻居的init消息后，如果参数协商没有问题，则回复keepalive报文并发送init报文与对方协商  
 报文信息  
 对于keepalive消息周期15s发送，45s超时
-
-![Exported image](Exported%20image%2020251206150321-3.png)
-
-3.advertis message：通告消息  
-1.address 消息  
-由传输地址大的一方 回复 地址小的一方一个keepalive报文 同时发送一个address消息  
+![900](assets/2、LDP基本概念/file-20251210111728009.png)
+## **3.advertis message：通告消息**
+**1.address 消息**
+==由传输地址大的一方 回复 地址小的一方一个keepalive报文 同时发送一个address消息  ==
 address消息内容：  
 1.通告地址
-
-![Exported image](Exported%20image%2020251206150322-4.png)  
+![900](assets/2、LDP基本概念/file-20251210111855684.png)  
 
 2.撤销地址
+![](assets/2、LDP基本概念/file-20251210111921808.png)  
 
-![Exported image](Exported%20image%2020251206150324-5.png)  
-
-2.Label 消息  
+**2.Label 消息**
 LSR之间将自身所有的映射消息同步给邻居  
 1.lable mapping：宣告FEC/标签映射信息
-
-![Exported image](Exported%20image%2020251206150326-6.png)
+![900](assets/2、LDP基本概念/file-20251210112047506.png)
 
 2.lable withdrawal：撤销FEC/标签映射信息
-
-![Exported image](Exported%20image%2020251206150327-7.png)
+![900](assets/2、LDP基本概念/file-20251210112207065.png)
 
 3.lable release：释放FEC/标签映射信息
+![900](assets/2、LDP基本概念/file-20251210112317288.png)
 
-![Exported image](Exported%20image%2020251206150329-8.png)
 
 4.lable request：请求FEC/标签映射信息
-
-![Exported image](Exported%20image%2020251206150331-9.png)
+![900](assets/2、LDP基本概念/file-20251210112339360.png)
 
 5.lable abrot request：终止未完成的标签请求
+![](assets/2、LDP基本概念/file-20251210112531836.png)
 
-![Exported image](Exported%20image%2020251206150336-10.png)
-
-4.notification message：通知消息  
+## 4.notification message：通知消息  
 用于提供差错消息的
+![900](assets/2、LDP基本概念/file-20251210112620753.png)
 
-![Exported image](Exported%20image%2020251206150338-11.png)
+## LDP的状态机：
+![900](assets/2、LDP基本概念/file-20251210112633837.png)
 
-LDP的状态机：
-
-![Exported image](Exported%20image%2020251206150742-12.png)
-
-在任何状态下收到通知消息或该状态的定时器超时，都会进入non-existent（重新建立TCP的连接）
+==在任何状态下收到通知消息或该状态的定时器超时，都会进入non-existent（重新建立TCP的连接）==

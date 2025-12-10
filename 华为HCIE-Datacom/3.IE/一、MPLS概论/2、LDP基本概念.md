@@ -25,26 +25,31 @@ LDP的作用：就是在LSR之间建立LDP会话，然后向邻居通告标签�
 	4.notification
 ![](assets/2、LDP基本概念/file-20251210110317642.png)
 
+```D
 [AR1]mpls lsr-id 1.1.1.1 即充当LDP设备的标识，默认也会作为传输地址使用  
 [AR1]mpls  
 [AR1]mpls ldp  
 [AR1]interface GigabitEthernet 0/0/0  
 [AR1-GigabitEthernet0/0/0]mpls  
 [AR1-GigabitEthernet0/0/0]mpls ldp
+```
  
-LDP的发现机制：（LDP邻接体的建立）  
-**就是通过LDP的discover消息来完成LSR之间的发现，使用的报文为hello报文  
+## LDP的发现机制：（LDP邻接体的建立）  
+**就是通过LDP的discovery消息来完成LSR之间的发现，使用的报文为hello报文**
 1.基本的发现机制  
-LSR周期（5s）发送LDP链路的hello消息用于建立本地LDP会话  
-hello报文使用UDP报文（646），目标地址为224.0.0.2  
-如果接口收到hello消息，则认为链路上存在LDP邻居  
+	LSR周期（5s）发送LDP链路的hello消息用于建立本地LDP会话  
+	hello报文使用UDP报文（646），目标地址为224.0.0.2  
+	如果接口收到hello消息，则认为链路上存在LDP邻居  
 2.扩展的发现机制  
+```D
 [AR1]mpls ldp remote-peer AR4  
 [AR1-mpls-ldp-remote-ar4]remote-ip 4.4.4.4 指定的远端邻居地址，该地址要求路由可达  
+```
 LSR周期（15s）发送LDP链路的hello消息用于建立本地LDP会话  
 hello报文使用UDP报文（646），目标地址为4.4.4.4  
-如果收到hello消息，则认为存在LDP邻居  
-*discover消息：主要通过hello消息来发现和维护邻接关系  
+如果收到hello消息，则认为存在LDP邻居 
+
+discovery消息：主要通过hello消息来发现和维护邻接关系  
 hello消息5s发送15s超时，15s发送45超时  
 hello消息内会携带传输地址（LSR-id地址）  
 传输地址之间是相互通信的（建立TCP连接的）

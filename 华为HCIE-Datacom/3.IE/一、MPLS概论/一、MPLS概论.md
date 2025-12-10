@@ -1,5 +1,4 @@
-\> [!caution] This page contained a drawing which was not converted.   
-
+# MPLS概论
 **路由器转发的三个阶段：**  
 1.基于CPU的转发：所有的数据都要通过CPU进行处理（查找路由表），转发性能低下，限制网络发展   1.5 为了提高设备的转发性能，设备在处理转发时，如果不需要查路由表 就可以提升  
 MPLS：将数据封装为带标签的数据，设备直接根据标签执行转发，不会在查找上层的IP信息  

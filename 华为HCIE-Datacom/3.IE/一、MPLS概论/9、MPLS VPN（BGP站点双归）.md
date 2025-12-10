@@ -1,8 +1,9 @@
 # BGP站点双归 
-本站点路由次优的问题：  
+**本站点路由次优的问题：**  
 AR1存在环回口路由100.1.1.1/32，在OSPF中通告  
-AR2将OSPF路由引入到BGP中，产生MED=1的BGP路由100.1.1.1/32，通告给EBGP邻居AR4 和 IBGP邻居AR1  
-AR1将学习到的路由传递给EBGP邻居时 会清空MED值（变为0）￼***med属性值只能传递到邻居的AS，不能跨越AS传递，所以说，AR1因为shiAR2的IBGP邻居，收到带有med=1的值，会清空med值，导致AR1通告给AR3的路由，med=0  
+**AR2将OSPF路由引入到BGP中**，产生MED=1的BGP路由100.1.1.1/32，通告给EBGP邻居AR4 和 IBGP邻居AR1  
+AR1将学习到的路由传递给EBGP邻居时 会清空MED值（变为0）
+==med属性值只能传递到邻居的AS==，不能跨越AS传递，所以说，AR1因为是AR2的IBGP邻居，收到带有med=1的值，会清空med值，导致AR1通告给AR3的路由，med=0  
 AR3收到100.1.1.1/32路由的MED=0  
 AR4收到100.1.1.1/32路由的MED=1  
 AR3和AR4通过MP-IBGP邻居交互100.1.1.1/32的路由信息  
@@ -12,8 +13,7 @@ AR4就通过次优访问100.1.1.1/32
  
 如何解决该问题：  
 在AR2引入OSPF路由时，通过配置将MED值设置为0
-
-![Exported image](Exported%20image%2020251206151432-0.png)  
+  ![700](assets/9、MPLS%20VPN（BGP站点双归）/file-20251210211355293.png)
 
 值得注意的是：AR与AR3之间：  
 AR3是在VPN实例下与AR1建立EBGP邻居，所以AR3需要在ipv4-family vpn-instance 下建立邻居

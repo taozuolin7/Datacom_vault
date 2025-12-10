@@ -21,13 +21,13 @@ hub站点的PE和CE之间需要构建两个互联的网段地址
 ## **配置思路：**  
 1.公网建立IGP和LDP邻居  
 2.站点信息规划及配置  
-1.根据要求规划各站点RD与RT值  
-2.接口绑定VPN实例  
+	1.根据要求规划各站点RD与RT值  
+	2.接口绑定VPN实例  
 3.站点使用BGP、IGP或静态实现路由通信  
 3.在公网设备之间构建MP-BGP邻居关系
 ![900](assets/6、MPLS-VPN（hub-spoke模型）/file-20251210160432226.png)
-```
-R2：  
+**R2：**
+```D
 #  
 ip vpn-instance A_IN  
  ipv4-family  
@@ -47,10 +47,39 @@ interface GigabitEthernet0/0/2
  ip binding vpn-instance A_OUT  
  ip address 10.1.21.2 255.255.255.0   
 #
+bgp 100
+ peer 3.3.3.3 as-number 100
+ peer 3.3.3.3 connect-interface LoopBack0
+ #
+ ipv4-family unicast
+  undo synchronization
+  undo peer 3.3.3.3 enable
+ #
+ ipv4-family vpnv4
+  policy vpn-target
+  peer 3.3.3.3 enable
+ #
+ ipv4-family vpn-instance A_IN
+  peer 10.1.12.1 as-number 10
+ #
+ ipv4-family vpn-instance A_OUT
+  peer 10.1.21.1 as-number 10
+  peer 10.1.21.1 allow-as-loop
 ```
-
+**AR1:**
+```D
+bgp 10
+ peer 10.1.12.2 as-number 100
+ peer 10.1.21.2 as-number 100
+ #
+ ipv4-family unicast
+  undo synchronization
+  network 100.1.1.1 255.255.255.255
+  peer 10.1.12.2 enable
+  peer 10.1.21.2 enable
 ```
-AR3：  
+**AR3：**
+```D
 #  
 bgp 100  
  peer 2.2.2.2 as-number 100   
@@ -76,89 +105,50 @@ bgp 100
   peer 6.6.6.6 reflect-client  
 #
 ```
-
-**policy vpn-target 和 RT值匹配的区别：**
- 
-policy vpn-target 默认是过滤所有的VPNv4路由
- 
-IRT值匹配ERT值的操作 优选于 policy vpn-target功能
-
-```
-AR6：  
-#  
-ip vpn-instance C  
- ipv4-family  
-  route-distinguisher 300:3  
-  vpn-target 2:3 export-extcommunity  
-  vpn-target 3:2 import-extcommunity  
-#  
-ospf 2 router-id 10.6.6.6 vpn-instance C  
- area 0.0.0.0   
-#  
-interface GigabitEthernet0/0/1  
- ip binding vpn-instance C  
- ip address 10.1.67.6 255.255.255.0   
- ospf enable 2 area 0.0.0.0  
+**AR6:**
+```D
+#
+ip vpn-instance C
+ ipv4-family
+  route-distinguisher 300:3
+  vpn-target 2:3 export-extcommunity
+  vpn-target 3:2 import-extcommunity
+#
+ospf 2 router-id 10.6.6.6 vpn-instance C
+ area 0.0.0.0
+#
+interface GigabitEthernet0/0/1
+ ip binding vpn-instance C
+ ip address 10.1.67.6 255.255.255.0
+ ospf enable 2 area 0.0.0.0
 #
 ```
-
-```
-AR4：  
-#  
-ip vpn-instance B  
- ipv4-family  
-  route-distinguisher 200:2  
-  vpn-target 2:3 export-extcommunity  
-  vpn-target 3:2 import-extcommunity  
-#  
-ospf 2 router-id 10.4.4.4 vpn-instance B  
- area 0.0.0.0   
-#  
-interface GigabitEthernet0/0/1  
- ip binding vpn-instance B  
- ip address 10.1.45.4 255.255.255.0   
- ospf enable 2 area 0.0.0.0  
+**AR4:**
+```D
+#
+ip vpn-instance B
+ ipv4-family
+  route-distinguisher 200:2
+  vpn-target 2:3 export-extcommunity
+  vpn-target 3:2 import-extcommunity
+#
+ospf 2 router-id 10.4.4.4 vpn-instance B
+ area 0.0.0.0
+#
+interface GigabitEthernet0/0/1
+ ip binding vpn-instance B
+ ip address 10.1.45.4 255.255.255.0
+ ospf enable 2 area 0.0.0.0
 #
 ```
-
-```
-R1:￼bgp 10  
- peer 10.1.12.2 as-number 100   
- peer 10.1.21.2 as-number 100   
- #  
- ipv4-family unicast  
-  undo synchronization  
-  network 100.1.1.1 255.255.255.255   
-  peer 10.1.12.2 enable  
-  peer 10.1.21.2 enable
-```
-
-```
-R2￼bgp 100  
- peer 3.3.3.3 as-number 100   
- peer 3.3.3.3 connect-interface LoopBack0  
- #  
- ipv4-family unicast  
-  undo synchronization  
-  undo peer 3.3.3.3 enable  
- #   
- ipv4-family vpnv4  
-  policy vpn-target  
-  peer 3.3.3.3 enable  
- #  
- ipv4-family vpn-instance A_IN   
-  peer 10.1.12.1 as-number 10   
- #  
- ipv4-family vpn-instance A_OUT   
-  peer 10.1.21.1 as-number 10   
-  peer 10.1.21.1 allow-as-loop
-```
-
-**RT值与私网标签：**  
+### **policy vpn-target 和 RT值匹配的区别：**
+**policy vpn-target 默认是过滤所有的VPNv4路由**
+==IRT值匹配ERT值的操作 优选于 policy vpn-target功能==
+### **RT值与私网标签：**  
 对于RT值是在控制平面用于站点对路由接收使用的  
 对于私网标签是在转发平面用于站点对流量接收使用  
 RT值和私网标签的使用方向是相反的  
-_简言之：RT 是 “路由带着标识找接收方”，标签是 “接收方给标识让发送方用”，二者方向相反。_  
+简言之：RT 是 “路由带着标识找接收方”，标签是 “接收方给标识让发送方用”，二者方向相反。 
 RT值和私网标签都是通过VPNv4路由携带的
 
 AR5-访问-AR7￼1.在AR5查看路由表：

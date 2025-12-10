@@ -40,16 +40,18 @@ PE设备根据VPN实例区分不同的站点路由，而VPN实例是本地生效
 P设备如果收到相同网段的路由，则无法区分  
 P设备如果收到不同网段的路由，则可以正常进行区分
  
-PE设备如何发送不同网段的路由信息？  
+**PE设备如何发送不同网段的路由信息？**  
 PE设备发送私网路由时，根据规则发送的是VPNv4路由
  
-什么是VPNv4路由？  
+**什么是VPNv4路由？**
 VPNv4路由 是由 8Byte RD + 4Byte ipv4私网路由 组成
  
-什么是RD(Route Distinguisher)？  
+**什么是RD(Route Distinguisher)？**
 RD：路由区分符 书写方式 AA:NN（32bit:32bit）  
 通过在VPN实例下配置，将不同站点的私网路由 通过指定的RD值进行绑定，绑定后就形成了VPNv4路由  
+```D
 [Huawei-vpn-instance-test]route-distinguisher 100:1  
+```
 作用：用来区分不同站点相同的路由信息
  
 如果对端PE接收不同站点的路由后，可以通过RD值进行区分；但是如何将不同站点的路由接收进本地站点？  

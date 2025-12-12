@@ -38,8 +38,7 @@ VAP：虚拟网络接入点
 对于NVE设备连接中断的接入方式  
 1.子接口接收数据（通过子接口的vid接收对应VLAN的数据，且子接口绑定BD域）  
 2.VLAN接收数据（通过VLAN id接收对应的VLAN数据，且VLAN绑定BD域）
-
-![Exported image](Exported%20image%2020251206151910-0.png)
+![](assets/4、静态VXLAN总结/file-20251212154734694.png)
 
 ```
 CE1：  

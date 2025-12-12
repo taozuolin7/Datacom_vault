@@ -1,4 +1,4 @@
-a前置配置：  
+a 前置配置：  
 AS内底层配置IGP互通（ospf ，isis），全局使能MPLS LDP接口使能mpls， mpls ldp
  
 方案配置：  

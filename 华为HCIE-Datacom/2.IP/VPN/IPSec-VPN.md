@@ -53,6 +53,3 @@ ipsec policy test
 [AR1]ip route-static 0.0.0.0 0 10.0.12.2      
 ```
 ![](assets/IPSec-VPN/file-20251207204746483.png)
-
-
-

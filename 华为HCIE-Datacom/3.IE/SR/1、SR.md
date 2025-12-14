@@ -217,7 +217,7 @@ Prefix             Label      OutLabel   Interface         NextHop          Role
 Total information(s): 1
 ```
 
-![](assets/SR/file-20251214164438072.png)
+![](assets/1、SR/file-20251214164853048.png)
 
 BGP-SR MPLS
 **只有EBGP邻居会存在标签分发的能力

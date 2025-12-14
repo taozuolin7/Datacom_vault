@@ -125,3 +125,150 @@ OSPF对于实现SR MPLS扩展的支持，引入type 10LSA
         Weight: 0
         Label: 48020  
 ```
+
+
+```
+类型10LSA - 7.0.0.0
+[NE1]dis ospf lsdb opaque-area 7.0.0.0 
+
+          OSPF Process 1 with Router ID 10.1.1.1
+                          Area: 0.0.0.0
+                  Link State Database
+
+
+  Type      : Opq-Area
+  Ls id     : 7.0.0.0
+  Adv rtr   : 10.1.1.1
+  Ls age    : 16
+  Len       : 44
+  Options   :  E
+  seq#      : 80000001
+  chksum    : 0x7ace
+  Opaque Type: 7
+  Opaque Id: 0
+  OSPFv2 Extended Prefix Opaque LSA TLV information:
+    OSPFv2 Extended Prefix TLV: 
+      Route Type: Intra-Area 
+      AF: IPv4-Unicast 
+      Flags: 0x40 (-|N|-|-|-|-|-|-) 
+      Prefix: 1.1.1.1/32         自身环回口的前缀信息
+      Prefix SID Sub-TLV:
+        Flags: 0x00 (-|-|-|-|-|-|-|-)
+        MT ID: 0 
+        Algorithm: SPF
+        Index: 100               环回口对应的段ID值
+```
+
+```
+[NE1]display segment-routing adjacency mpls forwarding 
+
+            Segment Routing Adjacency MPLS Forwarding Information
+
+Label     Interface         NextHop          Type        MPLSMtu   Mtu       
+-----------------------------------------------------------------------------
+48020     Eth1/0/0          10.1.12.2        OSPFv2      ---       1500    
+```
+
+```
+[NE2]dis isis lsdb 0000.0000.0002.00-00 verbose    LSP携带SR的信息
+
+                        Database information for ISIS(1)
+                        -----------------------------------
+                          
+                          
+                          Level-2 Link State Database
+
+LSPID                  Seq Num    Checksum   HoldTime       Length   ATT/P/OL
+-----------------------------------------------------------------------------
+0000.0000.0002.00-00*  0x00000007 0x9ddb     1166           129      0/0/0   
+ SOURCE       0000.0000.0002.00 
+ NLPID        IPV4
+ AREA ADDR    49.0001
+ INTF ADDR    10.1.12.2
+ INTF ADDR    2.2.2.2
++NBR  ID      0000.0000.0002.01  COST: 10
++NBR  ID      0000.0000.0002.01  COST: 10
+
+   动态生成的adj sid值
+   Lan-Adj-Sid   48140     0000.0000.0001    F:0 B:0 V:1 L:1 S:0 P:0 Weight: 0
++IP-Extended  10.1.12.0       255.255.255.0    COST: 10  
+      
+   对于环回口生成的node sid值（该值 + SRGB的起始值）
++IP-Extended  2.2.2.2         255.255.255.255  COST: 0         
+   Prefix-Sid   222        Algorithm: 0   Flag: R:0 N:1 P:0 E:0 V:0 L:0
+
+   配置的SRGB取值范围
+ Router Cap   2.2.2.2          D: 0  S: 0
+   Segment Routing Cap   I: 1   V: 0   SRGB Base: 16000      Range: 2001      
+```
+
+```
+[NE1]display segment-routing prefix mpls forwarding 
+
+                   Segment Routing Prefix MPLS Forwarding Information
+             --------------------------------------------------------------
+             Role : I-Ingress, T-Transit, E-Egress, I&T-Ingress And Transit
+
+Prefix             Label      OutLabel   Interface         NextHop          Role  MPLSMtu   Mtu     State          
+--------------------------------------------------------------------------------
+---------------------------------
+1.1.1.1/32         16100      NULL       Loop0             127.0.0.1        E     ---       1500    Active          
+
+Total information(s): 1
+```
+
+![](assets/SR/file-20251214164438072.png)
+
+BGP-SR MPLS
+**只有EBGP邻居会存在标签分发的能力
+  IBGP邻居之间不需要存在标签分发（因为底层是IGP）
+1.如果建立EBGP通过环回口建立
+  1.环回口就是prefix sid（node sid）
+  2.互联接口就是adj sid
+2.如果建立EBGP通过直连口建立
+  1.互联接口就是adj sid 同时也是 prefix sid（node sid）
+
+``
+```
+[NE2]dis bgp egress-engineering
+
+ Peer Node                : 10.1.23.3
+ Peer Adj Num             : 0
+ Local ASN                : 100
+ Remote ASN               : 200
+ Local Router Id          : 10.1.12.2
+ Remote Router Id         : 10.1.23.3
+ Local Interface Address  : 10.1.23.2
+ Remote Interface Address : 10.1.23.3
+ SID Label                : 48180
+ Nexthop                  : 10.1.23.3
+ Out Interface            : Ethernet1/0/1
+```
+
+```
+#
+bgp 100
+ peer 10.1.23.3 as-number 200
+ peer 10.1.23.3 egress-engineering
+ #
+ ipv4-family unicast
+  undo synchronization
+  peer 10.1.23.3 enable
+ #
+ link-state-family unicast
+#
+```
+
+```
+#
+bgp 200
+ peer 10.1.23.2 as-number 100
+ peer 10.1.23.2 egress-engineering
+ #
+ ipv4-family unicast
+  undo synchronization
+  peer 10.1.23.2 enable
+ #
+ link-state-family unicast
+#
+```

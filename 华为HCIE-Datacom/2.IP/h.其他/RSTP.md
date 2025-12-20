@@ -8,7 +8,7 @@ rstp   802.1W
 mstp   802.1S
 
 **RSTP报文格式：**
-![800](assets/RSTP/file-20251207173205644.png)
+![800](assets/RSTP/file-20251220215129276.png)
 
 **RSTP对于STP的改进：**
 1.端口角色  
@@ -45,7 +45,7 @@ mstp   802.1S
 5.快速收敛机制
    1.根端口快速切换  
     当设备根端口失效，如果存在AP端口，则AP端口会直接成为RP端口，不需要等待2个转发延迟时间，直接进入转发状态
-    ![300](assets/RSTP/file-20251207174116946.png)
+    ![300](assets/RSTP/file-20251220215129269.png)
 
    2.边缘端口
     将端口设置为边缘端口，可以让接口直接进入转发状态  
@@ -90,7 +90,7 @@ mstp   802.1S
   [S1-root-GigabitEthernet0/0/1]stp root-protection   
   如果指定端口收到了更好的BPDU，则会将接口进入discarding状态  
   在接口不接收口更好BPDU后，等待2个转发延迟时间，端口重新进入forwarding状态
-![500](assets/RSTP/file-20251207174152152.png)
+![500](assets/RSTP/file-20251220215129262.png)
 3.环路保护：根端口、阻塞端口的保护  
   防止网络出现环路  
   根端口和阻塞端口 因为网络拥塞或其他原因导致 没有收到 上游DP端口发送的BPDU报文  

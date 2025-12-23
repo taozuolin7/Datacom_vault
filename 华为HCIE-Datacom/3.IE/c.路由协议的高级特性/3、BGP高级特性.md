@@ -83,7 +83,7 @@ bgp 200
   peer 4.4.4.4 group 1 
 ```
 
-**GTSM：通用TTL安全保护机制**
+## **GTSM：通用TTL安全保护机制**
 ```D
 [AR2-bgp]peer 3.3.3.3 valid-ttl-hops \<1-255\>  
 通过在BGP邻居之间设置TTL值的范围，防止接收攻击者的报文  

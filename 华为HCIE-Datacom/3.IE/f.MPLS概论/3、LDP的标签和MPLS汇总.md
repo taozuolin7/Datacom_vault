@@ -101,7 +101,8 @@ DestAddress/Mask In/OutLabel UpstreamPeer NextHop OutInterface
  
 如何解决LSP的断裂？  
 ==LSP断裂的本质是因为LSR设备没有明细的32位主机路由==  
-1.为汇总后的每一台设备都配置静态的32位路由  
+1.为汇总后的每一台设备都配置静态的32位路由 
+
 2.为汇总后每一台设备都开启最长掩码匹配的功能 
 [AR2-mpls-ldp]longest-match 
 [AR1-mpls-ldp]longest-match   设备收到下游分发的标签值，如果自身不存在对应的32位主机路由，设备会通过自由的方式进行标签的保留  

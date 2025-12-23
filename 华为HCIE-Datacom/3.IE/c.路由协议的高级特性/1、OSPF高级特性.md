@@ -12,7 +12,7 @@
 - 1.控制LSA的发送、接收  
 ```D
 [AR1-ospf-1]lsa-originate-interval intelligent-timer 6000 600 1200  
-												最大时间 初始时间 间隔时间  
+                                                   最大时间 初始时间 间隔时间  
 [AR1-ospf-1]lsa-arrival-interval intelligent-timer 1200 400 600  
 ```
 - 2.控制LSA的路由计算  

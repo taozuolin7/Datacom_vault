@@ -17,6 +17,8 @@ ospf 2
 ```
 
 # 2.BGP的解决防环 allow-as-loop 和 修改as号
-由于BGP本身存在AS防环，所以说当分支PE与CE之间建立EBGP邻居时
+由于BGP本身存在AS防环机制，所以说当分支PE与CE之间建立EBGP邻居时，多PE的情况下，会导致AS号重复，触发AS防环机制。
 ## 当分支PE与CE之间建立EBGP邻居时：
 当部署多PE的情况下如何解决防环问题：
+1.**宣告邻居的时候 配置allow-as-loop**
+2.或者重新配置AS号

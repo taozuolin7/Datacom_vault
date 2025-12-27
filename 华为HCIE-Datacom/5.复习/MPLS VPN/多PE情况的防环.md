@@ -1,3 +1,5 @@
+# 包括什么呢（Hub-Spoke里面的Hub站点），多PE情况。
+
 # 1.IGP的防环DN 和 route-tag 防环
 ## 当分支PE与CE直接建立IGP邻居时：
 经过超级骨干区域（VPNv4）的路由通告PE设备引入到Site中时：

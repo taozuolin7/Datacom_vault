@@ -37,9 +37,11 @@ BM：应用指定的SR-MPLS Policy。
 Flavors是为了增强SRv6 Segment而定义的附加行为。这些附加行为是可选项，它们将会增强SRv6 Segment的执行动作，满足更丰富的业务需求。
 Segment Routing over IPv6 (SRv6) Network Programming中定义了以下附加行为，PSP（Penultimate Segment Pop of the SRH，倒数第二段弹出SRH）、USP（Ultimate Segment Pop of the SRH，倒数第一段弹出SRH）和USD（Ultimate Segment Decapsulation，倒数第一段解封装）。
 
-| 附加行为 | 功能描述 | 附着的End指令 |
-| ---- | ---- | -------- |
-|      |      |          |
+| 附加行为 | 功能描述                             | 附着的End指令                          |
+| ---- | -------------------------------- | --------------------------------- |
+| PSP  | 在倒数第二个Endpoint节点执行移除SRH操作。       | End、End.X、End.DT2、End.DT4、End.DT6 |
+| USP  | 在最后一个Endpoint节点执行移除SRH操作。        | End、End.X、End.DT2、End.DT4、End.DT6 |
+| USD  | 在最后一个Endpoint节点执行解封装外层IPv6报文头操作。 | End、End.X、End.DT2、End.DT4、End.DT6 |
 
 
 根据目标地址，匹配的网络号进行转发。

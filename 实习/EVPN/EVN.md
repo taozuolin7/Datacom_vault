@@ -150,7 +150,7 @@ EVN ID 的主要用于 PE 在收到对端发送过来的 MAC 地址可达信息�
 
 实例相关的配置如下：
 
-#PE2 上第一个 EVN 实例，用于实现 VLAN100 到 199 的跨数据中心二层互联。
+# PE2 上第一个 EVN 实例，用于实现 VLAN100 到 199 的跨数据中心二层互联。
 
 [PE2] evn evn-name site1
 
@@ -160,7 +160,7 @@ EVN ID 的主要用于 PE 在收到对端发送过来的 MAC 地址可达信息�
 
 [*PE2-evn-site1] quit
 
-#PE2 上第二个 EVN 实例，用于实现 VLAN200 到 299 的跨数据中心二层互联。
+# PE2 上第二个 EVN 实例，用于实现 VLAN200 到 299 的跨数据中心二层互联。
 
 [PE2] evn evn-name site2
 

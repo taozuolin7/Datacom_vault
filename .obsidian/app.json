@@ -3,5 +3,6 @@
   "newLinkFormat": "relative",
   "promptDelete": false,
   "showLineNumber": true,
-  "readableLineLength": false
+  "readableLineLength": false,
+  "alwaysUpdateLinks": true
 }

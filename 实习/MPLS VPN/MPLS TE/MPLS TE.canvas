@@ -1656,6 +1656,7 @@
 			"id":"5252de94e8c8de8a",
 			"styleAttributes":{},
 			"toFloating":false,
+			"fromFloating":false,
 			"fromNode":"64ae40494feb6ca6",
 			"fromSide":"right",
 			"toNode":"ce26fcc07e325987",

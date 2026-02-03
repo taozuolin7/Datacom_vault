@@ -888,7 +888,8 @@
 			"y":1500,
 			"width":540,
 			"height":60
-		}
+		},
+		{"id":"c8566faf803c55a6","type":"file","file":"实习/MPLS VPN/MPLS TE/assets/MPLS TE/file-20260203102433485.png","x":-520,"y":-460,"width":400,"height":187}
 	],
 	"edges":[
 		{
@@ -1724,6 +1725,15 @@
 			"fromSide":"right",
 			"toNode":"6051c0dcd483bdf6",
 			"toSide":"left"
+		},
+		{
+			"id":"594350e72b17062b",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"730f81c42f58ad68",
+			"fromSide":"top",
+			"toNode":"c8566faf803c55a6",
+			"toSide":"bottom"
 		}
 	]
 }

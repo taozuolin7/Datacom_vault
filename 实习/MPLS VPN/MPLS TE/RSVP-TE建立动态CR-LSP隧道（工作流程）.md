@@ -32,7 +32,6 @@ ospf 1 router-id 1.1.1.1
   mpls-te enable
 #
 ```
-
 ## 从AR1-AR4的 PSB内容显示
 ```R
 [AR1]display mpls rsvp-te psb-content

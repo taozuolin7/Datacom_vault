@@ -1,6 +1,6 @@
 
 ## 基于RSVP-TE的CR-LSP实验：路径选择
-![](assets/基于RSVP-TE建立动态CR-LSP隧道（亲和属性）/file-20260205092550337.png)
+![](assets/基于RSVP-TE建立动态CR-LSP隧道（综合选路）/file-20260205181903369.png)
 **实验概述：**
 1.底层为 ISIS level-2
 2.blue 路径在 ==非链路管理组中==
@@ -36,7 +36,7 @@
 ```
 
 **配置严格显示路径**
-![](assets/基于RSVP-TE建立动态CR-LSP隧道（亲和属性）/file-20260205092550336.png)
+![](assets/基于RSVP-TE建立动态CR-LSP隧道（综合选路）/file-20260205181903371.png)
 1.路径必须经过AR4
 ```R
 <Huawei>tracert lsp te Tunnel 0/0/0

@@ -1,4 +1,4 @@
-![](assets/2.MPLS%20TE静态CR-LSP隧道建立/file-20260204161936370.png)
+![](assets/建立静态CR-LSP隧道建立/file-20260205091655213.png)
 **场景概述：**
 1.底层通过 static-route 互访，通过loopback 0 建立隧道
 2.AR1作为隧道入口

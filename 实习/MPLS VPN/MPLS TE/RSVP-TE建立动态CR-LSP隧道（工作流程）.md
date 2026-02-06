@@ -345,4 +345,184 @@ ospf 1 router-id 1.1.1.1
 
 ```
 
+```R
+<AR1>display mpls interface
+Interface             Status    TE Attr   LSP Count  CRLSP Count Effective MTU
+GE0/0/0               Up        En        0          1           1500
+<AR1>
+<AR1>
+```
 
+
+```R
+<AR1>display mpls rsvp-te statistics global
+ LSR ID: 1.1.1.1                      LSP Count: 1
+ PSB Count: 1                         RSB Count: 1
+ RFSB Count: 0
+
+Total Statistics Information:
+ PSB CleanupTimeOutCounter: 0         RSB CleanupTimeOutCounter: 0
+ SendPacketCounter: 179               RecPacketCounter: 161
+ SendCreatePathCounter: 5             RecCreatePathCounter: 0
+ SendRefreshPathCounter: 172          RecRefreshPathCounter: 0
+ SendCreateResvCounter: 0             RecCreateResvCounter: 5
+ SendRefreshResvCounter: 0            RecRefreshResvCounter: 156
+ SendResvConfCounter: 0               RecResvConfCounter: 0
+ SendHelloCounter: 0                  RecHelloCounter: 0
+ SendAckCounter: 0                    RecAckCounter: 0
+ SendPathErrCounter: 0                RecPathErrCounter: 0
+ SendResvErrCounter: 0                RecResvErrCounter: 0
+ SendPathTearCounter: 2               RecPathTearCounter: 0
+ SendResvTearCounter: 0               RecResvTearCounter: 0
+ SendSrefreshCounter: 0               RecSrefreshCounter: 0
+ SendAckMsgCounter: 0                 RecAckMsgCounter: 0
+ SendChallengeMsgCounter: 0           RecChallengeMsgCounter: 0
+ SendResponseMsgCounter: 0            RecResponseMsgCounter: 0
+ SendErrMsgCounter: 0                 RecErrMsgCounter: 0
+ SendRecoveryPathMsgCounter: 0        RecRecoveryPathMsgCounter: 0
+ SendGRPathMsgCounter: 0              RecGRPathMsgCounter: 0
+ ResourceReqFaultCounter: 0           RecGRPathMsgFromLSPMCounter: 0
+ Bfd neighbor count: 1                Bfd session count: 0
+<AR1>
+```
+
+
+```R
+<AR1>display mpls rsvp-te interface
+Interface: GigabitEthernet0/0/0
+ Interface Address: 10.1.12.1
+ Interface state: UP                   Interface Index: 0x3
+ Total-BW: 0                           Used-BW: 0
+ Hello configured: NO                  Num of Neighbors: 1
+ SRefresh feature: DISABLE             SRefresh Interval: 30 sec
+ Mpls Mtu: 1500                        Retransmit Interval: 5000 msec
+ Increment Value: 1
+ Authentication: DISABLE
+ Bfd Enabled: DISABLE                  Bfd Min-Tx: 1000
+ Bfd Min-Rx: 1000                      Bfd Detect-Multi: 3
+
+```
+
+
+```R
+<AR1>display tunnel-info all
+ * -> Allocated VC Token
+Tunnel ID           Type                 Destination           Token
+----------------------------------------------------------------------
+0x1                 cr lsp                4.4.4.4                1
+0x4                 lsp                   4.4.4.4                4
+```
+
+```R
+<AR1>display mpls rsvp-te established
+ Token Bucket Rate: 0.00            Peak Data Rate: 0.00
+ Tunnel Addr: 4.4.4.4               Ingress LSR ID: 1.1.1.1
+ Local LSP ID: 3                    Session Tunnel ID: 104
+ Next Hop Addr: 10.1.12.2
+ Upstream Label: NULL               Downstream Label: 1026
+
+```
+
+```R
+<AR1>display mpls rsvp-te session 1.1.1.1 ?
+  INTEGER<0-65535>  Tunnel ID
+<AR1>display mpls rsvp-te session 1.1.1.1 104 4.4.4.4
+==============================================================
+  Display PSB, RSB and RFSB information in session table
+==============================================================
+==============================================================
+                       The PSB Content
+==============================================================
+ Tunnel Addr: 4.4.4.4                      Exist time: 0h 0m 0s
+ Tunnel ExtID: 1.1.1.1                     Session ID: 104
+ Ingress LSR ID: 1.1.1.1                   Local LSP ID: 3
+ Previous Hop :  ----- /0x0     Next Hop : 10.1.12.2
+ Incoming / Outgoing Interface: -----  / GigabitEthernet0/0/0
+ InLabel : NULL                            OutLabel : 1026
+ Send Message ID : 5                       Recv Message ID : 0
+ Refresh Timer : 3028595752                Cleanup Timer : ---
+ Session Attribute-
+  SetupPrio: 7         HoldPrio: 7
+  SessionAttrib: Label Recording desired. SE Style desired.
+ LSP Type: -
+ FRR Flag : No protection                  Local RRO Flag : 0x0
+ ERO Information-
+     L-Type         ERO-IPAddr       ERO-PrefixLen
+   ERHOP_STRICT    10.1.12.2             32
+   ERHOP_STRICT    10.1.23.2             32
+   ERHOP_STRICT    10.1.23.3             32
+   ERHOP_STRICT    10.1.34.3             32
+   ERHOP_STRICT    10.1.34.4             32
+ RRO Information-
+    -----
+ SenderTspec Information-
+  Token bucket rate: 0.00
+  Token bucket size: 1000.00
+  Peak data rate: 0.00
+  Minimum policed unit: 0
+  Maximum packet size: 4294967295
+ Path Message arrive on ----- from PHOP  -----
+ Path Message sent to NHOP 10.1.12.2  on GigabitEthernet0/0/0
+ Resource Reservation OK
+
+ LSP Statistics Information:
+   SendPacketCounter: 57          RecvPacketCounter: 48
+   SendPathCounter: 57            RecvPathCounter: 0
+   SendResvCounter: 0             RecvResvCounter: 48
+
+==============================================================
+                       The RSB Content
+==============================================================
+ Tunnel Addr: 4.4.4.4                 Session Tunnel ID: 104
+ Tunnel ExtID: 1.1.1.1
+ Next Hop: 10.1.12.2                  Reservation Style: SE Style
+ Reservation Incoming Interface: GigabitEthernet0/0/0
+ Reservation Interface: GigabitEthernet0/0/0
+ Message ID : 0
+ Filter Spec Information-
+   The filter number: 1
+   Ingress LSR ID: 1.1.1.1         Local LSP ID: 3       OutLabel: 1026
+   Cleanup Timer : 3028595936
+   RRO Information-
+     RRO-CType: IPV4   RRO-IPAddress: 10.1.12.2        RRO-IPPrefixLen: 32
+     RRO-CType: Label    RRO-Label: 1026
+     RRO-CType: IPV4   RRO-IPAddress: 2.2.2.2          RRO-IPPrefixLen: 32
+     RRO-CType: Label    RRO-Label: 1026
+     RRO-CType: IPV4   RRO-IPAddress: 10.1.23.2        RRO-IPPrefixLen: 32
+     RRO-CType: IPV4   RRO-IPAddress: 10.1.23.3        RRO-IPPrefixLen: 32
+     RRO-CType: Label    RRO-Label: 1026
+     RRO-CType: IPV4   RRO-IPAddress: 3.3.3.3          RRO-IPPrefixLen: 32
+     RRO-CType: Label    RRO-Label: 1026
+     RRO-CType: IPV4   RRO-IPAddress: 10.1.34.3        RRO-IPPrefixLen: 32
+     RRO-CType: IPV4   RRO-IPAddress: 10.1.34.4        RRO-IPPrefixLen: 32
+     RRO-CType: Label    RRO-Label: 3
+     RRO-CType: IPV4   RRO-IPAddress: 4.4.4.4          RRO-IPPrefixLen: 32
+     RRO-CType: Label    RRO-Label: 3
+ FlowSpec Information-
+   Token bucket rate: 0.00
+   Token bucket size: 1000.00
+   Peak data rate: 0.00
+   Minimum policed unit: 0
+   Maximum packet size: 1500
+   Bandwidth guarantees: 0.00
+   Delay guarantees: 0
+   Qos Service is Controlled
+ Resv Message arrive on GigabitEthernet0/0/0 from NHOP 10.1.12.2
+```
+
+
+```R
+<AR1>display mpls te tunnel-interface tunnel 0/0/0
+    ----------------------------------------------------------------
+                               Tunnel0/0/0
+    ----------------------------------------------------------------
+    Tunnel State Desc   :  UP
+    Active LSP          :  Primary LSP
+    Session ID          :  104
+    Ingress LSR ID      :  1.1.1.1          Egress LSR ID:  4.4.4.4
+    Admin State         :  UP               Oper State   :  UP
+    Primary LSP State      : UP
+      Main LSP State       : READY               LSP ID  : 3
+
+
+```

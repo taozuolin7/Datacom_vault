@@ -17,8 +17,9 @@ o break.
 tunnel-policy passTh-AR4 
  tunnel select-seq cr-lsp load-balance-number 1
 ```
-2.tunnel-policy 中存在两种引流方式
+2.tunnel-policy 中隧道策略有以下两种方式
 - 隧道类型优先级（select-seq）：改变隧道类型的优先选择顺序或者进行隧道的负载分担。
 - 隧道绑定（binding）：将隧道与某个目的地址绑定，使到该目的地址的VPN流量承载在绑定的隧道上，保证VPN的QoS。
+3.解析两种隧道策略的方式：
 
 

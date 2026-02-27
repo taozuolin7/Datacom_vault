@@ -11,15 +11,37 @@ o break.
   3     10.1.34.3          30 ms   Transit   10.1.35.5/[3 ]
   4     5.5.5.5            40 ms   Egress 
 ```
-# 二、如何引流
-1.通过 tunnel-policy 进行引流
+# 二、何为引流
+## 1.通过 tunnel-policy 进行引流
 ```R
 tunnel-policy passTh-AR4 
  tunnel select-seq cr-lsp load-balance-number 1
 ```
-2.tunnel-policy 中隧道策略有以下两种方式
+
+## 2.tunnel-policy 中隧道策略有以下两种方式
 - 隧道类型优先级（select-seq）：改变隧道类型的优先选择顺序或者进行隧道的负载分担。
 - 隧道绑定（binding）：将隧道与某个目的地址绑定，使到该目的地址的VPN流量承载在绑定的隧道上，保证VPN的QoS。
-3.解析两种隧道策略的方式：
+- 未配置以上两种方式之一时，隧道策略默认的行为是按照LDP LSP > BGP LSP > 静态LSP > SR LSP（SR-MPLS BE）的顺序选择隧道；配置了**tunnel policy binding-default down-switch enable**后，若没有UP的以上几类隧道，可以继续按照RSVP-TE > SR-MPLS TE > GRE > BGP local ifnet的顺序选择隧道。
 
-
+## 3.解析两种隧道策略的方式：
+### **1.select-seq**
+配置并应用按优先级顺序选择方式的隧道策略后，VPN选择隧道时将优先选择**tunnel select-seq**命令中排列在前的隧道。例如，隧道策略下配置了**tunnel select-seq cr-lsp lsp load-balance-number 2**后，VPN应用隧道策略后，将优先选择CR-LSP类型的隧道。
+- 如果当前系统中有2条或者2条以上可用的CR-LSP隧道时，则系统随机选取其中的2条。
+- 如果当前系统中CR-LSP类型的隧道少于2条，则不足的隧道从LSP类型隧道中选取。
+- 系统中正在使用的隧道条数由2条以上降到2条以下，则触发隧道策略重新选择隧道，不足的隧道从LSP类型隧道中选取。
+当在命令中使用**lsp**参数时，则有多种LSP类型的隧道可以作为候选隧道：BGP LSP、静态LSP、LDP LSP、SR LSP （SR-MPLS BE）。这几种LSP类型隧道的优先级顺序为LDP LSP > BGP LSP > 静态LSP > SR LSP（SR-MPLS BE）。例如：隧道策略下配置了tunnel select-seq lsp load-balance-number 2后：
+```R
+[HUAWEI-tunnel-policy-1]tunnel select-seq ?
+  bgp     BGP tunnel
+  cr-lsp  CR-LSP tunnel
+  gre     GRE tunnel
+  ldp     LDP tunnel
+  lsp     LSP tunnel
+  sr-lsp  Segment routing LSP
+  sr-te   Segment routing TE
+  te      RSVP-TE or Static TE tunnel
+```
+这三种LSP类型隧道的优先级顺序为LDP LSP>BGP LSP>静态LSP。例如，隧道策略下配置了**tunnel select-seq lsp cr-lsp load-balance-number 3**后：
+- 如果当前系统中有3条或者3条以上可用的LDP LSP隧道时，则系统随机选取其中的3条。
+- 如果当前系统中LDP LSP隧道少于3条，则不足的隧道从BGP LSP类型隧道中选取。
+- 如果当前系统中LDP LSP和BGP LSP隧道的总数少于3条，则不足的隧道从静态LSP类型隧道中选取。

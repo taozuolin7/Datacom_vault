@@ -45,3 +45,14 @@ tunnel-policy passTh-AR4
 - 如果当前系统中有3条或者3条以上可用的LDP LSP隧道时，则系统随机选取其中的3条。
 - 如果当前系统中LDP LSP隧道少于3条，则不足的隧道从BGP LSP类型隧道中选取。
 - 如果当前系统中LDP LSP和BGP LSP隧道的总数少于3条，则不足的隧道从静态LSP类型隧道中选取。
+### 2.binding
+**前置条件**
+在配置所要绑定的MPLS TE隧道之前，首先应在该隧道接口视图下配置**mpls te reserved-for-binding**命令。
+
+其中隧道绑定方式只对RSVP-TE隧道、SR-MPLS TE隧道、自动隧道或SR-MPLS TE Policy隧道组有效。例如对于TE隧道，能精确的指定走哪条TE隧道，因此便于部署QoS。有些VPN业务对QoS要求较高，一般需要为其迭代专用的TE隧道，这时可以使用该命令对VPN应用隧道绑定策略。绑定多条隧道时可以形成负载分担。
+- 若目的地址无法匹配到binding的地址，默认配置下流量会中断。若配置了tunnel policy binding-default down-switch enable，则会遍历各协议是否有可用的隧道。
+- 若目的地址匹配到binding的地址，且所有绑定的隧道都不可用，若**tunnel binding**命令行中未使能down-switch参数，则流量会中断；若使能了down-switch参数，则会遍历各协议是否有可用的隧道。
+- 遍历各协议隧道的优先级是LDP LSP > BGP LSP > 静态LSP > SR LSP（SR-MPLS BE） > RSVP-TE > SR-MPLS TE > GRE > BGP local ifnet。
+### 注意事项：
+命令**tunnel binding**与命令**tunnel select-seq**互斥，不支持同时配置。
+# 三、如何引流

@@ -3,6 +3,28 @@ EVPN（Ethernet Virtual Private Network）是一种用于二层网络互联的VP
 
 ==原有的VXLAN实现方案没有控制平面==，是通过数据平面的流量泛洪进行VTEP发现和主机信息（包括IP地址、MAC地址、VNI、网关VTEP IP地址）学习的，这种方式导致数据中心网络存在很多泛洪流量。为了解决这一问题，VXLAN引入了EVPN作为控制平面，通过在VTEP之间交换BGP EVPN路由实现VTEP的自动发现、主机信息相互通告等特性，从而避免了不必要的数据流量泛洪。
 
+```R
+ip vpn-instance a
+ ipv4-family
+  route-distinguisher 1:3
+  vpn-target 1:3 export-extcommunity
+  vpn-target 1:3 import-extcommunity
+ vxlan vni 100 /三层VNI
+#
+bridge-domain 10
+ vxlan vni 10 /二层VNI
+ evpn
+  route-distinguisher 1:1
+  vpn-target 1:1 export-extcommunity
+  vpn-target 1:1 import-extcommunity
+#
+bridge-domain 20
+ vxlan vni 20 /二层VNI
+ evpn
+  route-distinguisher 1:2
+  vpn-target 1:2 export-extcommunity
+  vpn-target 1:2 import-extcommunity
+```
 #  BGP EVPN路由
 ## **Type2路由——MAC/IP路由**
 

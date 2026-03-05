@@ -37,7 +37,7 @@
 		{
 			"id":"77ce954eb36045ef",
 			"type":"text",
-			"text":"vpn a",
+			"text":"vpn a (Student)",
 			"styleAttributes":{},
 			"x":-720,
 			"y":-240,
@@ -117,7 +117,7 @@
 		{
 			"id":"317e0c99390124e3",
 			"type":"text",
-			"text":"vpn b",
+			"text":"vpn b(teacher)",
 			"styleAttributes":{},
 			"x":60,
 			"y":-240,

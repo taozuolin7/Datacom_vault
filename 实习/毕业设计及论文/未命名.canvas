@@ -153,6 +153,36 @@
 			"y":160,
 			"width":260,
 			"height":60
+		},
+		{
+			"id":"562dcf51164db497",
+			"type":"text",
+			"text":"教学楼",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-1140,
+			"y":1060,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"5867b66c54c371aa",
+			"type":"text",
+			"text":"宿舍",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-670,
+			"y":1060,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"7fa2ab236eff1556",
+			"type":"text",
+			"text":"图书馆",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-200,
+			"y":1060,
+			"width":260,
+			"height":60
 		}
 	],
 	"edges":[

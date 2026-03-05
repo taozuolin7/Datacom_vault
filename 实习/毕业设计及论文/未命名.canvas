@@ -145,16 +145,6 @@
 			"height":60
 		},
 		{
-			"id":"07022272696c6842",
-			"type":"text",
-			"text":"192.168.10.0/24",
-			"styleAttributes":{"textAlign":"center"},
-			"x":-1200,
-			"y":160,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"562dcf51164db497",
 			"type":"text",
 			"text":"教学楼",
@@ -181,6 +171,36 @@
 			"styleAttributes":{"textAlign":"center"},
 			"x":-200,
 			"y":1060,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"67e1c2221fb97aa8",
+			"type":"text",
+			"text":"vni 20",
+			"styleAttributes":{"textAlign":"center"},
+			"x":520,
+			"y":-20,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"7ef6f0d9cb8255d1",
+			"type":"text",
+			"text":"192.168.20.0/24",
+			"styleAttributes":{"textAlign":"center"},
+			"x":520,
+			"y":160,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"07022272696c6842",
+			"type":"text",
+			"text":"192.168.10.0/24",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-720,
+			"y":380,
 			"width":260,
 			"height":60
 		}
@@ -332,6 +352,15 @@
 			"fromNode":"07022272696c6842",
 			"fromSide":"top",
 			"toNode":"77ce954eb36045ef",
+			"toSide":"bottom"
+		},
+		{
+			"id":"d8cd029616834841",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"7ef6f0d9cb8255d1",
+			"fromSide":"top",
+			"toNode":"67e1c2221fb97aa8",
 			"toSide":"bottom"
 		}
 	]

@@ -5,16 +5,6 @@
 	},
 	"nodes":[
 		{
-			"id":"9d17da9f69c5c781",
-			"type":"text",
-			"text":"FW Vsys b",
-			"styleAttributes":{"textAlign":"center"},
-			"x":60,
-			"y":-450,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"588162c3f1b26d05",
 			"type":"text",
 			"text":"vni 10",
@@ -65,16 +55,6 @@
 			"height":60
 		},
 		{
-			"id":"d89daf4abaf9068a",
-			"type":"text",
-			"text":"FW Vsys a",
-			"styleAttributes":{"textAlign":"center"},
-			"x":-620,
-			"y":-450,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"6a85ef3a7cbd74bf",
 			"type":"text",
 			"text":"FW",
@@ -121,16 +101,6 @@
 			"styleAttributes":{},
 			"x":60,
 			"y":-240,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"92c2294c676f95da",
-			"type":"text",
-			"text":"DHCP Server",
-			"styleAttributes":{"textAlign":"center"},
-			"x":-920,
-			"y":-720,
 			"width":260,
 			"height":60
 		},
@@ -203,6 +173,16 @@
 			"y":380,
 			"width":260,
 			"height":60
+		},
+		{
+			"id":"92c2294c676f95da",
+			"type":"text",
+			"text":"DHCP Server",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-1080,
+			"y":-540,
+			"width":260,
+			"height":60
 		}
 	],
 	"edges":[
@@ -259,46 +239,6 @@
 			"fromSide":"top",
 			"toNode":"317e0c99390124e3",
 			"toSide":"bottom"
-		},
-		{
-			"id":"85a053fe148217e0",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromFloating":false,
-			"fromNode":"77ce954eb36045ef",
-			"fromSide":"top",
-			"toNode":"d89daf4abaf9068a",
-			"toSide":"bottom"
-		},
-		{
-			"id":"720b13011ff54ead",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"317e0c99390124e3",
-			"fromSide":"top",
-			"toNode":"9d17da9f69c5c781",
-			"toSide":"bottom"
-		},
-		{
-			"id":"57d0fe2d28c1006b",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromFloating":false,
-			"fromNode":"d89daf4abaf9068a",
-			"fromSide":"top",
-			"toNode":"6a85ef3a7cbd74bf",
-			"toSide":"bottom",
-			"label":"v-if 1 <--> v-if 0"
-		},
-		{
-			"id":"aadb6f7985921b69",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"9d17da9f69c5c781",
-			"fromSide":"top",
-			"toNode":"6a85ef3a7cbd74bf",
-			"toSide":"bottom",
-			"label":" v-if 0 <-->  v-if 2"
 		},
 		{
 			"id":"394504a957d18c28",

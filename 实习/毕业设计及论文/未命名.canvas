@@ -192,7 +192,7 @@
 			"type":"text",
 			"text":"AP",
 			"styleAttributes":{"textAlign":"center"},
-			"x":-720,
+			"x":-240,
 			"y":400,
 			"width":260,
 			"height":60
@@ -344,12 +344,21 @@
 			"toSide":"bottom"
 		},
 		{
-			"id":"49065c2ca91c6ca1",
+			"id":"e1931907e5fd790f",
 			"styleAttributes":{},
 			"toFloating":false,
 			"fromNode":"07022272696c6842",
 			"fromSide":"top",
 			"toNode":"20b30ba670ea7b8a",
+			"toSide":"bottom"
+		},
+		{
+			"id":"d29a8f740d66b3ea",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"07022272696c6842",
+			"fromSide":"top",
+			"toNode":"220fcd49b9f35e77",
 			"toSide":"bottom"
 		}
 	]

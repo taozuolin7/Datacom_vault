@@ -178,22 +178,22 @@
 			"height":60
 		},
 		{
-			"id":"335c1e77f13c8fb4",
-			"type":"text",
-			"text":"",
-			"styleAttributes":{},
-			"x":-160,
-			"y":-260,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"07022272696c6842",
 			"type":"text",
 			"text":"AP",
 			"styleAttributes":{"textAlign":"center"},
 			"x":-240,
 			"y":400,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"335c1e77f13c8fb4",
+			"type":"text",
+			"text":"",
+			"styleAttributes":{},
+			"x":-280,
+			"y":-240,
 			"width":260,
 			"height":60
 		}

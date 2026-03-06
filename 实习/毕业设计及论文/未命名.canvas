@@ -4,6 +4,7 @@
 		"frontmatter":{}
 	},
 	"nodes":[
+		{"id":"754d3109855f2557","type":"group","x":-860,"y":-900,"width":1490,"height":320,"label":"OSPF1"},
 		{
 			"id":"588162c3f1b26d05",
 			"type":"text",
@@ -55,26 +56,6 @@
 			"height":60
 		},
 		{
-			"id":"6a85ef3a7cbd74bf",
-			"type":"text",
-			"text":"FW",
-			"styleAttributes":{"textAlign":"center"},
-			"x":-280,
-			"y":-720,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"b6bf1d04f2604f27",
-			"type":"text",
-			"text":"AR",
-			"styleAttributes":{"textAlign":"center"},
-			"x":-280,
-			"y":-940,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"220fcd49b9f35e77",
 			"type":"text",
 			"text":"vni 30",
@@ -108,7 +89,10 @@
 			"id":"1291bb6c5482f373",
 			"type":"text",
 			"text":"AC",
-			"styleAttributes":{"textAlign":"center"},
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
 			"x":340,
 			"y":-690,
 			"width":260,
@@ -145,32 +129,48 @@
 			"height":60
 		},
 		{
-			"id":"67e1c2221fb97aa8",
+			"id":"07022272696c6842",
 			"type":"text",
-			"text":"vni 20",
+			"text":"AP",
 			"styleAttributes":{"textAlign":"center"},
-			"x":520,
-			"y":-20,
+			"x":-1300,
+			"y":160,
 			"width":260,
 			"height":60
 		},
 		{
 			"id":"7ef6f0d9cb8255d1",
 			"type":"text",
-			"text":"192.168.20.0/24",
+			"text":"AP",
 			"styleAttributes":{"textAlign":"center"},
-			"x":520,
+			"x":470,
 			"y":160,
 			"width":260,
 			"height":60
 		},
 		{
-			"id":"07022272696c6842",
+			"id":"b6bf1d04f2604f27",
 			"type":"text",
-			"text":"192.168.10.0/24",
-			"styleAttributes":{"textAlign":"center"},
-			"x":-720,
-			"y":380,
+			"text":"AR",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-280,
+			"y":-880,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"6a85ef3a7cbd74bf",
+			"type":"text",
+			"text":"FW",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-280,
+			"y":-660,
 			"width":260,
 			"height":60
 		},
@@ -178,9 +178,22 @@
 			"id":"92c2294c676f95da",
 			"type":"text",
 			"text":"DHCP Server",
-			"styleAttributes":{"textAlign":"center"},
-			"x":-1080,
-			"y":-540,
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-850,
+			"y":-660,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"335c1e77f13c8fb4",
+			"type":"text",
+			"text":"",
+			"styleAttributes":{},
+			"x":-160,
+			"y":-260,
 			"width":260,
 			"height":60
 		}
@@ -295,13 +308,40 @@
 			"toSide":"bottom"
 		},
 		{
-			"id":"d8cd029616834841",
+			"id":"ad037586eb35d2d6",
 			"styleAttributes":{},
 			"toFloating":false,
 			"fromNode":"7ef6f0d9cb8255d1",
 			"fromSide":"top",
-			"toNode":"67e1c2221fb97aa8",
+			"toNode":"317e0c99390124e3",
 			"toSide":"bottom"
+		},
+		{
+			"id":"c7b0c4ded184f754",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"77ce954eb36045ef",
+			"fromSide":"top",
+			"toNode":"317e0c99390124e3",
+			"toSide":"top"
+		},
+		{
+			"id":"3ae58cf16eacbdbb",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"6a85ef3a7cbd74bf",
+			"fromSide":"bottom",
+			"toNode":"77ce954eb36045ef",
+			"toSide":"top"
+		},
+		{
+			"id":"8da28677d357a24f",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"6a85ef3a7cbd74bf",
+			"fromSide":"bottom",
+			"toNode":"317e0c99390124e3",
+			"toSide":"top"
 		}
 	]
 }

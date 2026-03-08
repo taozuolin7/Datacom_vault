@@ -5,6 +5,8 @@
 	},
 	"nodes":[
 		{"id":"754d3109855f2557","type":"group","x":-860,"y":-900,"width":1490,"height":320,"label":"OSPF1"},
+		{"id":"4292f3ca9b712a87","type":"group","x":-700,"y":2180,"width":760,"height":100,"label":"FW"},
+		{"id":"2969517a173b625b","type":"group","x":-720,"y":2720,"width":760,"height":100,"label":"SW"},
 		{
 			"id":"1291bb6c5482f373",
 			"type":"text",
@@ -198,16 +200,6 @@
 			"height":60
 		},
 		{
-			"id":"2f11e73302102a21",
-			"type":"text",
-			"text":"FW2",
-			"styleAttributes":{},
-			"x":-260,
-			"y":2260,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"7c38ecf79f95afb7",
 			"type":"text",
 			"text":"FW1",
@@ -215,6 +207,96 @@
 			"x":-680,
 			"y":2200,
 			"width":260,
+			"height":60
+		},
+		{
+			"id":"2f11e73302102a21",
+			"type":"text",
+			"text":"FW2",
+			"styleAttributes":{},
+			"x":-220,
+			"y":2200,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"ab401e074c4765da",
+			"type":"text",
+			"text":"10.0.3.1/24",
+			"styleAttributes":{},
+			"x":-630,
+			"y":2280,
+			"width":160,
+			"height":60
+		},
+		{
+			"id":"f4cea1d559902bb3",
+			"type":"text",
+			"text":"10.0.3.2/24",
+			"styleAttributes":{},
+			"x":-170,
+			"y":2280,
+			"width":160,
+			"height":60
+		},
+		{
+			"id":"a30c88752f200b56",
+			"type":"text",
+			"text":"Core1",
+			"styleAttributes":{},
+			"x":-700,
+			"y":2740,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"19443b6f41fa9630",
+			"type":"text",
+			"text":"Core2",
+			"styleAttributes":{},
+			"x":-240,
+			"y":2740,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"e1683520a0c58337",
+			"type":"text",
+			"text":"10.0.3.5/24",
+			"styleAttributes":{},
+			"x":-220,
+			"y":2600,
+			"width":160,
+			"height":60
+		},
+		{
+			"id":"8c85598be19db2a3",
+			"type":"text",
+			"text":"10.0.3.4/24",
+			"styleAttributes":{},
+			"x":-630,
+			"y":2600,
+			"width":160,
+			"height":60
+		},
+		{
+			"id":"65dcfd04f174fc4e",
+			"type":"text",
+			"text":"10.0.3.6/24",
+			"styleAttributes":{},
+			"x":-400,
+			"y":2520,
+			"width":160,
+			"height":60
+		},
+		{
+			"id":"b9a2c73becae8442",
+			"type":"text",
+			"text":"10.0.3.3/24",
+			"styleAttributes":{},
+			"x":-400,
+			"y":2380,
+			"width":160,
 			"height":60
 		}
 	],
@@ -380,6 +462,83 @@
 			"fromSide":"top",
 			"toNode":"220fcd49b9f35e77",
 			"toSide":"bottom"
+		},
+		{
+			"id":"8c2cfcdb987153c0",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromFloating":false,
+			"fromNode":"7c38ecf79f95afb7",
+			"fromSide":"bottom",
+			"toNode":"a30c88752f200b56",
+			"toSide":"top",
+			"label":"V100"
+		},
+		{
+			"id":"f081a8388f976ceb",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"2f11e73302102a21",
+			"fromSide":"bottom",
+			"toNode":"19443b6f41fa9630",
+			"toSide":"top",
+			"label":"V100"
+		},
+		{
+			"id":"58ed041a9d7cf069",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"ab401e074c4765da",
+			"fromSide":"bottom",
+			"toNode":"b9a2c73becae8442",
+			"toSide":"left"
+		},
+		{
+			"id":"48d1dd56c26e7553",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"f4cea1d559902bb3",
+			"fromSide":"bottom",
+			"toNode":"b9a2c73becae8442",
+			"toSide":"right"
+		},
+		{
+			"id":"f0d50a11d198831b",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"8c85598be19db2a3",
+			"fromSide":"right",
+			"toNode":"65dcfd04f174fc4e",
+			"toSide":"left"
+		},
+		{
+			"id":"083729cf265607ed",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"e1683520a0c58337",
+			"fromSide":"left",
+			"toNode":"65dcfd04f174fc4e",
+			"toSide":"right"
+		},
+		{
+			"id":"abbeb6ea0e029bc9",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromFloating":false,
+			"fromNode":"a30c88752f200b56",
+			"fromSide":"right",
+			"toNode":"19443b6f41fa9630",
+			"toSide":"left",
+			"label":"V100"
+		},
+		{
+			"id":"5ff1290aa4cf0b5f",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"b9a2c73becae8442",
+			"fromSide":"bottom",
+			"toNode":"65dcfd04f174fc4e",
+			"toSide":"top"
 		}
 	]
 }

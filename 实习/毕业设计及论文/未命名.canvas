@@ -4,61 +4,9 @@
 		"frontmatter":{}
 	},
 	"nodes":[
-		{"id":"754d3109855f2557","type":"group","x":-860,"y":-900,"width":1490,"height":320,"label":"OSPF1"},
+		{"id":"754d3109855f2557","type":"group","x":-460,"y":-920,"width":740,"height":340,"label":"OSPF1"},
 		{"id":"4292f3ca9b712a87","type":"group","x":-700,"y":2180,"width":760,"height":100,"label":"FW"},
 		{"id":"2969517a173b625b","type":"group","x":-720,"y":2720,"width":760,"height":100,"label":"SW"},
-		{
-			"id":"1291bb6c5482f373",
-			"type":"text",
-			"text":"AC",
-			"styleAttributes":{
-				"textAlign":"center",
-				"shape":null
-			},
-			"x":340,
-			"y":-690,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"b6bf1d04f2604f27",
-			"type":"text",
-			"text":"AR",
-			"styleAttributes":{
-				"textAlign":"center",
-				"shape":null
-			},
-			"x":-280,
-			"y":-880,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"6a85ef3a7cbd74bf",
-			"type":"text",
-			"text":"FW",
-			"styleAttributes":{
-				"textAlign":"center",
-				"shape":null
-			},
-			"x":-280,
-			"y":-660,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"92c2294c676f95da",
-			"type":"text",
-			"text":"DHCP Server",
-			"styleAttributes":{
-				"textAlign":"center",
-				"shape":null
-			},
-			"x":-850,
-			"y":-660,
-			"width":260,
-			"height":60
-		},
 		{
 			"id":"588162c3f1b26d05",
 			"type":"text",
@@ -105,66 +53,6 @@
 			"text":"192.168.20.0/24",
 			"styleAttributes":{"textAlign":"center"},
 			"x":-540,
-			"y":160,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"220fcd49b9f35e77",
-			"type":"text",
-			"text":"vni 30",
-			"styleAttributes":{"textAlign":"center"},
-			"x":60,
-			"y":-20,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"199259b2975dd36b",
-			"type":"text",
-			"text":"192.168.30.0/24",
-			"styleAttributes":{"textAlign":"center"},
-			"x":60,
-			"y":160,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"317e0c99390124e3",
-			"type":"text",
-			"text":"vpn b(teacher)",
-			"styleAttributes":{},
-			"x":60,
-			"y":-240,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"07022272696c6842",
-			"type":"text",
-			"text":"AP",
-			"styleAttributes":{"textAlign":"center"},
-			"x":-240,
-			"y":400,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"335c1e77f13c8fb4",
-			"type":"text",
-			"text":"",
-			"styleAttributes":{},
-			"x":-280,
-			"y":-240,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"7ef6f0d9cb8255d1",
-			"type":"text",
-			"text":"AP",
-			"styleAttributes":{"textAlign":"center"},
-			"x":470,
 			"y":160,
 			"width":260,
 			"height":60
@@ -298,6 +186,154 @@
 			"y":2380,
 			"width":160,
 			"height":60
+		},
+		{
+			"id":"220fcd49b9f35e77",
+			"type":"text",
+			"text":"vni 30",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-110,
+			"y":-20,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"199259b2975dd36b",
+			"type":"text",
+			"text":"192.168.30.0/24",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-110,
+			"y":160,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"317e0c99390124e3",
+			"type":"text",
+			"text":"vpn b(teacher)",
+			"styleAttributes":{},
+			"x":-110,
+			"y":-240,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"1291bb6c5482f373",
+			"type":"text",
+			"text":"AC",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-1140,
+			"y":-710,
+			"width":232,
+			"height":60
+		},
+		{
+			"id":"6a85ef3a7cbd74bf",
+			"type":"text",
+			"text":"FW",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-342,
+			"y":-660,
+			"width":232,
+			"height":60
+		},
+		{
+			"id":"335c1e77f13c8fb4",
+			"type":"text",
+			"text":"vpn c(Management)",
+			"styleAttributes":{},
+			"x":380,
+			"y":-240,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"90114e465676e7b4",
+			"type":"text",
+			"text":"vni 90",
+			"styleAttributes":{"textAlign":"center"},
+			"x":380,
+			"y":-20,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"f8b9613ea5cdea6b",
+			"type":"text",
+			"text":"10.1.90.0/24",
+			"styleAttributes":{"textAlign":"center"},
+			"x":380,
+			"y":160,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"92c2294c676f95da",
+			"type":"text",
+			"text":"DHCP Server",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-1140,
+			"y":-460,
+			"width":232,
+			"height":60
+		},
+		{
+			"id":"2e953ec62244eb6e",
+			"type":"text",
+			"text":"SW",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-772,
+			"y":-560,
+			"width":232,
+			"height":60
+		},
+		{
+			"id":"07022272696c6842",
+			"type":"text",
+			"text":"AP",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-300,
+			"y":340,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"b6bf1d04f2604f27",
+			"type":"text",
+			"text":"AR",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-458,
+			"y":-880,
+			"width":232,
+			"height":60
+		},
+		{
+			"id":"3df6421c4c24f200",
+			"type":"text",
+			"text":"AR",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-20,
+			"y":-880,
+			"width":232,
+			"height":60
 		}
 	],
 	"edges":[
@@ -362,51 +398,6 @@
 			"fromNode":"6a85ef3a7cbd74bf",
 			"fromSide":"top",
 			"toNode":"b6bf1d04f2604f27",
-			"toSide":"bottom"
-		},
-		{
-			"id":"0ab76c4759dd709b",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"92c2294c676f95da",
-			"fromSide":"bottom",
-			"toNode":"77ce954eb36045ef",
-			"toSide":"top"
-		},
-		{
-			"id":"9d36e1eb335cd695",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"92c2294c676f95da",
-			"fromSide":"bottom",
-			"toNode":"317e0c99390124e3",
-			"toSide":"top"
-		},
-		{
-			"id":"fd6ef6618514de8d",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"1291bb6c5482f373",
-			"fromSide":"bottom",
-			"toNode":"77ce954eb36045ef",
-			"toSide":"top"
-		},
-		{
-			"id":"8ff9df185b191c28",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"1291bb6c5482f373",
-			"fromSide":"bottom",
-			"toNode":"317e0c99390124e3",
-			"toSide":"top"
-		},
-		{
-			"id":"ad037586eb35d2d6",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"7ef6f0d9cb8255d1",
-			"fromSide":"top",
-			"toNode":"317e0c99390124e3",
 			"toSide":"bottom"
 		},
 		{
@@ -539,6 +530,79 @@
 			"fromSide":"bottom",
 			"toNode":"65dcfd04f174fc4e",
 			"toSide":"top"
+		},
+		{
+			"id":"ab5650a49e4af885",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"6a85ef3a7cbd74bf",
+			"fromSide":"bottom",
+			"toNode":"335c1e77f13c8fb4",
+			"toSide":"top"
+		},
+		{
+			"id":"8bc515e240a86f34",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"90114e465676e7b4",
+			"fromSide":"top",
+			"toNode":"335c1e77f13c8fb4",
+			"toSide":"bottom"
+		},
+		{
+			"id":"b2454a3b97cdd51c",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"f8b9613ea5cdea6b",
+			"fromSide":"top",
+			"toNode":"90114e465676e7b4",
+			"toSide":"bottom"
+		},
+		{
+			"id":"b65aaad0bc82c756",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"1291bb6c5482f373",
+			"fromSide":"right",
+			"toNode":"2e953ec62244eb6e",
+			"toSide":"left"
+		},
+		{
+			"id":"0f177f0f17668564",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"92c2294c676f95da",
+			"fromSide":"right",
+			"toNode":"2e953ec62244eb6e",
+			"toSide":"left"
+		},
+		{
+			"id":"866ef549262f6796",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromFloating":false,
+			"fromNode":"2e953ec62244eb6e",
+			"fromSide":"right",
+			"toNode":"77ce954eb36045ef",
+			"toSide":"top"
+		},
+		{
+			"id":"79cd630df896a1c0",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"2e953ec62244eb6e",
+			"fromSide":"right",
+			"toNode":"317e0c99390124e3",
+			"toSide":"top"
+		},
+		{
+			"id":"c29e4038a753a449",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"6a85ef3a7cbd74bf",
+			"fromSide":"top",
+			"toNode":"3df6421c4c24f200",
+			"toSide":"bottom"
 		}
 	]
 }

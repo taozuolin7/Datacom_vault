@@ -6,6 +6,58 @@
 	"nodes":[
 		{"id":"754d3109855f2557","type":"group","x":-860,"y":-900,"width":1490,"height":320,"label":"OSPF1"},
 		{
+			"id":"1291bb6c5482f373",
+			"type":"text",
+			"text":"AC",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":340,
+			"y":-690,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"b6bf1d04f2604f27",
+			"type":"text",
+			"text":"AR",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-280,
+			"y":-880,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"6a85ef3a7cbd74bf",
+			"type":"text",
+			"text":"FW",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-280,
+			"y":-660,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"92c2294c676f95da",
+			"type":"text",
+			"text":"DHCP Server",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-850,
+			"y":-660,
+			"width":260,
+			"height":60
+		},
+		{
 			"id":"588162c3f1b26d05",
 			"type":"text",
 			"text":"vni 10",
@@ -86,15 +138,32 @@
 			"height":60
 		},
 		{
-			"id":"1291bb6c5482f373",
+			"id":"07022272696c6842",
 			"type":"text",
-			"text":"AC",
-			"styleAttributes":{
-				"textAlign":"center",
-				"shape":null
-			},
-			"x":340,
-			"y":-690,
+			"text":"AP",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-240,
+			"y":400,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"335c1e77f13c8fb4",
+			"type":"text",
+			"text":"",
+			"styleAttributes":{},
+			"x":-280,
+			"y":-240,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"7ef6f0d9cb8255d1",
+			"type":"text",
+			"text":"AP",
+			"styleAttributes":{"textAlign":"center"},
+			"x":470,
+			"y":160,
 			"width":260,
 			"height":60
 		},
@@ -129,71 +198,22 @@
 			"height":60
 		},
 		{
-			"id":"7ef6f0d9cb8255d1",
+			"id":"2f11e73302102a21",
 			"type":"text",
-			"text":"AP",
-			"styleAttributes":{"textAlign":"center"},
-			"x":470,
-			"y":160,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"b6bf1d04f2604f27",
-			"type":"text",
-			"text":"AR",
-			"styleAttributes":{
-				"textAlign":"center",
-				"shape":null
-			},
-			"x":-280,
-			"y":-880,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"6a85ef3a7cbd74bf",
-			"type":"text",
-			"text":"FW",
-			"styleAttributes":{
-				"textAlign":"center",
-				"shape":null
-			},
-			"x":-280,
-			"y":-660,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"92c2294c676f95da",
-			"type":"text",
-			"text":"DHCP Server",
-			"styleAttributes":{
-				"textAlign":"center",
-				"shape":null
-			},
-			"x":-850,
-			"y":-660,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"07022272696c6842",
-			"type":"text",
-			"text":"AP",
-			"styleAttributes":{"textAlign":"center"},
-			"x":-240,
-			"y":400,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"335c1e77f13c8fb4",
-			"type":"text",
-			"text":"",
+			"text":"FW2",
 			"styleAttributes":{},
-			"x":-280,
-			"y":-240,
+			"x":-260,
+			"y":2260,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"7c38ecf79f95afb7",
+			"type":"text",
+			"text":"FW1",
+			"styleAttributes":{},
+			"x":-680,
+			"y":2200,
 			"width":260,
 			"height":60
 		}

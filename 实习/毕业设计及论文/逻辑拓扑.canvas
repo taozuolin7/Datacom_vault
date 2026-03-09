@@ -756,6 +756,7 @@
 			"id":"cd3317113d3faaea",
 			"styleAttributes":{},
 			"toFloating":false,
+			"fromFloating":false,
 			"fromNode":"b6bf1d04f2604f27",
 			"fromSide":"top",
 			"toNode":"1f7fd4877679ae8a",

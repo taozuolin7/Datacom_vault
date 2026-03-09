@@ -4,11 +4,13 @@
 		"frontmatter":{}
 	},
 	"nodes":[
-		{"id":"22b1283eae03edb2","type":"group","x":-680,"y":-160,"width":1080,"height":540},
-		{"id":"b6d010fcda8a334c","type":"group","x":-1880,"y":-180,"width":1080,"height":540,"label":"未命名组"},
-		{"id":"754d3109855f2557","type":"group","x":-280,"y":-1480,"width":740,"height":340,"label":"OSPF1"},
-		{"id":"1f7fd4877679ae8a","type":"group","x":-200,"y":-2080,"width":740,"height":340,"label":"OSPF1"},
-		{"id":"7d1ced2af4e37958","type":"group","x":660,"y":-160,"width":304,"height":540,"label":"未命名组"},
+		{"id":"b6d010fcda8a334c","type":"group","x":-1880,"y":-180,"width":1080,"height":760,"label":"未命名组"},
+		{"id":"22b1283eae03edb2","type":"group","x":-680,"y":-160,"width":1080,"height":740},
+		{"id":"cfe86e06241d9d56","type":"group","x":-682,"y":-680,"width":1020,"height":291,"label":"未命名组"},
+		{"id":"05eca9bb84bb985a","type":"group","x":-1460,"y":-900,"width":750,"height":350,"label":"未命名组"},
+		{"id":"754d3109855f2557","type":"group","x":-510,"y":-1240,"width":740,"height":340,"label":"OSPF1"},
+		{"id":"1f7fd4877679ae8a","type":"group","x":-430,"y":-1840,"width":740,"height":340,"label":"OSPF1"},
+		{"id":"7d1ced2af4e37958","type":"group","x":640,"y":-160,"width":304,"height":540,"label":"未命名组"},
 		{"id":"4292f3ca9b712a87","type":"group","x":-940,"y":2160,"width":760,"height":100,"label":"FW"},
 		{"id":"2969517a173b625b","type":"group","x":-960,"y":2700,"width":760,"height":100,"label":"SW"},
 		{
@@ -194,7 +196,7 @@
 		{
 			"id":"77ce954eb36045ef",
 			"type":"text",
-			"text":"vpn a (Student)",
+			"text":"vpn (Student)",
 			"styleAttributes":{},
 			"x":-1456,
 			"y":-160,
@@ -244,7 +246,7 @@
 		{
 			"id":"80899bde1d3586d6",
 			"type":"text",
-			"text":"vpn a (Student)",
+			"text":"vpn (Teacher)",
 			"styleAttributes":{},
 			"x":-258,
 			"y":-140,
@@ -272,71 +274,45 @@
 			"height":60
 		},
 		{
-			"id":"2df3df6f5d4c23c7",
+			"id":"aa740fdf3e5eb50f",
 			"type":"text",
-			"text":"vni 90",
-			"styleAttributes":{"textAlign":"center"},
-			"x":680,
-			"y":120,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"c9a5496eea45cad9",
-			"type":"text",
-			"text":"10.1.90.0/24",
-			"styleAttributes":{"textAlign":"center"},
-			"x":680,
-			"y":300,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"1b02fcf9587d0c59",
-			"type":"text",
-			"text":"vpn c(Management)",
+			"text":"AP",
 			"styleAttributes":{},
-			"x":684,
-			"y":-140,
+			"x":-1456,
+			"y":520,
 			"width":260,
 			"height":60
 		},
 		{
-			"id":"2e953ec62244eb6e",
+			"id":"c55184a1a44aef2b",
 			"type":"text",
-			"text":"SW",
-			"styleAttributes":{
-				"textAlign":"center",
-				"shape":null
-			},
-			"x":-1052,
-			"y":-720,
-			"width":232,
+			"text":"AP",
+			"styleAttributes":{},
+			"x":-258,
+			"y":520,
+			"width":260,
 			"height":60
 		},
 		{
-			"id":"1291bb6c5482f373",
+			"id":"485ac504b478a48d",
 			"type":"text",
-			"text":"AC",
-			"styleAttributes":{
-				"textAlign":"center",
-				"shape":null
-			},
-			"x":-1420,
-			"y":-870,
-			"width":232,
+			"text":"BGP EVPN",
+			"styleAttributes":{},
+			"x":-402,
+			"y":-660,
+			"width":260,
 			"height":60
 		},
 		{
-			"id":"92c2294c676f95da",
+			"id":"0bde598c3605d30f",
 			"type":"text",
-			"text":"DHCP Server",
+			"text":"Internet02",
 			"styleAttributes":{
 				"textAlign":"center",
 				"shape":null
 			},
-			"x":-1420,
-			"y":-620,
+			"x":36,
+			"y":-1800,
 			"width":232,
 			"height":60
 		},
@@ -348,21 +324,8 @@
 				"textAlign":"center",
 				"shape":null
 			},
-			"x":34,
-			"y":-1830,
-			"width":232,
-			"height":60
-		},
-		{
-			"id":"0bde598c3605d30f",
-			"type":"text",
-			"text":"Internet02",
-			"styleAttributes":{
-				"textAlign":"center",
-				"shape":null
-			},
-			"x":266,
-			"y":-2040,
+			"x":-196,
+			"y":-1590,
 			"width":232,
 			"height":60
 		},
@@ -374,8 +337,8 @@
 				"textAlign":"center",
 				"shape":null
 			},
-			"x":-242,
-			"y":-1440,
+			"x":-472,
+			"y":-1200,
 			"width":232,
 			"height":60
 		},
@@ -387,8 +350,8 @@
 				"textAlign":"center",
 				"shape":null
 			},
-			"x":186,
-			"y":-1440,
+			"x":-44,
+			"y":-1200,
 			"width":232,
 			"height":60
 		},
@@ -400,19 +363,9 @@
 				"textAlign":"center",
 				"shape":null
 			},
-			"x":-46,
-			"y":-1230,
+			"x":-276,
+			"y":-990,
 			"width":232,
-			"height":60
-		},
-		{
-			"id":"450166d185cc7f0a",
-			"type":"text",
-			"text":"VPN tea",
-			"styleAttributes":{},
-			"x":-922,
-			"y":-559,
-			"width":260,
 			"height":60
 		},
 		{
@@ -420,29 +373,35 @@
 			"type":"text",
 			"text":"VPN dhcp",
 			"styleAttributes":{},
-			"x":-546,
-			"y":-840,
+			"x":-992,
+			"y":-760,
 			"width":260,
 			"height":60
 		},
 		{
-			"id":"90220279b79757cc",
+			"id":"1291bb6c5482f373",
 			"type":"text",
-			"text":"VPN tea",
-			"styleAttributes":{},
-			"x":-546,
-			"y":-469,
-			"width":260,
+			"text":"AC",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-1442,
+			"y":-890,
+			"width":232,
 			"height":60
 		},
 		{
-			"id":"6cc11fbca4e52123",
+			"id":"92c2294c676f95da",
 			"type":"text",
-			"text":"VPN tea",
-			"styleAttributes":{},
-			"x":-522,
-			"y":-720,
-			"width":260,
+			"text":"DHCP Server",
+			"styleAttributes":{
+				"textAlign":"center",
+				"shape":null
+			},
+			"x":-1442,
+			"y":-640,
+			"width":232,
 			"height":60
 		},
 		{
@@ -450,8 +409,8 @@
 			"type":"text",
 			"text":"VPN stu",
 			"styleAttributes":{},
-			"x":42,
-			"y":-720,
+			"x":-662,
+			"y":-469,
 			"width":260,
 			"height":60
 		},
@@ -460,8 +419,48 @@
 			"type":"text",
 			"text":"VPN tea",
 			"styleAttributes":{},
-			"x":-60,
-			"y":-529,
+			"x":-304,
+			"y":-469,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"90220279b79757cc",
+			"type":"text",
+			"text":"VPN man",
+			"styleAttributes":{},
+			"x":58,
+			"y":-469,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"2df3df6f5d4c23c7",
+			"type":"text",
+			"text":"vni 90",
+			"styleAttributes":{"textAlign":"center"},
+			"x":660,
+			"y":120,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"c9a5496eea45cad9",
+			"type":"text",
+			"text":"10.1.90.0/24",
+			"styleAttributes":{"textAlign":"center"},
+			"x":660,
+			"y":300,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"1b02fcf9587d0c59",
+			"type":"text",
+			"text":"vpn (Management)",
+			"styleAttributes":{},
+			"x":664,
+			"y":-140,
 			"width":260,
 			"height":60
 		}
@@ -579,24 +578,6 @@
 			"fromSide":"bottom",
 			"toNode":"65dcfd04f174fc4e",
 			"toSide":"top"
-		},
-		{
-			"id":"b65aaad0bc82c756",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"1291bb6c5482f373",
-			"fromSide":"right",
-			"toNode":"2e953ec62244eb6e",
-			"toSide":"left"
-		},
-		{
-			"id":"0f177f0f17668564",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"92c2294c676f95da",
-			"fromSide":"right",
-			"toNode":"2e953ec62244eb6e",
-			"toSide":"left"
 		},
 		{
 			"id":"284529cefa3278b9",
@@ -779,6 +760,160 @@
 			"fromSide":"top",
 			"toNode":"1f7fd4877679ae8a",
 			"toSide":"bottom"
+		},
+		{
+			"id":"e97abc19b7fd55c1",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"b6d010fcda8a334c",
+			"fromSide":"top",
+			"toNode":"876770cea56ec3d5",
+			"toSide":"bottom"
+		},
+		{
+			"id":"84ad3f14721fce80",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"80899bde1d3586d6",
+			"fromSide":"top",
+			"toNode":"2567795c4cf96fd3",
+			"toSide":"bottom"
+		},
+		{
+			"id":"b49d052608cce45b",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"7d1ced2af4e37958",
+			"fromSide":"top",
+			"toNode":"90220279b79757cc",
+			"toSide":"bottom"
+		},
+		{
+			"id":"9eb7d96185d9d81b",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"754d3109855f2557",
+			"fromSide":"bottom",
+			"toNode":"876770cea56ec3d5",
+			"toSide":"top"
+		},
+		{
+			"id":"9e3dec2edc238909",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"2567795c4cf96fd3",
+			"fromSide":"top",
+			"toNode":"754d3109855f2557",
+			"toSide":"bottom"
+		},
+		{
+			"id":"fc69ef3d2a4611bb",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"1291bb6c5482f373",
+			"fromSide":"right",
+			"toNode":"191f524b4994c6e1",
+			"toSide":"left"
+		},
+		{
+			"id":"9f1bcb75b394d7ff",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"92c2294c676f95da",
+			"fromSide":"right",
+			"toNode":"191f524b4994c6e1",
+			"toSide":"left"
+		},
+		{
+			"id":"4126da56cbaffa4e",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"aa740fdf3e5eb50f",
+			"fromSide":"top",
+			"toNode":"588162c3f1b26d05",
+			"toSide":"bottom"
+		},
+		{
+			"id":"40175bf8d2568cbe",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"aa740fdf3e5eb50f",
+			"fromSide":"top",
+			"toNode":"7815c1bfaf469beb",
+			"toSide":"bottom"
+		},
+		{
+			"id":"314ff0590ea99195",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"aa740fdf3e5eb50f",
+			"fromSide":"top",
+			"toNode":"20b30ba670ea7b8a",
+			"toSide":"bottom"
+		},
+		{
+			"id":"4e78b5808a2a2d01",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"c55184a1a44aef2b",
+			"fromSide":"top",
+			"toNode":"24642e7133103606",
+			"toSide":"bottom"
+		},
+		{
+			"id":"ee7d56b2f66bddbc",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"c55184a1a44aef2b",
+			"fromSide":"top",
+			"toNode":"7ec6a9da77d5572e",
+			"toSide":"bottom"
+		},
+		{
+			"id":"81516c7d9eb59c2e",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"c55184a1a44aef2b",
+			"fromSide":"top",
+			"toNode":"e65f906fa5138e80",
+			"toSide":"bottom"
+		},
+		{
+			"id":"a849303af8ba8d67",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"876770cea56ec3d5",
+			"fromSide":"right",
+			"toNode":"485ac504b478a48d",
+			"toSide":"left"
+		},
+		{
+			"id":"cb4bcacdc3eae9e1",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"2567795c4cf96fd3",
+			"fromSide":"top",
+			"toNode":"485ac504b478a48d",
+			"toSide":"bottom"
+		},
+		{
+			"id":"d07dd4566374ca7c",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"90220279b79757cc",
+			"fromSide":"top",
+			"toNode":"485ac504b478a48d",
+			"toSide":"right"
+		},
+		{
+			"id":"d5c6cd537a9e42e1",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromFloating":false,
+			"fromNode":"191f524b4994c6e1",
+			"fromSide":"right",
+			"toNode":"485ac504b478a48d",
+			"toSide":"left"
 		}
 	]
 }

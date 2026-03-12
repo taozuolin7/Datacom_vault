@@ -170,16 +170,6 @@
 			"height":90
 		},
 		{
-			"id":"179776ad0f168e05",
-			"type":"text",
-			"text":"tea\nrd 100:3\n==ERT:1:2==\nERT 3:6\nIRT 2:3\nIRT 3:6",
-			"styleAttributes":{"textAlign":"center"},
-			"x":-2040,
-			"y":905,
-			"width":260,
-			"height":175
-		},
-		{
 			"id":"0bde598c3605d30f",
 			"type":"text",
 			"text":"Internet02",
@@ -517,12 +507,12 @@
 		{
 			"id":"16261176820ccfb8",
 			"type":"text",
-			"text":"stu\nrd 100:2\n==ERT 1:2==\nERT 2:3\nERT 2:6\nIRT 2:6",
+			"text":"stu\nrd 100:2\n==ERT 1:2==\nERT 2:3\nERT 2:6\nIRT 2:6\nIRT 2:3",
 			"styleAttributes":{"textAlign":"center"},
 			"x":-2680,
-			"y":905,
+			"y":880,
 			"width":260,
-			"height":175
+			"height":200
 		},
 		{
 			"id":"43339a8b920fac5a",
@@ -633,6 +623,16 @@
 			"y":2120,
 			"width":260,
 			"height":145
+		},
+		{
+			"id":"179776ad0f168e05",
+			"type":"text",
+			"text":"tea\nrd 100:3\n==ERT:1:2==\nERT 3:6\nERT 2:3\nIRT 2:3\nIRT 3:6",
+			"styleAttributes":{"textAlign":"center"},
+			"x":-2040,
+			"y":880,
+			"width":260,
+			"height":200
 		}
 	],
 	"edges":[
@@ -1310,6 +1310,15 @@
 			"fromSide":"bottom",
 			"toNode":"27691c06b8a52726",
 			"toSide":"top"
+		},
+		{
+			"id":"2dc2915115454c43",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"16261176820ccfb8",
+			"fromSide":"right",
+			"toNode":"179776ad0f168e05",
+			"toSide":"left"
 		}
 	]
 }

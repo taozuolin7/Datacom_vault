@@ -507,7 +507,7 @@
 		{
 			"id":"da6fada5afd97309",
 			"type":"text",
-			"text":"iot\nrd 100:4\n==ERT 1:2==",
+			"text":"iot\nrd 100:3\n==ERT 1:2==",
 			"styleAttributes":{"textAlign":"center"},
 			"x":-2680,
 			"y":1320,

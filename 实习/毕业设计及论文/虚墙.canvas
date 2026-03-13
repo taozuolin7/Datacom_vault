@@ -5,16 +5,6 @@
 	},
 	"nodes":[
 		{
-			"id":"55db62b4941b08ee",
-			"type":"text",
-			"text":"Public",
-			"styleAttributes":{},
-			"x":-160,
-			"y":-540,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"362284efa2eb4050",
 			"type":"text",
 			"text":"test",
@@ -61,6 +51,136 @@
 			"styleAttributes":{},
 			"x":200,
 			"y":-220,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"55db62b4941b08ee",
+			"type":"text",
+			"text":"Public",
+			"styleAttributes":{},
+			"x":-160,
+			"y":-660,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"bcb5dd03f37281d3",
+			"type":"text",
+			"text":"Guest",
+			"styleAttributes":{},
+			"x":40,
+			"y":360,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"c5c58134f086360d",
+			"type":"text",
+			"text":"Employee",
+			"styleAttributes":{},
+			"x":-380,
+			"y":390,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"1699779a69146921",
+			"type":"text",
+			"text":"stu",
+			"styleAttributes":{},
+			"x":-400,
+			"y":1239,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"921f8c97c7bb55bc",
+			"type":"text",
+			"text":"iot",
+			"styleAttributes":{},
+			"x":-400,
+			"y":1340,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"f562ceb0633521ef",
+			"type":"text",
+			"text":"test",
+			"styleAttributes":{},
+			"x":-400,
+			"y":1550,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"20da742f0fce041b",
+			"type":"text",
+			"text":"tea",
+			"styleAttributes":{},
+			"x":-400,
+			"y":1460,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"9dce0e9bfdee8d75",
+			"type":"text",
+			"text":"man",
+			"styleAttributes":{},
+			"x":-400,
+			"y":1670,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"3f32f637bc9dd5f4",
+			"type":"text",
+			"text":"test",
+			"styleAttributes":{},
+			"x":60,
+			"y":1550,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"476bb463803ec9a9",
+			"type":"text",
+			"text":"tea",
+			"styleAttributes":{},
+			"x":60,
+			"y":1460,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"1c6e9917c5bda13d",
+			"type":"text",
+			"text":"stu",
+			"styleAttributes":{},
+			"x":60,
+			"y":1239,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"1edd5c5fd1d1812a",
+			"type":"text",
+			"text":"man",
+			"styleAttributes":{},
+			"x":60,
+			"y":1670,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"a21f3dc06ee7635a",
+			"type":"text",
+			"text":"iot",
+			"styleAttributes":{},
+			"x":60,
+			"y":1340,
 			"width":260,
 			"height":60
 		}
@@ -110,6 +230,24 @@
 			"fromSide":"top",
 			"toNode":"55db62b4941b08ee",
 			"toSide":"bottom"
+		},
+		{
+			"id":"f2ba1c8d9b4d3c3c",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"9dce0e9bfdee8d75",
+			"fromSide":"right",
+			"toNode":"1edd5c5fd1d1812a",
+			"toSide":"left"
+		},
+		{
+			"id":"b76d67d92d9601af",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"9dce0e9bfdee8d75",
+			"fromSide":"right",
+			"toNode":"1edd5c5fd1d1812a",
+			"toSide":"left"
 		}
 	]
 }

@@ -12,7 +12,7 @@
 		{"id":"0d4d0b150a4a32d5","type":"group","x":-880,"y":3186,"width":1300,"height":100,"label":"Area4"},
 		{"id":"6a4c87e79eb0a019","type":"group","x":-880,"y":3400,"width":1300,"height":100,"label":"Area5"},
 		{"id":"36338fc45e7641a1","type":"group","x":-880,"y":3620,"width":1300,"height":100,"label":"Area6"},
-		{"id":"b0f71569bcea6b15","type":"group","x":560,"y":3081,"width":300,"height":310,"label":"出口"},
+		{"id":"b0f71569bcea6b15","type":"group","x":580,"y":3035,"width":300,"height":310,"label":"出口"},
 		{
 			"id":"362284efa2eb4050",
 			"type":"text",
@@ -94,26 +94,6 @@
 			"height":60
 		},
 		{
-			"id":"a21f3dc06ee7635a",
-			"type":"text",
-			"text":"iot",
-			"styleAttributes":{},
-			"x":-330,
-			"y":3020,
-			"width":141,
-			"height":60
-		},
-		{
-			"id":"921f8c97c7bb55bc",
-			"type":"text",
-			"text":"iot ospf 3 route 10.1.1.2",
-			"styleAttributes":{},
-			"x":-870,
-			"y":3020,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"476bb463803ec9a9",
 			"type":"text",
 			"text":"tea",
@@ -129,6 +109,16 @@
 			"text":"tea ospf 4 route 10.1.1.3",
 			"styleAttributes":{},
 			"x":-870,
+			"y":3206,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"e02bd1efdbde19b3",
+			"type":"text",
+			"text":"ospf 7 a 4",
+			"styleAttributes":{},
+			"x":120,
 			"y":3206,
 			"width":260,
 			"height":60
@@ -174,6 +164,56 @@
 			"height":60
 		},
 		{
+			"id":"61c9ff27c18bb850",
+			"type":"text",
+			"text":"ospf 7 a 6",
+			"styleAttributes":{},
+			"x":120,
+			"y":3640,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"c273d5af48810927",
+			"type":"text",
+			"text":"ospf 7 a 5",
+			"styleAttributes":{},
+			"x":120,
+			"y":3420,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"27064c2a445b4195",
+			"type":"text",
+			"text":"ospf 7 a 0",
+			"styleAttributes":{},
+			"x":120,
+			"y":2676,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"a21f3dc06ee7635a",
+			"type":"text",
+			"text":"iot",
+			"styleAttributes":{},
+			"x":-330,
+			"y":3020,
+			"width":141,
+			"height":60
+		},
+		{
+			"id":"921f8c97c7bb55bc",
+			"type":"text",
+			"text":"iot ospf 3 route 10.1.1.2",
+			"styleAttributes":{},
+			"x":-870,
+			"y":3020,
+			"width":260,
+			"height":60
+		},
+		{
 			"id":"1699779a69146921",
 			"type":"text",
 			"text":"stu ospf 2 route 10.1.1.1",
@@ -204,36 +244,6 @@
 			"height":60
 		},
 		{
-			"id":"61c9ff27c18bb850",
-			"type":"text",
-			"text":"ospf 7 a 6",
-			"styleAttributes":{},
-			"x":120,
-			"y":3640,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"c273d5af48810927",
-			"type":"text",
-			"text":"ospf 7 a 5",
-			"styleAttributes":{},
-			"x":120,
-			"y":3420,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"e02bd1efdbde19b3",
-			"type":"text",
-			"text":"ospf 7 a 4",
-			"styleAttributes":{},
-			"x":120,
-			"y":3206,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"b58e836bcc9a37f7",
 			"type":"text",
 			"text":"ospf 7 a 3",
@@ -244,22 +254,12 @@
 			"height":60
 		},
 		{
-			"id":"27064c2a445b4195",
-			"type":"text",
-			"text":"ospf 7 a 0",
-			"styleAttributes":{},
-			"x":120,
-			"y":2676,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"151cd17eef63b61d",
 			"type":"text",
 			"text":"ospf 1 a 0",
 			"styleAttributes":{},
-			"x":580,
-			"y":3107,
+			"x":600,
+			"y":3061,
 			"width":260,
 			"height":60
 		},
@@ -268,8 +268,8 @@
 			"type":"text",
 			"text":"ospf 1 a 0",
 			"styleAttributes":{},
-			"x":580,
-			"y":3317,
+			"x":600,
+			"y":3271,
 			"width":260,
 			"height":60
 		}

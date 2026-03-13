@@ -12,7 +12,7 @@
 		{"id":"0d4d0b150a4a32d5","type":"group","x":-880,"y":3186,"width":1300,"height":100,"label":"Area4"},
 		{"id":"6a4c87e79eb0a019","type":"group","x":-880,"y":3400,"width":1300,"height":100,"label":"Area5"},
 		{"id":"36338fc45e7641a1","type":"group","x":-880,"y":3620,"width":1300,"height":100,"label":"Area6"},
-		{"id":"b0f71569bcea6b15","type":"group","x":580,"y":3035,"width":300,"height":310,"label":"出口"},
+		{"id":"b0f71569bcea6b15","type":"group","x":660,"y":2550,"width":300,"height":310,"label":"出口"},
 		{
 			"id":"362284efa2eb4050",
 			"type":"text",
@@ -258,8 +258,8 @@
 			"type":"text",
 			"text":"ospf 1 a 0",
 			"styleAttributes":{},
-			"x":600,
-			"y":3061,
+			"x":680,
+			"y":2576,
 			"width":260,
 			"height":60
 		},
@@ -268,8 +268,8 @@
 			"type":"text",
 			"text":"ospf 1 a 0",
 			"styleAttributes":{},
-			"x":600,
-			"y":3271,
+			"x":680,
+			"y":2786,
 			"width":260,
 			"height":60
 		}
@@ -427,7 +427,7 @@
 			"fromFloating":false,
 			"fromNode":"27064c2a445b4195",
 			"fromSide":"right",
-			"toNode":"b0f71569bcea6b15",
+			"toNode":"151cd17eef63b61d",
 			"toSide":"left",
 			"label":"v211\n10.1.200.41|42/30"
 		},
@@ -462,6 +462,17 @@
 			"toNode":"151cd17eef63b61d",
 			"toSide":"bottom",
 			"label":"10.1.200.45|55/30"
+		},
+		{
+			"id":"385e8088187baaa9",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromFloating":false,
+			"fromNode":"27064c2a445b4195",
+			"fromSide":"right",
+			"toNode":"e273a38cdd60a95a",
+			"toSide":"left",
+			"label":"v212\n10.1.200.45|46/30"
 		}
 	]
 }

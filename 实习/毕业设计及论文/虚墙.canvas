@@ -14,86 +14,6 @@
 		{"id":"36338fc45e7641a1","type":"group","x":-880,"y":3620,"width":1300,"height":100,"label":"Area6"},
 		{"id":"b0f71569bcea6b15","type":"group","x":660,"y":2550,"width":300,"height":310,"label":"出口"},
 		{
-			"id":"362284efa2eb4050",
-			"type":"text",
-			"text":"test",
-			"styleAttributes":{},
-			"x":-540,
-			"y":-400,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"de8b8a81de03460f",
-			"type":"text",
-			"text":"man",
-			"styleAttributes":{},
-			"x":260,
-			"y":-400,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"e2c668957a275e42",
-			"type":"text",
-			"text":"stu",
-			"styleAttributes":{},
-			"x":-440,
-			"y":-220,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"e1c5c409aa62c37c",
-			"type":"text",
-			"text":"tea",
-			"styleAttributes":{},
-			"x":-120,
-			"y":-220,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"69468951bc9c03e5",
-			"type":"text",
-			"text":"iot",
-			"styleAttributes":{},
-			"x":200,
-			"y":-220,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"55db62b4941b08ee",
-			"type":"text",
-			"text":"Public",
-			"styleAttributes":{},
-			"x":-160,
-			"y":-660,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"bcb5dd03f37281d3",
-			"type":"text",
-			"text":"Guest",
-			"styleAttributes":{},
-			"x":40,
-			"y":360,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"c5c58134f086360d",
-			"type":"text",
-			"text":"Employee",
-			"styleAttributes":{},
-			"x":-380,
-			"y":390,
-			"width":260,
-			"height":60
-		},
-		{
 			"id":"476bb463803ec9a9",
 			"type":"text",
 			"text":"tea",
@@ -275,51 +195,6 @@
 		}
 	],
 	"edges":[
-		{
-			"id":"1800e4f39ce764ed",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"e2c668957a275e42",
-			"fromSide":"top",
-			"toNode":"55db62b4941b08ee",
-			"toSide":"bottom"
-		},
-		{
-			"id":"b79b7677d5631b7f",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"e1c5c409aa62c37c",
-			"fromSide":"top",
-			"toNode":"55db62b4941b08ee",
-			"toSide":"bottom"
-		},
-		{
-			"id":"aa932664de0250a0",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"69468951bc9c03e5",
-			"fromSide":"top",
-			"toNode":"55db62b4941b08ee",
-			"toSide":"bottom"
-		},
-		{
-			"id":"cebc335ac4df156a",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"362284efa2eb4050",
-			"fromSide":"top",
-			"toNode":"55db62b4941b08ee",
-			"toSide":"bottom"
-		},
-		{
-			"id":"7e825304abb6e253",
-			"styleAttributes":{},
-			"toFloating":false,
-			"fromNode":"de8b8a81de03460f",
-			"fromSide":"top",
-			"toNode":"55db62b4941b08ee",
-			"toSide":"bottom"
-		},
 		{
 			"id":"f2ba1c8d9b4d3c3c",
 			"styleAttributes":{},

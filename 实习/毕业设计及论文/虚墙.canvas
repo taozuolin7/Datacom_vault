@@ -4,6 +4,15 @@
 		"frontmatter":{}
 	},
 	"nodes":[
+		{"id":"81fb01f529890e46","type":"group","x":100,"y":2620,"width":340,"height":1140,"label":"Spine"},
+		{"id":"18b8a95aba8beddf","type":"group","x":-890,"y":2751,"width":300,"height":1009,"label":"Spine"},
+		{"id":"8ba7ad0bdaf39584","type":"group","x":-339,"y":2751,"width":179,"height":1009,"label":"FW"},
+		{"id":"95a4aa2c65447fdf","type":"group","x":-880,"y":2810,"width":1300,"height":100,"label":"Area 2"},
+		{"id":"1e80f487a9601dea","type":"group","x":-880,"y":3000,"width":1300,"height":100,"label":"Area3"},
+		{"id":"0d4d0b150a4a32d5","type":"group","x":-880,"y":3186,"width":1300,"height":100,"label":"Area4"},
+		{"id":"6a4c87e79eb0a019","type":"group","x":-880,"y":3400,"width":1300,"height":100,"label":"Area5"},
+		{"id":"36338fc45e7641a1","type":"group","x":-880,"y":3620,"width":1300,"height":100,"label":"Area6"},
+		{"id":"b0f71569bcea6b15","type":"group","x":560,"y":3081,"width":300,"height":310,"label":"出口"},
 		{
 			"id":"362284efa2eb4050",
 			"type":"text",
@@ -85,62 +94,22 @@
 			"height":60
 		},
 		{
-			"id":"1699779a69146921",
+			"id":"a21f3dc06ee7635a",
 			"type":"text",
-			"text":"stu",
+			"text":"iot",
 			"styleAttributes":{},
-			"x":-400,
-			"y":1239,
-			"width":260,
+			"x":-330,
+			"y":3020,
+			"width":141,
 			"height":60
 		},
 		{
 			"id":"921f8c97c7bb55bc",
 			"type":"text",
-			"text":"iot",
+			"text":"iot ospf 3 route 10.1.1.2",
 			"styleAttributes":{},
-			"x":-400,
-			"y":1340,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"f562ceb0633521ef",
-			"type":"text",
-			"text":"test",
-			"styleAttributes":{},
-			"x":-400,
-			"y":1550,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"20da742f0fce041b",
-			"type":"text",
-			"text":"tea",
-			"styleAttributes":{},
-			"x":-400,
-			"y":1460,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"9dce0e9bfdee8d75",
-			"type":"text",
-			"text":"man",
-			"styleAttributes":{},
-			"x":-400,
-			"y":1670,
-			"width":260,
-			"height":60
-		},
-		{
-			"id":"3f32f637bc9dd5f4",
-			"type":"text",
-			"text":"test",
-			"styleAttributes":{},
-			"x":60,
-			"y":1550,
+			"x":-870,
+			"y":3020,
 			"width":260,
 			"height":60
 		},
@@ -149,18 +118,48 @@
 			"type":"text",
 			"text":"tea",
 			"styleAttributes":{},
-			"x":60,
-			"y":1460,
+			"x":-330,
+			"y":3206,
+			"width":141,
+			"height":60
+		},
+		{
+			"id":"20da742f0fce041b",
+			"type":"text",
+			"text":"tea ospf 4 route 10.1.1.3",
+			"styleAttributes":{},
+			"x":-870,
+			"y":3206,
 			"width":260,
 			"height":60
 		},
 		{
-			"id":"1c6e9917c5bda13d",
+			"id":"3f32f637bc9dd5f4",
 			"type":"text",
-			"text":"stu",
+			"text":"test",
 			"styleAttributes":{},
-			"x":60,
-			"y":1239,
+			"x":-330,
+			"y":3420,
+			"width":141,
+			"height":60
+		},
+		{
+			"id":"f562ceb0633521ef",
+			"type":"text",
+			"text":"test ospf 5 route 10.1.1.4",
+			"styleAttributes":{},
+			"x":-870,
+			"y":3420,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"9dce0e9bfdee8d75",
+			"type":"text",
+			"text":"man ospf 6 route 10.1.1.5",
+			"styleAttributes":{},
+			"x":-870,
+			"y":3640,
 			"width":260,
 			"height":60
 		},
@@ -169,18 +168,108 @@
 			"type":"text",
 			"text":"man",
 			"styleAttributes":{},
-			"x":60,
-			"y":1670,
+			"x":-330,
+			"y":3640,
+			"width":141,
+			"height":60
+		},
+		{
+			"id":"1699779a69146921",
+			"type":"text",
+			"text":"stu ospf 2 route 10.1.1.1",
+			"styleAttributes":{},
+			"x":-870,
+			"y":2821,
 			"width":260,
 			"height":60
 		},
 		{
-			"id":"a21f3dc06ee7635a",
+			"id":"1c6e9917c5bda13d",
 			"type":"text",
-			"text":"iot",
+			"text":"stu",
 			"styleAttributes":{},
-			"x":60,
-			"y":1340,
+			"x":-330,
+			"y":2821,
+			"width":141,
+			"height":60
+		},
+		{
+			"id":"2b09c536b67fc6bb",
+			"type":"text",
+			"text":"ospf 7",
+			"styleAttributes":{},
+			"x":120,
+			"y":2821,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"61c9ff27c18bb850",
+			"type":"text",
+			"text":"ospf 7 a 6",
+			"styleAttributes":{},
+			"x":120,
+			"y":3640,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"c273d5af48810927",
+			"type":"text",
+			"text":"ospf 7 a 5",
+			"styleAttributes":{},
+			"x":120,
+			"y":3420,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"e02bd1efdbde19b3",
+			"type":"text",
+			"text":"ospf 7 a 4",
+			"styleAttributes":{},
+			"x":120,
+			"y":3206,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"b58e836bcc9a37f7",
+			"type":"text",
+			"text":"ospf 7 a 3",
+			"styleAttributes":{},
+			"x":120,
+			"y":3020,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"27064c2a445b4195",
+			"type":"text",
+			"text":"ospf 7 a 0",
+			"styleAttributes":{},
+			"x":120,
+			"y":2676,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"151cd17eef63b61d",
+			"type":"text",
+			"text":"ospf 1 a 0",
+			"styleAttributes":{},
+			"x":580,
+			"y":3107,
+			"width":260,
+			"height":60
+		},
+		{
+			"id":"e273a38cdd60a95a",
+			"type":"text",
+			"text":"ospf 1 a 0",
+			"styleAttributes":{},
+			"x":580,
+			"y":3317,
 			"width":260,
 			"height":60
 		}
@@ -244,10 +333,135 @@
 			"id":"b76d67d92d9601af",
 			"styleAttributes":{},
 			"toFloating":false,
+			"fromFloating":false,
 			"fromNode":"9dce0e9bfdee8d75",
 			"fromSide":"right",
 			"toNode":"1edd5c5fd1d1812a",
-			"toSide":"left"
+			"toSide":"left",
+			"label":"V205\n10.1.200.17|18/30"
+		},
+		{
+			"id":"91326c57e0278d92",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"f562ceb0633521ef",
+			"fromSide":"right",
+			"toNode":"3f32f637bc9dd5f4",
+			"toSide":"left",
+			"label":"V204\n10.1.200.13|14/30"
+		},
+		{
+			"id":"80218215b0899fc1",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"20da742f0fce041b",
+			"fromSide":"right",
+			"toNode":"476bb463803ec9a9",
+			"toSide":"left",
+			"label":"V203\n10.1.200.9|10/30"
+		},
+		{
+			"id":"15dcafefb0baafa4",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"921f8c97c7bb55bc",
+			"fromSide":"right",
+			"toNode":"a21f3dc06ee7635a",
+			"toSide":"left",
+			"label":"V202\n10.1.200.5|6/30"
+		},
+		{
+			"id":"fc8082d2e9c36b06",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"a21f3dc06ee7635a",
+			"fromSide":"right",
+			"toNode":"b58e836bcc9a37f7",
+			"toSide":"left",
+			"label":"v207\n10.1.200.25|26/30"
+		},
+		{
+			"id":"73ccd006880ad9ff",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"476bb463803ec9a9",
+			"fromSide":"right",
+			"toNode":"e02bd1efdbde19b3",
+			"toSide":"left",
+			"label":"v208\n10.1.200.29|30/30"
+		},
+		{
+			"id":"5f55e989e2e5221c",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"3f32f637bc9dd5f4",
+			"fromSide":"right",
+			"toNode":"c273d5af48810927",
+			"toSide":"left",
+			"label":"v209\n10.1.200.33|34/30"
+		},
+		{
+			"id":"ac84b61cbb080126",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"1edd5c5fd1d1812a",
+			"fromSide":"right",
+			"toNode":"61c9ff27c18bb850",
+			"toSide":"left",
+			"label":"v210\n10.1.200.37|38/30"
+		},
+		{
+			"id":"de90d93701dce0a5",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromFloating":false,
+			"fromNode":"151cd17eef63b61d",
+			"fromSide":"bottom",
+			"toNode":"e273a38cdd60a95a",
+			"toSide":"top"
+		},
+		{
+			"id":"8a8073a2524d8682",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromFloating":false,
+			"fromNode":"27064c2a445b4195",
+			"fromSide":"right",
+			"toNode":"b0f71569bcea6b15",
+			"toSide":"left",
+			"label":"v211\n10.1.200.41|42/30"
+		},
+		{
+			"id":"a9cf3be4b5306be0",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromFloating":false,
+			"fromNode":"1699779a69146921",
+			"fromSide":"right",
+			"toNode":"1c6e9917c5bda13d",
+			"toSide":"left",
+			"label":"V201\n10.1.200.1|2/30"
+		},
+		{
+			"id":"074a01a643ebacd4",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromFloating":false,
+			"fromNode":"1c6e9917c5bda13d",
+			"fromSide":"right",
+			"toNode":"2b09c536b67fc6bb",
+			"toSide":"left",
+			"label":"v206\n10.1.200.21|22/30"
+		},
+		{
+			"id":"777289add8960892",
+			"styleAttributes":{},
+			"toFloating":false,
+			"fromNode":"e273a38cdd60a95a",
+			"fromSide":"top",
+			"toNode":"151cd17eef63b61d",
+			"toSide":"bottom",
+			"label":"10.1.200.45|55/30"
 		}
 	]
 }
